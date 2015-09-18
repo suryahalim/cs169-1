@@ -13,6 +13,13 @@ module.exports = function(grunt) {
 				dest: "build/css/design.min.css",
 			},
 		},
+		uglify: {
+			js: {
+				files: {
+			        'build/js/script.min.js': ['build/js/script.js'],
+			    },	
+			},
+		}
 		watch: {
 			less: {
 			    files: ['build/less/*.less', 'build/less/pages/*.less'],
@@ -22,6 +29,10 @@ module.exports = function(grunt) {
 				files: ['build/css/design.css'],
 				tasks: ['cssmin'],
 			},
+			uglify: {
+				files: ['build/js/script.js'],
+				tasks: ['uglify'],
+			}
 		},
 	});
 
@@ -29,5 +40,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+
 }
