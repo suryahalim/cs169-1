@@ -1,0 +1,29 @@
+// round
+.round(@radius) {
+	-webkit-border-radius: @radius;
+	   -moz-border-radius: @radius;
+	   	 -o-border-radius: @radius;
+	   		border-radius: @radius;
+}
+
+.round-xs {
+	.round(@xs-rad);
+}
+.round-sm {
+	.round(@sm-rad);
+}
+.round-md {
+	.round(@md-rad);
+}
+.round-lg {
+	.round(@lg-rad);
+}
+.round-xl {
+	.round(@xl-rad);
+}
+.corner {
+	.round(0);
+}
+.center {
+	text-align: center;
+}
