@@ -2,6 +2,8 @@
 
 This repository holds Bytlyn webpage.
 
+
+
 # Front End
 
 ### Download Grunt
@@ -20,10 +22,15 @@ will be the same as typing
 ```
 $ grunt watch
 ```
-\
+
+
 For a one time less compiler
 ```
 $ grunt less
 ```
 
 # Back End
+
+### Download RubyOnRails
+
+### Using ROR
