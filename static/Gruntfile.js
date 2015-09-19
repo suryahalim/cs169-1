@@ -3,14 +3,18 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		less: {
 			core: {
-				src: "build/less/design.less",
-				dest: "build/css/design.css",
+				src: 'build/less/design.less',
+				dest: 'build/css/design.css',
+			},
+			bootstrap: {
+				src: 'build/lib/bootstrap/less/bootstrap.less',
+				dest: 'build/css/bootstrap.css',
 			},
 		},
 		cssmin: {
 			css: {
-				src: "build/css/design.css",
-				dest: "build/css/design.min.css",
+				src: 'build/css/design.css',
+				dest: 'build/css/design.min.css',
 			},
 		},
 		uglify: {
@@ -19,20 +23,20 @@ module.exports = function(grunt) {
 			        'build/js/script.min.js': ['build/js/script.js'],
 			    },	
 			},
-		}
+		},
 		watch: {
 			less: {
 			    files: ['build/less/*.less', 'build/less/pages/*.less'],
-			    tasks: ['less'],
+			    tasks: ['less:core'],
 			},
 			cssmin: {
 				files: ['build/css/design.css'],
-				tasks: ['cssmin'],
+				tasks: ['cssmin:css'],
 			},
 			uglify: {
 				files: ['build/js/script.js'],
 				tasks: ['uglify'],
-			}
+			},
 		},
 	});
 
