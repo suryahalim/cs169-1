@@ -1,3 +1,28 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+  display: inline-block;
+}
+a:hover,
+a:focus {
+  color: inherit;
+}
+.noPadding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.loading-page {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+}
 .round-xs {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -154,21 +179,6 @@
   background-color: #0000e6;
   cursor: pointer;
 }
-.btn.btn-bytlyn {
-  background-color: #ff7600;
-  cursor: pointer;
-}
-.btn.btn-bytlyn:hover {
-  background-color: #e66a00;
-}
-.btn.btn-bytlyn.disable {
-  background-color: #ff9133;
-  cursor: not-allowed;
-}
-.btn.btn-bytlyn.chosen {
-  background-color: #e66a00;
-  cursor: pointer;
-}
 .input {
   background-color: #ffffff;
   outline: 2px solid #ffffff;
@@ -188,7 +198,7 @@
   position: absolute;
   top: 0;
   padding: 14px 0;
-  background-color: #ff7600;
+  background-color: #888888;
   color: #ffffff;
   box-shadow: 0px 1px 5px #888888;
 }
@@ -200,11 +210,11 @@
 }
 .nav-bar .nav-menu:hover,
 .nav-bar .nav-menu .chosen {
-  background-color: #cc5e00;
+  background-color: #6f6f6f;
 }
 .nav-bar-invert-color {
   background-color: #cccccc;
-  color: #ff7600;
+  color: #ffffff;
 }
 .search-bar {
   padding: 10px 20px;
@@ -212,25 +222,25 @@
   border: none;
 }
 .search-bar:focus {
-  outline: 2px solid #ff7600;
+  outline: 2px solid #888888;
 }
 .search-bar:hover {
-  outline: 2px solid #ff7600;
+  outline: 2px solid #888888;
 }
 .menu .menu-tag {
   padding: 20px;
-  background-color: #ff7600;
+  background-color: #888888;
   cursor: pointer;
 }
 .menu .menu-tag:hover {
-  background-color: #e66a00;
+  background-color: #7b7b7b;
 }
 .menu .menu-tag.disable {
-  background-color: #ff9133;
+  background-color: #a2a2a2;
   cursor: not-allowed;
 }
 .menu .menu-tag.chosen {
-  background-color: #e66a00;
+  background-color: #7b7b7b;
   cursor: pointer;
 }
 .menu .menu-tag:hover,
@@ -247,7 +257,7 @@
   left: 0;
   width: 100px;
   height: 100px;
-  background-color: #ff7600;
+  background-color: #888888;
 }
 .scrollDown .icon {
   color: #ffffff;
@@ -296,15 +306,25 @@
     opacity: 1;
   }
 }
-body {
-  font-family: 'PT Sans', sans-serif;
-  margin: 0;
-  padding: 0;
-}
-.noPadding {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-.section {
+.header-container {
+  position: absolute;
   text-align: center;
+  width: 100%;
+  color: #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+.header-container .logo {
+  width: 30px;
+}
+.header-container .header-tag {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 14px;
+  vertical-align: middle;
+}
+main {
+  background-image: url("../img/stock/background.jpg");
+  background-size: cover;
+  width: 100%;
+  height: 800px;
 }

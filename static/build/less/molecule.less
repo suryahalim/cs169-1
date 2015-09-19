@@ -46,9 +46,6 @@
 	&.btn-blue {
 		.colorize(@blue);
 	}
-	&.btn-bytlyn {
-		.colorize(@bytlyn);
-	}
 }
 
 .input {
@@ -71,7 +68,7 @@
 	position: absolute;
 	top: 0;
 	padding: 14px 0;
-	background-color: @bytlyn;
+	background-color: @gray;
 	color: @white;
 	box-shadow: 0px 1px 5px @gray;
 
@@ -83,14 +80,14 @@
 	}
 	.nav-menu {
 		&:hover, .chosen {
-			background-color: darken(@bytlyn, 10%);
+			background-color: darken(@gray, 10%);
 		}
 	}
 }
 
 .nav-bar-invert-color {
 	background-color: @gray-light;
-	color: @bytlyn;
+	color: @white;
 }
 
 .search-bar {
@@ -99,17 +96,17 @@
 	border: none;
 
 	&:focus {
-		outline: 2px solid @bytlyn;
+		outline: 2px solid @gray;
 	}
 	&:hover {
-		outline: 2px solid @bytlyn;
+		outline: 2px solid @gray;
 	}
 }
 
 .menu {
 	.menu-tag {
 		padding: 20px;
-		.colorize(@bytlyn);
+		.colorize(@gray);
 
 		&:hover,
 		&:focus {
@@ -130,7 +127,7 @@
 
 	width: 100px;
 	height: 100px;
-	background-color: @bytlyn;
+	background-color: @gray;
 	.icon {
 		color: @white;
 		font-size: 50px;

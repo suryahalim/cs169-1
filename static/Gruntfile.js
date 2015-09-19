@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 			},
 		},
 		cssmin: {
-			css: {
+			core: {
 				src: 'build/css/design.css',
 				dest: 'build/css/design.min.css',
 			},
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 			},
 			cssmin: {
 				files: ['build/css/design.css'],
-				tasks: ['cssmin:css'],
+				tasks: ['cssmin:core'],
 			},
 			uglify: {
 				files: ['build/js/script.js'],
