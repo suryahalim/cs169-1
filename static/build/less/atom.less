@@ -5,7 +5,17 @@
 	   	 -o-border-radius: @radius;
 	   		border-radius: @radius;
 }
+.background-trans(@r, @g, @b, @a) {
+	background-color: rgb(@r,@g,@b,@a);
+	background-color: rgba(@r, @g, @b, @a);
+}
 
+.smooth {
+	-webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-duration: 300ms;
+    transition-duration: 300ms;
+}
 .round-xs {
 	.round(@xs-rad);
 }
