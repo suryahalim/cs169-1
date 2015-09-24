@@ -34,3 +34,7 @@ $ grunt less
 ### Download RubyOnRails
 
 ### Using ROR
+
+### Credit
+
+<icon> Restaurant by Federico Panzano from the Noun Project

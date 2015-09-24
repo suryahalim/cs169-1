@@ -1,6 +1,10 @@
 // color function
 .colorize(@color) {
+	background-image: -webkit-linear-gradient(@color 5%, darken(@color, 5%) 10%, darken(@color, 20%) 100%);
+	background-image: linear-gradient(@color 5%, darken(@color, 5%) 10%, darken(@color, 20%) 100%);
 	background-color: @color;
+	color: @white;
+	border: 1px solid @gray-dark;
 	cursor: pointer;
 	&:hover {
 		background-color: darken(@color, 5%);
@@ -13,81 +17,6 @@
 		background-color: darken(@color, 5%);
 		cursor: pointer;
 	}
-}
-
-.btn {
-	// shape
-	&.btn-round {
-		.round-md();
-	}
-	&.btn-not-round {
-		.corner();
-	}
-
-	// colored button
-	&.btn-white {
-		.colorize(@white);
-	}
-	&.btn-dark-gray {
-		.colorize(@gray-dark);
-	}
-	&.btn-gray {
-		.colorize(@gray);
-	}
-	&.btn-light-gray {
-		.colorize(@gray-light);
-	}
-	&.btn-red {
-		.colorize(@red);
-	}
-	&.btn-green {
-		.colorize(@green);
-	}
-	&.btn-blue {
-		.colorize(@blue);
-	}
-}
-
-.input {
-	background-color: @white;
-	outline: 2px solid @white;
-	border: 2px solid @white;
-	&:focus {
-		border: 2px solid @green-light;
-	}
-	.error {
-		border: 2px solid @red;
-	}
-	.success {
-		border: 2px solid @green;
-	}
-}
-
-.nav-bar {
-	width: 100%;
-	position: absolute;
-	top: 0;
-	padding: 14px 0;
-	background-color: @gray;
-	color: @white;
-	box-shadow: 0px 1px 5px @gray;
-
-	.nav-header {
-		font-size: 20px;
-	}
-	.logo {
-		max-width: 50px;
-	}
-	.nav-menu {
-		&:hover, .chosen {
-			background-color: darken(@gray, 10%);
-		}
-	}
-}
-
-.nav-bar-invert-color {
-	background-color: @gray-light;
-	color: @white;
 }
 
 .search-bar {
@@ -118,47 +47,4 @@
 			width: 30px;
 		}
 	}
-}
-
-.scrollDown {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-
-	width: 100px;
-	height: 100px;
-	background-color: @gray;
-	.icon {
-		color: @white;
-		font-size: 50px;
-		margin: 24px 0 0 -5px;
-	}
-}
-
-.footer {
-	color: @gray-light;
-}
-
-// for typed.js 
-
-.typed-cursor{
-    opacity: 1;
-    -webkit-animation: blink 0.7s infinite;
-    -moz-animation: blink 0.7s infinite;
-    animation: blink 0.7s infinite;
-}
-@keyframes blink{
-    0% { opacity:1; }
-    50% { opacity:0; }
-    100% { opacity:1; }
-}
-@-webkit-keyframes blink{
-    0% { opacity:1; }
-    50% { opacity:0; }
-    100% { opacity:1; }
-}
-@-moz-keyframes blink{
-    0% { opacity:1; }
-    50% { opacity:0; }
-    100% { opacity:1; }
 }

@@ -1,0 +1,50 @@
+.btn {
+	// shape
+	&.btn-round {.round(@rad-xs);}
+	&.btn-corner {.round(0);}
+
+	// colored button
+	&.btn-white {.colorize(@white);}
+	&.btn-dark-gray {.colorize(@gray-dark);}
+	&.btn-gray {.colorize(@gray);}
+	&.btn-light-gray {.colorize(@gray-light);}
+	&.btn-red {.colorize(@red);}
+	&.btn-green {.colorize(@green);}
+	&.btn-blue {.colorize(@blue);}
+	&.btn-bytlyn {.colorize(@bytlyn);}
+
+	&:hover, &:focus, &:active {
+		outline: none !important;
+	}
+}
+
+form {
+	.input-custom {
+		.left {
+			position: relative;
+			margin-right: -1px;
+			.border-left-radius(@rad-xs);
+			padding: 5px 10px;
+			border: 1px solid @gray;
+		}
+		.right {
+			.border-right-radius(@rad-xs);
+			padding: 5px 10px;
+			border: 1px solid @gray;
+			&:hover, &:focus, &:active {
+				outline: none;
+			}
+		}
+	}
+	.solo {
+		position: relative;
+		.border-left-radius(@rad-xs);
+		.border-right-radius(@rad-xs);
+		padding: 5px 10px;
+		border: 1px solid @gray;
+		&:hover, &:focus, &:active {
+			outline: none;
+			border: 1px solid @gray-dark;
+		}
+	}
+}
