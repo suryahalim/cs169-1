@@ -1,13 +1,15 @@
 // color function
 .colorize(@color) {
-	background-image: -webkit-linear-gradient(@color 5%, darken(@color, 5%) 10%, darken(@color, 20%) 100%);
-	background-image: linear-gradient(@color 5%, darken(@color, 5%) 10%, darken(@color, 20%) 100%);
 	background-color: @color;
+	background-image: -webkit-linear-gradient(lighten(@bytlyn, 10%) 5%, lighten(@bytlyn, 5%) 10%, @bytlyn 100%);
+	background-image: linear-gradient(lighten(@bytlyn, 10%) 5%, lighten(@bytlyn, 5%) 10%, @bytlyn 100%);
 	color: @white;
-	border: 1px solid @gray-dark;
+	border: 1px solid @gray;
 	cursor: pointer;
 	&:hover {
 		background-color: darken(@color, 5%);
+		background-image: -webkit-linear-gradient(@bytlyn 5%, darken(@bytlyn, 5%) 10%, darken(@bytlyn, 10%) 100%);
+		background-image: linear-gradient(@bytlyn 5%, darken(@bytlyn, 5%) 10%, darken(@bytlyn, 10%) 100%);
 	}
 	&.disable {
 		background-color: lighten(@color, 10%);

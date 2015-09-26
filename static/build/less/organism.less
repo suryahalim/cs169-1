@@ -22,15 +22,23 @@ form {
 	.input-custom {
 		.left {
 			position: relative;
-			margin-right: -1px;
+			display: inline-block;
+			margin-right: -5px;
 			.border-left-radius(@rad-xs);
 			padding: 5px 10px;
 			border: 1px solid @gray;
+			background-color: @bytlyn;
+			background-image: -webkit-linear-gradient(lighten(@bytlyn, 10%) 5%, lighten(@bytlyn, 5%) 10%, @bytlyn 100%);
+			background-image: linear-gradient(lighten(@bytlyn, 10%) 5%, lighten(@bytlyn, 5%) 10%, @bytlyn 100%);
+			color: @white;
+			width: 30%;
+			text-align: center;
 		}
 		.right {
 			.border-right-radius(@rad-xs);
 			padding: 5px 10px;
 			border: 1px solid @gray;
+			width: 69%;
 			&:hover, &:focus, &:active {
 				outline: none;
 			}
