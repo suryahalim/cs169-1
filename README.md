@@ -33,7 +33,12 @@ $ grunt less
 
 ### Download RubyOnRails
 
+
 ### Using ROR
+Front End:
+- Put HTML files in app/views/static_pages
+- Put CSS/JavaScript files in public/    (later may be transferred to app/assets)
+
 
 ### Credit
 
