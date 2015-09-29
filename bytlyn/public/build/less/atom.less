@@ -1,0 +1,38 @@
+// round
+.round(@radius) {
+	-webkit-border-radius: @radius;
+	   -moz-border-radius: @radius;
+	   	 -o-border-radius: @radius;
+	   		border-radius: @radius;
+}
+.background-trans(@r, @g, @b, @a) {
+	background-color: rgb(@r,@g,@b,@a);
+	background-color: rgba(@r, @g, @b, @a);
+}
+.smooth {
+	-webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-duration: 300ms;
+    transition-duration: 300ms;
+}
+.border-left-radius(@px) {
+	-webkit-border-top-left-radius: @px;
+			border-top-left-radius: @px;
+	-webkit-border-bottom-left-radius: @px;
+			border-bottom-left-radius: @px;
+}
+.border-right-radius(@px) {
+	-webkit-border-top-right-radius: @px;
+			border-top-right-radius: @px;
+	-webkit-border-bottom-right-radius: @px;
+			border-bottom-right-radius: @px;
+}
+.corner {
+	.round(0);
+}
+.center {
+	text-align: center;
+}
+.width-full {
+	width: 100%;
+}

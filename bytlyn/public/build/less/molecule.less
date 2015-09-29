@@ -1,0 +1,52 @@
+// color function
+.colorize(@color) {
+	background-color: @color;
+	background-image: -webkit-linear-gradient(lighten(@bytlyn, 10%) 5%, lighten(@bytlyn, 5%) 10%, @bytlyn 100%);
+	background-image: linear-gradient(lighten(@bytlyn, 10%) 5%, lighten(@bytlyn, 5%) 10%, @bytlyn 100%);
+	color: @white;
+	border: 1px solid @gray;
+	cursor: pointer;
+	&:hover {
+		background-color: darken(@color, 5%);
+		background-image: -webkit-linear-gradient(@bytlyn 5%, darken(@bytlyn, 5%) 10%, darken(@bytlyn, 10%) 100%);
+		background-image: linear-gradient(@bytlyn 5%, darken(@bytlyn, 5%) 10%, darken(@bytlyn, 10%) 100%);
+	}
+	&.disable {
+		background-color: lighten(@color, 10%);
+		cursor: not-allowed;
+	}
+	&.chosen {
+		background-color: darken(@color, 5%);
+		cursor: pointer;
+	}
+}
+
+.search-bar {
+	padding: 10px 20px;
+	width: 100%;
+	border: none;
+
+	&:focus {
+		outline: 2px solid @gray;
+	}
+	&:hover {
+		outline: 2px solid @gray;
+	}
+}
+
+.menu {
+	.menu-tag {
+		padding: 20px;
+		.colorize(@gray);
+
+		&:hover,
+		&:focus {
+			border-left: 4px solid @yellow;
+		}
+		
+		.icon {
+			text-align: center;
+			width: 30px;
+		}
+	}
+}
