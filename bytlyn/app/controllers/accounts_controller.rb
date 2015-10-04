@@ -1,6 +1,36 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: [:show, :edit, :update, :destroy]
 
+  #signup user
+  def signupuser
+    account_params
+    @my_params["rest"] = "false"
+    @account = Account.new(@my_params)
+    if @account.save
+      # log_in @account
+      # flash[:success] = "Thank you for signing up!"
+      render json: {status: "success"}
+      return
+      # redirect_to @account
+      #goto logged in page
+    else
+      render json: {status: "fail"}
+      #go back display error message
+    end
+  end
+
+  def signuprest
+    account_params
+    @my_params["rest"] = "true"
+    @account = Account.new(@my_params)
+    @account = Account.new(account_params, :rest => true)
+    if @account.save
+      #goto logged in page
+    else
+      #go back display error message
+    end
+  end
+
   # GET /accounts
   # GET /accounts.json
   def index
@@ -69,6 +99,6 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:email, :rest, :name)
+      @my_params = params.permit(:email, :name, :password, :password_confirmation)
     end
 end

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   root 'static_pages#index'
 
   #with .html
@@ -12,6 +14,14 @@ Rails.application.routes.draw do
   get 'signup' => 'static_pages#signup'
   get 'login' => 'static_pages#login'
   get 'signup-restaurant' => 'static_pages#signup_rest'
+
+
+  post 'signupuser' => 'accounts#signupuser'
+  post 'signuprest' => 'accounts#signuprest'
+
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
