@@ -1,4 +1,7 @@
 .btn {
+	// size
+	&.btn-max {width: 100%;}
+
 	// shape
 	&.btn-round {.round(@rad-xs);}
 	&.btn-corner {.round(0);}
@@ -31,14 +34,14 @@ form {
 			background-image: -webkit-linear-gradient(lighten(@bytlyn, 10%) 5%, lighten(@bytlyn, 5%) 10%, @bytlyn 100%);
 			
 			color: @white;
-			width: 30%;
+			width: 120px;
 			text-align: center;
 		}
 		.right {
 			.border-right-radius(@rad-xs);
 			padding: 5px 10px;
 			border: 1px solid @gray;
-			width: 69%;
+			width: ~'calc(100% - 120px)';
 			&:hover, &:focus, &:active {
 				outline: none;
 			}
@@ -53,6 +56,59 @@ form {
 		&:hover, &:focus, &:active {
 			outline: none;
 			border: 1px solid @gray-dark;
+		}
+	}
+	.info {
+		font-size: 12px;
+		text-align: left;
+		color: @gray-dark;
+	}
+	.modern {
+		padding: 10px 20px;
+		width: 100%;
+		border: 2px inset;
+		margin-bottom: 15px;
+		&:hover, &:focus {
+			outline: none;
+		}
+	}
+}
+
+.box-option {
+	position: relative;
+	width: 100%;
+	.border-radius(5px);
+	font-size: 40px;
+	height: 300px;
+	text-align: center;
+	padding: 50px;
+	color: @white;
+	background-color: @gray-light;
+	.smooth();
+	cursor: pointer;
+	box-shadow: 0 1px 10px @black-a;
+	.text {
+		position: absolute;
+		display: inline-block;
+		top: 50%;
+		transform: translate3d(-50%, -50%, 0);
+	}
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		.border-radius(5px);
+		width: 100%;
+		height: 100%;
+		background: @black-a;
+		.smooth();
+	}
+	&:hover, &:focus {
+		.smooth();
+		&::before {
+			.smooth();
+			background: rgba(0,0,0,0.3);
 		}
 	}
 }

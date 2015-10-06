@@ -1,5 +1,5 @@
 $(window).load(function() {
-	$('.loading-page').fadeOut(3000);
+	$('.loading-page').fadeOut();
 })
 
 // Youtube API

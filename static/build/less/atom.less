@@ -27,6 +27,10 @@
 	-webkit-border-bottom-right-radius: @px;
 			border-bottom-right-radius: @px;
 }
+.border-radius(@px) {
+	.border-left-radius(@px);
+	.border-right-radius(@px);
+}
 .linear-colorize(@color) {
 	background-image: -webkit-linear-gradient(lighten(@color, 10%) 5%, lighten(@color, 5%) 10%, @color 100%);
 	background-image: -o-linear-gradient(lighten(@color, 10%) 5%, lighten(@color, 5%) 10%, @color 100%);
