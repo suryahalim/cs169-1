@@ -7,7 +7,7 @@
 	&.btn-corner {.round(0);}
 
 	// colored button
-	&.btn-white {.colorize(@white);}
+	&.btn-white {.colorize(@white); color: @black}
 	&.btn-dark-gray {.colorize(@gray-dark);}
 	&.btn-gray {.colorize(@gray);}
 	&.btn-light-gray {.colorize(@gray-light);}
@@ -77,33 +77,17 @@ form {
 .box-option {
 	position: relative;
 	width: 100%;
-	.border-radius(5px);
 	font-size: 40px;
 	height: 300px;
 	text-align: center;
 	padding: 50px;
 	color: @white;
 	background-color: @gray-light;
-	.smooth();
 	cursor: pointer;
 	box-shadow: 0 1px 10px @black-a;
-	.text {
-		position: absolute;
-		display: inline-block;
-		top: 50%;
-		transform: translate3d(-50%, -50%, 0);
-	}
-	&::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		.border-radius(5px);
-		width: 100%;
-		height: 100%;
-		background: @black-a;
-		.smooth();
-	}
+	.smooth();
+	.border-radius(10px);
+	.overlay-dark-round(10px);
 	&:hover, &:focus {
 		.smooth();
 		&::before {

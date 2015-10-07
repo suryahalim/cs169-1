@@ -17,18 +17,18 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="Bytlyn" />
-
+	
 	<!-- Add on CSS -->
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
-	
+  	<link rel="stylesheet" type="text/css" href="build/css/slick.css"/>
+  	<link rel="stylesheet" type="text/css" href="build/css/slick-theme.css"/>
+
 	<!-- Bootstrap -->
 	<link href="build/css/bootstrap.css" rel="stylesheet">
-	<link href="build/css/styles.css" rel="stylesheet">
 	<link href="build/css/jquery.fancybox.css" rel="stylesheet">
 	<link href="build/css/flickity.css" rel="stylesheet" >
 	<link href="build/css/animate.css" rel="stylesheet">
 	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-	<link href="build/css/queries.css" rel="stylesheet">
 	<link href="build/css/design.css" rel="stylesheet">
 
 	<!-- Google Font -->
@@ -56,7 +56,7 @@
 	<![endif]-->
 
 </head>
-<body class="index">
+<body class="restaurant">
 <div class="loading-page"></div>
 <header>
 	<div class="row">
@@ -82,67 +82,49 @@
 	</div>
 </header>
 <main>
-	<section class="section-one">
-	</section>
-	<section class="section-two">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
-					<div class="text-center">
-						<div id="yt-player"></div>
-					</div>
-				</div>
+	<div class="parallax-container">
+    	<div class="parallax"><img src="build/img/stock/restaurant2.jpg" class="width-full" ></div>
+    	<div class="text text-center">
+    		<h1> The Restaurant </h1>
+    	</div>
+    </div>
+    <section class="content">
+		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+			<div class="wrapper-left text-center">
+				<a href="signup.html" class="btn btn-bytlyn">Waitlist</a><br>
+				<a href="signup.html" class="btn btn-bytlyn">Delivery</a><br>
+				<a href="http://www.opentable.com/" class="btn btn-bytlyn">Reservation</a><br>
 			</div>
 		</div>
-	</section>
-	<section class="section-three">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-					<div class="wrapper-left">
-						<div class="title">
-							<h2>Waitlist!</h2>
-							Don't waste your precious time to wait.<br>
-							<h1>
-								<span class="fa fa-user"></span>
-								<span class="fa fa-user"></span>
-								<span class="fa fa-user"></span>
-								<span class="fa fa-arrow-right"></span>
-								<span class="fa fa-cutlery"></span>
-							</h1>
-						</div>
-					</div>
+		<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+			<div class="wrapper-right text-center">
+				<div class="carousel">
+				  	<div class="thumbnail"><img src="build/img/stock/food1.jpg"/></div>
+				  	<div class="thumbnail"><img src="build/img/stock/food2.jpg"/></div>
+				  	<div class="thumbnail"><img src="build/img/stock/food3.jpg"/></div>
+				  	<div class="thumbnail"><img src="build/img/stock/food4.jpg"/></div>
+				  	<div class="thumbnail"><img src="build/img/stock/food5.jpg"/></div>
 				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-					<div class="wrapper-right">
-						<div class="title">
-							<h2>Delivery!</h2>
-							Let them take your order to your house<br>
-							<h1>
-								<span class="fa fa-cutlery"></span>
-								<span class="fa fa-arrow-right"></span>
-								<span class="fa fa-motorcycle"></span>
-								<span class="fa fa-arrow-right"></span>
-								<span class="fa fa-home"></span>
-							</h1>
-						</div>
-					</div>
+				<!-- <div class="rating">
+					<span>☆</span>
+					<span>☆</span>
+					<span>☆</span>
+					<span>☆</span>
+					<span>☆</span>
+				</div> -->
+				<img src="build/img/stock/logo-restaurant.jpg" class="r-logo"/>
+				<div class="rating-restaurant text-md">
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star-o"></span>
 				</div>
+				<div class="r-info text-sm text-center">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 			</div>
 		</div>
-	</section>
-	<section class="section-four">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
-					<div class="text-center">
-						<h1>Interested? Sign-up now! :)</h1>
-						<a href="signup.html" class="btn btn-radius btn-bytlyn">Sign Up</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+    </section>
 </main>
 <footer>
 	<div class="container">
@@ -186,6 +168,7 @@
 
 <script src="build/js/jquery-1.11.3.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+<script type="text/javascript" src="build/js/slick.min.js"></script>
 <script src="build/js/script.js"></script>
 </body>
 </html>

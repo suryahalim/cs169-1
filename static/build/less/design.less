@@ -7,9 +7,6 @@ body {
 	padding: 0;
 	color: @white;
 }
-main {
-	overflow: hidden;
-}
 a {
 	color: inherit;
 	text-decoration: none;
@@ -46,6 +43,10 @@ header {
 	text-align: center;
 	box-shadow: 0 1px 2px @gray-dark;
 
+	// redefault materialize.css
+	.row {
+		margin-bottom: 0;
+	}
 	.wrapper-title {
 		font-size: 14px;
 		display: inline-block;
@@ -117,8 +118,9 @@ footer {
 @import "pages/team.less";
 @import "pages/privacy.less";
 @import "pages/termscondition.less";
-@import "pages/account.less";
 @import "pages/restaurant.less";
+// @import "pages/account.less";
+
 
 
 // responsive

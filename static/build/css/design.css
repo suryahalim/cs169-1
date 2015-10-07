@@ -7,9 +7,6 @@ body {
   padding: 0;
   color: #ffffff;
 }
-main {
-  overflow: hidden;
-}
 a {
   color: inherit;
   text-decoration: none;
@@ -52,6 +49,9 @@ header {
   width: 100%;
   text-align: center;
   box-shadow: 0 1px 2px #333333;
+}
+header .row {
+  margin-bottom: 0;
 }
 header .wrapper-title {
   font-size: 14px;
@@ -129,6 +129,56 @@ footer a:hover:before {
 .width-full {
   width: 100%;
 }
+.text-xs {
+  font-size: 10px;
+  color: #cccccc;
+}
+.text-sm {
+  font-size: 12px;
+  color: #cccccc;
+}
+.text-md {
+  font-size: 18px;
+  color: #888888;
+}
+.text-lg {
+  font-size: 30px;
+  color: #333333;
+}
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+  content: "\2605";
+  position: absolute;
+}
+.overlay-dark .text {
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+.overlay-dark::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+}
 .search-bar {
   padding: 10px 20px;
   width: 100%;
@@ -205,6 +255,7 @@ footer a:hover:before {
   transition-timing-function: ease-in-out;
   -webkit-transition-duration: 300ms;
   transition-duration: 300ms;
+  color: #000000;
 }
 .btn.btn-white:hover,
 .btn.btn-white:focus {
@@ -506,31 +557,32 @@ form .modern:focus {
 .box-option {
   position: relative;
   width: 100%;
-  -webkit-border-top-left-radius: 5px;
-  border-top-left-radius: 5px;
-  -webkit-border-bottom-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  -webkit-border-top-right-radius: 5px;
-  border-top-right-radius: 5px;
-  -webkit-border-bottom-right-radius: 5px;
-  border-bottom-right-radius: 5px;
   font-size: 40px;
   height: 300px;
   text-align: center;
   padding: 50px;
   color: #ffffff;
   background-color: #cccccc;
+  cursor: pointer;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
   -webkit-transition-duration: 300ms;
   transition-duration: 300ms;
-  cursor: pointer;
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+  -webkit-border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 .box-option .text {
   position: absolute;
   display: inline-block;
   top: 50%;
+  left: 50%;
   transform: translate3d(-50%, -50%, 0);
 }
 .box-option::before {
@@ -538,14 +590,6 @@ form .modern:focus {
   position: absolute;
   top: 0;
   left: 0;
-  -webkit-border-top-left-radius: 5px;
-  border-top-left-radius: 5px;
-  -webkit-border-bottom-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  -webkit-border-top-right-radius: 5px;
-  border-top-right-radius: 5px;
-  -webkit-border-bottom-right-radius: 5px;
-  border-bottom-right-radius: 5px;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
@@ -553,6 +597,16 @@ form .modern:focus {
   transition-timing-function: ease-in-out;
   -webkit-transition-duration: 300ms;
   transition-duration: 300ms;
+}
+.box-option::before {
+  -webkit-border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 .box-option:hover,
 .box-option:focus {
@@ -712,6 +766,74 @@ body.signup main .rest-pic {
 body.signup main .agreement {
   font-size: 12px;
 }
+body.restaurant .restaurant-name {
+  margin-top: 200px;
+  font-size: 40px;
+  color: #ffffff;
+}
+body.restaurant .parallax-container {
+  z-index: 0;
+  height: 500px;
+}
+body.restaurant .parallax-container .text {
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+body.restaurant .parallax-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+}
+body.restaurant .content {
+  display: inline-block;
+  width: 100%;
+  background-color: #ffffff;
+}
+body.restaurant .content .wrapper-left {
+  background-color: #ffffff;
+  padding: 50px 0;
+}
+body.restaurant .content .wrapper-left button,
+body.restaurant .content .wrapper-left a {
+  min-width: 150px;
+  margin: 10px auto;
+}
+body.restaurant .content .wrapper-right {
+  color: #333333;
+  padding: 50px 0 150px 0;
+}
+body.restaurant .content .wrapper-right .carousel {
+  margin: 0 50px 80px 50px;
+}
+body.restaurant .content .wrapper-right .carousel .thumbnail {
+  margin: 0 2px;
+  cursor: pointer;
+}
+body.restaurant .content .wrapper-right .carousel .thumbnail img {
+  max-height: 190px;
+}
+body.restaurant .content .wrapper-right .carousel .thumbnail:focus {
+  outline: none;
+}
+body.restaurant .content .wrapper-right .r-logo {
+  max-width: 500px;
+}
+body.restaurant .content .wrapper-right .r-info {
+  display: inline-block;
+  max-width: 500px;
+  margin: 20px 0;
+}
 @media screen and (max-width: 767px) {
   .index .section-three {
     height: 1200px !important;
@@ -726,5 +848,8 @@ body.signup main .agreement {
   }
   .signup .wrapper-left {
     border-right: none !important;
+  }
+  .parallax-container {
+    height: 300px !important;
   }
 }
