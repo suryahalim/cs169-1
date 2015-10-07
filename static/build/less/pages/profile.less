@@ -1,0 +1,31 @@
+body.profile {
+	main {
+		.container {
+			box-shadow: 0 5px 20px @black-a;
+		}
+		.parallax-container {
+			z-index: 0;
+			height: 300px;
+			.overlay-dark();
+		}
+		.wrapper-left {
+			width: 100%;
+			color: @white;
+			.fa {
+				min-width: 25px;
+			}
+		}
+		.wrapper-right {
+			padding: 50px 0 200px 0;
+			.profile-photo {
+				width: 100%;
+				border: 1px solid @gray-light;
+				.border-radius(50%);
+				padding: 10px;
+			}
+			.email {
+				margin: 30px 0;
+			}
+		}
+	}
+}

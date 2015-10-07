@@ -179,16 +179,29 @@ footer a:hover:before {
   -webkit-transition-duration: 300ms;
   transition-duration: 300ms;
 }
-.search-bar {
-  padding: 10px 20px;
-  width: 100%;
-  border: none;
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+  height: 500px;
 }
-.search-bar:focus {
-  outline: 2px solid #888888;
+.parallax {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
 }
-.search-bar:hover {
-  outline: 2px solid #888888;
+.parallax img {
+  display: none;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  transform: translateX(-50%);
 }
 .menu .menu-tag {
   padding: 20px;
@@ -228,6 +241,30 @@ footer a:hover:before {
 .menu .menu-tag .icon {
   text-align: center;
   width: 30px;
+}
+.side-pannel {
+  background-color: #cc730d;
+}
+.side-pannel .tab {
+  width: 100%;
+  padding: 10px 20px;
+  border-bottom: 1px solid #cccccc;
+  cursor: pointer;
+  border-left: 0 solid #fffc19;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+}
+.side-pannel .tab:hover {
+  border-left: 10px solid #fffc19;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+}
+.side-pannel .tab.chosen {
+  border-left: 10px solid #fffc19;
 }
 .btn.btn-max {
   width: 100%;
@@ -490,6 +527,9 @@ footer a:hover:before {
 .btn:active {
   outline: none !important;
 }
+form {
+  color: #333333;
+}
 form .input-custom .left {
   position: relative;
   display: inline-block;
@@ -545,7 +585,7 @@ form .info {
   color: #333333;
 }
 form .modern {
-  padding: 10px 20px;
+  padding: 14px 24px;
   width: 100%;
   border: 2px inset;
   margin-bottom: 15px;
@@ -719,7 +759,7 @@ body.index main .section-four a {
 body.signup main {
   padding: 150px 0;
   color: #333333;
-  font-size: 14px;
+  font-size: 12px;
 }
 body.signup main h1 {
   color: #333333;
@@ -766,23 +806,23 @@ body.signup main .rest-pic {
 body.signup main .agreement {
   font-size: 12px;
 }
-body.restaurant .restaurant-name {
+body.restaurant main .restaurant-name {
   margin-top: 200px;
   font-size: 40px;
   color: #ffffff;
 }
-body.restaurant .parallax-container {
+body.restaurant main .parallax-container {
   z-index: 0;
   height: 500px;
 }
-body.restaurant .parallax-container .text {
+body.restaurant main .parallax-container .text {
   position: absolute;
   display: inline-block;
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
 }
-body.restaurant .parallax-container::before {
+body.restaurant main .parallax-container::before {
   content: '';
   position: absolute;
   top: 0;
@@ -795,44 +835,97 @@ body.restaurant .parallax-container::before {
   -webkit-transition-duration: 300ms;
   transition-duration: 300ms;
 }
-body.restaurant .content {
+body.restaurant main .content {
   display: inline-block;
   width: 100%;
   background-color: #ffffff;
 }
-body.restaurant .content .wrapper-left {
+body.restaurant main .content .wrapper-left {
   background-color: #ffffff;
   padding: 50px 0;
 }
-body.restaurant .content .wrapper-left button,
-body.restaurant .content .wrapper-left a {
+body.restaurant main .content .wrapper-left button,
+body.restaurant main .content .wrapper-left a {
   min-width: 150px;
   margin: 10px auto;
 }
-body.restaurant .content .wrapper-right {
+body.restaurant main .content .wrapper-right {
   color: #333333;
   padding: 50px 0 150px 0;
 }
-body.restaurant .content .wrapper-right .carousel {
+body.restaurant main .content .wrapper-right .carousel {
   margin: 0 50px 80px 50px;
 }
-body.restaurant .content .wrapper-right .carousel .thumbnail {
+body.restaurant main .content .wrapper-right .carousel .thumbnail {
   margin: 0 2px;
   cursor: pointer;
 }
-body.restaurant .content .wrapper-right .carousel .thumbnail img {
+body.restaurant main .content .wrapper-right .carousel .thumbnail img {
   max-height: 190px;
 }
-body.restaurant .content .wrapper-right .carousel .thumbnail:focus {
+body.restaurant main .content .wrapper-right .carousel .thumbnail:focus {
   outline: none;
 }
-body.restaurant .content .wrapper-right .r-logo {
+body.restaurant main .content .wrapper-right .r-logo {
   max-width: 500px;
 }
-body.restaurant .content .wrapper-right .r-info {
+body.restaurant main .content .wrapper-right .r-info {
   display: inline-block;
   max-width: 500px;
   margin: 20px 0;
+}
+body.profile main .container {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+body.profile main .parallax-container {
+  z-index: 0;
+  height: 300px;
+}
+body.profile main .parallax-container .text {
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+body.profile main .parallax-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+}
+body.profile main .wrapper-left {
+  width: 100%;
+  color: #ffffff;
+}
+body.profile main .wrapper-left .fa {
+  min-width: 25px;
+}
+body.profile main .wrapper-right {
+  padding: 50px 0 200px 0;
+}
+body.profile main .wrapper-right .profile-photo {
+  width: 100%;
+  border: 1px solid #cccccc;
+  -webkit-border-top-left-radius: 50%;
+  border-top-left-radius: 50%;
+  -webkit-border-bottom-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  -webkit-border-top-right-radius: 50%;
+  border-top-right-radius: 50%;
+  -webkit-border-bottom-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  padding: 10px;
+}
+body.profile main .wrapper-right .email {
+  margin: 30px 0;
 }
 @media screen and (max-width: 767px) {
   .index .section-three {

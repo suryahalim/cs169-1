@@ -24,19 +24,6 @@
 	}
 }
 
-.search-bar {
-	padding: 10px 20px;
-	width: 100%;
-	border: none;
-
-	&:focus {
-		outline: 2px solid @gray;
-	}
-	&:hover {
-		outline: 2px solid @gray;
-	}
-}
-
 .menu {
 	.menu-tag {
 		padding: 20px;
@@ -50,6 +37,25 @@
 		.icon {
 			text-align: center;
 			width: 30px;
+		}
+	}
+}
+
+.side-pannel {
+	background-color: @bytlyn;
+	.tab {
+		width: 100%;
+		padding: 10px 20px;
+		border-bottom: 1px solid @gray-light;
+		cursor: pointer;
+		border-left: 0 solid @yellow;
+		.smooth();
+		&:hover {
+			border-left: 10px solid @yellow;
+			.smooth();
+		}
+		&.chosen {
+			border-left: 10px solid @yellow;
 		}
 	}
 }
