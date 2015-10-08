@@ -1,15 +1,18 @@
 // color function
 .colorize(@color) {
 	background-color: @color;
-	background-image: -webkit-linear-gradient(lighten(@bytlyn, 10%) 5%, lighten(@bytlyn, 5%) 10%, @bytlyn 100%);
-	background-image: linear-gradient(lighten(@bytlyn, 10%) 5%, lighten(@bytlyn, 5%) 10%, @bytlyn 100%);
+	background-image: -webkit-linear-gradient(lighten(@color, 10%) 5%, lighten(@color, 5%) 10%, @color 100%);
+	background-image: linear-gradient(lighten(@color, 10%) 5%, lighten(@color, 5%) 10%, @color 100%);
 	color: @white;
 	border: 1px solid @gray;
 	cursor: pointer;
-	&:hover {
+	.smooth();
+	
+	&:hover, &:focus {
+		.smooth();
 		background-color: darken(@color, 5%);
-		background-image: -webkit-linear-gradient(@bytlyn 5%, darken(@bytlyn, 5%) 10%, darken(@bytlyn, 10%) 100%);
-		background-image: linear-gradient(@bytlyn 5%, darken(@bytlyn, 5%) 10%, darken(@bytlyn, 10%) 100%);
+		background-image: -webkit-linear-gradient(@color 5%, darken(@color, 5%) 10%, darken(@color, 10%) 100%);
+		background-image: linear-gradient(@color 5%, darken(@color, 5%) 10%, darken(@color, 10%) 100%);
 	}
 	&.disable {
 		background-color: lighten(@color, 10%);
@@ -18,19 +21,6 @@
 	&.chosen {
 		background-color: darken(@color, 5%);
 		cursor: pointer;
-	}
-}
-
-.search-bar {
-	padding: 10px 20px;
-	width: 100%;
-	border: none;
-
-	&:focus {
-		outline: 2px solid @gray;
-	}
-	&:hover {
-		outline: 2px solid @gray;
 	}
 }
 
@@ -47,6 +37,25 @@
 		.icon {
 			text-align: center;
 			width: 30px;
+		}
+	}
+}
+
+.side-pannel {
+	background-color: @bytlyn;
+	.tab {
+		width: 100%;
+		padding: 10px 20px;
+		border-bottom: 1px solid @gray-light;
+		cursor: pointer;
+		border-left: 0 solid @yellow;
+		.smooth();
+		&:hover {
+			border-left: 10px solid @yellow;
+			.smooth();
+		}
+		&.chosen {
+			border-left: 10px solid @yellow;
 		}
 	}
 }

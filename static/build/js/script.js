@@ -1,6 +1,25 @@
 $(window).load(function() {
-	$('.loading-page').fadeOut(3000);
-})
+	$('.loading-page').fadeOut();
+});
+
+$(document).ready(function() {
+	$('.parallax').parallax();
+	$('.carousel').slick({
+		dots: true,
+		infinite: true,
+		slidesToShow: 3,
+  		slidesToScroll: 1,
+  		lazyLoad: 'ondemand',
+  		responsive: [
+	    {
+	      breakpoint: 550,
+	      settings: {
+	        slidesToShow: 1,
+	        slidesToScroll: 1,
+	      }
+	    }]
+	});
+});
 
 // Youtube API
 
