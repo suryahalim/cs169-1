@@ -14,4 +14,8 @@ class StaticPagesController < ApplicationController
     def signup_rest
         render "signup-restaurant.html"
     end
+
+    def signup_user
+        render "signup-user.html"
+    end
 end
