@@ -4,6 +4,9 @@ class DynamicPagesController < ApplicationController
     def profile
         render "profile.html.erb"
     end
+    def profile_resto
+        render "profile-resto.html.erb"
+    end
 
     def index
     end
@@ -24,7 +27,12 @@ class DynamicPagesController < ApplicationController
 
     def home
         if user_signed_in?
-            redirect_to profile_path
+            if current_user.rest
+                redirect_to profile_rest_path
+                
+            else
+                redirect_to profile_path
+            end
         else
             redirect_to index_path
         end

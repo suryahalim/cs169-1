@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
+  devise_scope :user do
+     get "signup-user", to: "users/registrations#new_user"
+     get "signup-restaurant", to: "users/registrations#new_rest"
+     post "create-user", to: "users/registrations#create_user"
+     post "create-restaurant", to: "users/registrations#create_rest"
+     get "login", to: "devise/sessions#new"
+     get "logout", to: "devise/sessions#destroy"
+  end
   devise_for :users, controllers: {registrations: "users/registrations"}
-  get 'sessions/new'
+  # get 'sessions/new'
 
   root 'dynamic_pages#home'
 
@@ -9,16 +17,18 @@ Rails.application.routes.draw do
   get 'signup.html' => 'dynamic_pages#signup'
   get 'login.html' => 'dynamic_pages#login'
   get 'signup-restaurant.html' => 'dynamic_pages#signup_rest'
-  get 'signup-user.html' => 'dynamic_pages#signup_user'
+  # get 'signup-user.html' => 'dynamic_pages#signup_user'
   get 'profile.html' => 'dynamic_pages#profile'
+  get 'profile-rest.html' => 'dynamic_pages#profile_resto'
 
   #without .html
   get 'index' => 'dynamic_pages#index'
   get 'signup' => 'dynamic_pages#signup'
   get 'login' => 'dynamic_pages#login'
   get 'signup-restaurant' => 'dynamic_pages#signup_rest'
-  get 'signup-user' => 'dynamic_pages#signup_user'
+  # get 'signup-user' => 'dynamic_pages#signup_user'
   get 'profile' => 'dynamic_pages#profile'
+  get 'profile-rest' => 'dynamic_pages#profile_resto'
 
 
   #API 

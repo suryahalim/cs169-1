@@ -1,17 +1,50 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-before_filter :configure_sign_up_params, only: [:create, :new]
+before_filter :configure_sign_up_params, only: [:create_user, :create_rest, :new_user, :new_rest]
 # before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  def new
-    params[:rest] = false
-    super
+  def new_user
+    build_resource({})
+    set_minimum_password_length
+    yield resource if block_given?
+    respond_with self.resource
+  end
+  def new_rest
+    build_resource({})
+    set_minimum_password_length
+    yield resource if block_given?
+    respond_with self.resource
   end
 
+
   # POST /resource
-  def create
+  def create_user
     @this_param = sign_up_params
     @this_param[:rest] = false
+    build_resource(@this_param)
+
+    resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message :notice, :signed_up if is_flashing_format?
+        sign_up(resource_name, resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
+      else
+        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      respond_with resource
+    end
+  end
+
+  def create_rest
+    @this_param = sign_up_params
+    @this_param[:rest] = true
     build_resource(@this_param)
 
     resource.save
