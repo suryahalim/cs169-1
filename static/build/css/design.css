@@ -184,6 +184,9 @@ footer a:hover:before {
   overflow: hidden;
   height: 500px;
 }
+.parallax-container .text {
+  width: 100%;
+}
 .parallax {
   position: absolute;
   top: 0;
@@ -838,10 +841,11 @@ body.restaurant main .parallax-container::before {
 body.restaurant main .content {
   display: inline-block;
   width: 100%;
-  background-color: #ffffff;
+  background-color: #eeeeee;
 }
 body.restaurant main .content .wrapper-left {
   background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   padding: 50px 0;
 }
 body.restaurant main .content .wrapper-left button,
@@ -852,6 +856,8 @@ body.restaurant main .content .wrapper-left a {
 body.restaurant main .content .wrapper-right {
   color: #333333;
   padding: 50px 0 150px 0;
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 body.restaurant main .content .wrapper-right .carousel {
   margin: 0 50px 80px 50px;
@@ -867,28 +873,26 @@ body.restaurant main .content .wrapper-right .carousel .thumbnail:focus {
   outline: none;
 }
 body.restaurant main .content .wrapper-right .r-logo {
+  width: 100%;
   max-width: 500px;
 }
 body.restaurant main .content .wrapper-right .r-info {
   display: inline-block;
   max-width: 500px;
-  margin: 20px 0;
+  margin: 20px 30px;
 }
-body.profile main .container {
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-}
-body.profile main .parallax-container {
+body.profile main.home .parallax-container {
   z-index: 0;
-  height: 300px;
+  height: 400px;
 }
-body.profile main .parallax-container .text {
+body.profile main.home .parallax-container .text {
   position: absolute;
   display: inline-block;
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
 }
-body.profile main .parallax-container::before {
+body.profile main.home .parallax-container::before {
   content: '';
   position: absolute;
   top: 0;
@@ -901,17 +905,26 @@ body.profile main .parallax-container::before {
   -webkit-transition-duration: 300ms;
   transition-duration: 300ms;
 }
-body.profile main .wrapper-left {
+body.profile main.home .content {
+  background-color: #eeeeee;
+  display: inline-block;
+}
+body.profile main.home .content .wrapper-left {
   width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 20px;
   color: #ffffff;
 }
-body.profile main .wrapper-left .fa {
+body.profile main.home .content .wrapper-left .fa {
   min-width: 25px;
 }
-body.profile main .wrapper-right {
+body.profile main.home .content .wrapper-right {
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   padding: 50px 0 200px 0;
 }
-body.profile main .wrapper-right .profile-photo {
+body.profile main.home .content .wrapper-right .profile-photo {
   width: 100%;
   border: 1px solid #cccccc;
   -webkit-border-top-left-radius: 50%;
@@ -924,8 +937,11 @@ body.profile main .wrapper-right .profile-photo {
   border-bottom-right-radius: 50%;
   padding: 10px;
 }
-body.profile main .wrapper-right .email {
+body.profile main.home .content .wrapper-right .email {
   margin: 30px 0;
+}
+body.profile main.home .content .wrapper-right form {
+  padding: 0 20px;
 }
 @media screen and (max-width: 767px) {
   .index .section-three {
