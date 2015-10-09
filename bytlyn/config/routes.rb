@@ -1,24 +1,24 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {registrations: "users/registrations"}
   get 'sessions/new'
 
-  root 'static_pages#index'
+  root 'dynamic_pages#home'
 
   #with .html
-  get 'index.html' => 'static_pages#index'
-  get 'signup.html' => 'static_pages#signup'
-  get 'login.html' => 'static_pages#login'
-  get 'signup-restaurant.html' => 'static_pages#signup_rest'
-  get 'signup-user.html' => 'static_pages#signup_user'
+  get 'index.html' => 'dynamic_pages#index'
+  get 'signup.html' => 'dynamic_pages#signup'
+  get 'login.html' => 'dynamic_pages#login'
+  get 'signup-restaurant.html' => 'dynamic_pages#signup_rest'
+  get 'signup-user.html' => 'dynamic_pages#signup_user'
+  get 'profile.html' => 'dynamic_pages#profile'
 
   #without .html
-  get 'index' => 'static_pages#index'
-  get 'signup' => 'static_pages#signup'
-  get 'login' => 'static_pages#login'
-  get 'signup-restaurant' => 'static_pages#signup_rest'
-  get 'signup-user' => 'static_pages#signup_user'
-
-
+  get 'index' => 'dynamic_pages#index'
+  get 'signup' => 'dynamic_pages#signup'
+  get 'login' => 'dynamic_pages#login'
+  get 'signup-restaurant' => 'dynamic_pages#signup_rest'
+  get 'signup-user' => 'dynamic_pages#signup_user'
+  get 'profile' => 'dynamic_pages#profile'
 
 
   #API 
