@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'sessions/new'
 
   root 'static_pages#index'
@@ -18,6 +19,9 @@ Rails.application.routes.draw do
   get 'signup-user' => 'static_pages#signup_user'
 
 
+
+
+  #API 
   post 'signupuser' => 'accounts#signupuser'
   post 'signuprest' => 'accounts#signuprest'
 
