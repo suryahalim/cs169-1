@@ -2,10 +2,11 @@ class DynamicPagesController < ApplicationController
     before_action :authenticate_user!, except: [:index, :show, :login, :signup, :signup_rest, :signup_user, :home]
 
     def profile
-        render "profile.html.erb"
-    end
-    def profile_resto
-        render "profile-resto.html.erb"
+        if current_user.rest
+            render "profile-resto.html.erb"
+        else
+            render "profile.html.erb"
+        end
     end
 
     def index
@@ -27,12 +28,9 @@ class DynamicPagesController < ApplicationController
 
     def home
         if user_signed_in?
-            if current_user.rest
-                redirect_to profile_rest_path
-                
-            else
-                redirect_to profile_path
-            end
+ 
+            redirect_to profile_path
+
         else
             redirect_to index_path
         end

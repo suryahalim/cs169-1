@@ -15,21 +15,12 @@ Rails.application.routes.draw do
   #with .html
   get 'index.html' => 'dynamic_pages#index'
   get 'signup.html' => 'dynamic_pages#signup'
-  get 'login.html' => 'dynamic_pages#login'
-  get 'signup-restaurant.html' => 'dynamic_pages#signup_rest'
-  # get 'signup-user.html' => 'dynamic_pages#signup_user'
   get 'profile.html' => 'dynamic_pages#profile'
-  get 'profile-rest.html' => 'dynamic_pages#profile_resto'
 
   #without .html
   get 'index' => 'dynamic_pages#index'
   get 'signup' => 'dynamic_pages#signup'
-  get 'login' => 'dynamic_pages#login'
-  get 'signup-restaurant' => 'dynamic_pages#signup_rest'
-  # get 'signup-user' => 'dynamic_pages#signup_user'
   get 'profile' => 'dynamic_pages#profile'
-  get 'profile-rest' => 'dynamic_pages#profile_resto'
-
 
   #API 
   post 'signupuser' => 'accounts#signupuser'
