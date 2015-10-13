@@ -12,18 +12,7 @@ class DynamicPagesController < ApplicationController
     def index
     end
 
-    def login
-    end
-
     def signup
-    end
-
-    def signup_rest
-        render "signup-restaurant.html"
-    end
-
-    def signup_user
-        render "signup-user.html"
     end
 
     def home
