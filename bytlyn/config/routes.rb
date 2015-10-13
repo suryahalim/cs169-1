@@ -4,8 +4,10 @@ Rails.application.routes.draw do
      get "signup-restaurant", to: "users/registrations#new_rest"
      post "create-user", to: "users/registrations#create_user"
      post "create-restaurant", to: "users/registrations#create_rest"
-     get "login", to: "devise/sessions#new"
-     get "logout", to: "devise/sessions#destroy"
+     get "login", to: "users/sessions#new"
+     get "sign_in", to: "users/sessions#new"
+     post "sign_in", to: "users/sessions#create"
+     get "logout", to: "users/sessions#destroy"
   end
   devise_for :users, controllers: {registrations: "users/registrations"}
   # get 'sessions/new'
@@ -23,12 +25,12 @@ Rails.application.routes.draw do
   get 'profile' => 'dynamic_pages#profile'
 
   #API 
-  post 'signupuser' => 'accounts#signupuser'
-  post 'signuprest' => 'accounts#signuprest'
+  # post 'signupuser' => 'users/registrations#new_user'
+  # post 'signuprest' => 'users/registrations#new_rest'
 
-  get 'login' => 'sessions#new'
-  post 'login' => 'sessions#create'
-  delete 'logout' => 'sessions#destroy'
+  # # get 'login' => 'sessions#new'
+  # # post 'login' => 'sessions#create'
+  # delete 'logout' => 'sessions#destroy'
 
 
 
