@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :restaurants
+  resources :customers
+  resources :waitlists
   devise_scope :user do
      get "signup-user", to: "users/registrations#new_user"
      get "signup-restaurant", to: "users/registrations#new_rest"
