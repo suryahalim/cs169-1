@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   get 'signup' => 'dynamic_pages#signup'
   get 'profile' => 'dynamic_pages#profile'
 
+  #waitlist URL
+  get 'waitlists/new/:id' => 'waitlists#new'
+
   #API 
   # post 'signupuser' => 'users/registrations#new_user'
   # post 'signuprest' => 'users/registrations#new_rest'

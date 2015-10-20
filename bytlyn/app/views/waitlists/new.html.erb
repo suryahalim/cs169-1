@@ -1,5 +1,13 @@
 <h1>New Waitlist</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', waitlists_path %>
+<%= form_for @waitlist do |f| %>
+<p>
+    <%= f.label :people %>
+    <%= f.text_field :people %>
+    <%= f.hidden_field :rest_id, :value => params[:rest_id] %>
+</p>
+<p>
+	
+</p>
+    <%= f.submit "Create waitlist" %>
+<% end %>

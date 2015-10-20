@@ -5,6 +5,10 @@
 <table>
   <thead>
     <tr>
+      <th>Id</th>
+      <th>Cust_Id</th>
+      <th>Rest_Id</th>
+      <th>People</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +16,10 @@
   <tbody>
     <% @waitlists.each do |waitlist| %>
       <tr>
+        <td><%= waitlist.id %></td>
+        <td><%= User.find_by_id(waitlist.cust_id).name%></td>
+        <td><%= waitlist.rest_id %></td>
+        <td><%= waitlist.people %></td>
         <td><%= link_to 'Show', waitlist %></td>
         <td><%= link_to 'Edit', edit_waitlist_path(waitlist) %></td>
         <td><%= link_to 'Destroy', waitlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -21,5 +29,8 @@
 </table>
 
 <br>
-
+<p>
+  <strong>current_user:</strong>
+  <%= current_user.id %>
+</p>
 <%= link_to 'New Waitlist', new_waitlist_path %>

@@ -7,8 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
 <%= link_to "Sign out", destroy_user_session_path, method: :delete %> <br>
 <%= yield %>
+
+<% if user_signed_in? %>
+<% url = 'waitlists/new?rest_id=' + current_user.id.to_s %>
+<%= link_to "Waitlist", url, method: :get %> <br>
+<% end %>
 
 </body>
 </html>
