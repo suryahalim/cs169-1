@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%=current_user.name %>'s Waitlists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if not @lists.empty? %>
+        <tr>
+            <th>Name</th>
+            <th># People</th>
+            <th>Delete</th>
+        </tr>
+
+        <% @lists.each do |list| %>
+            <tr>
+              <td>
+                <% name = User.where(id: list.cust_id).first.name %>
+      
+                <%= name %>
+              </td>
+              <td>
+                <%= list.people %>
+              </td>
+            
+              <td>
+                <%= link_to 'Delete', list, controller: 'waitlists', action: 'destroy',method: :delete%>
+              </td>
+            </tr>
+        <% end %>
+    <%else %>
+        you have no current waitlist
+    <%end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Waitlist', new_waitlist_path %>

@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%=current_user.name %>'s Waitlists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if not @waitlists.empty? %>
+        <tr>
+            <th>Restaurant</th>
+            <th># People</th>
+            <th>Position</th>
+            <th>Cancel</th>
+        </tr>
+
+        <% @waitlists.each do |waitlist| %>
+            <% list = waitlist[:list] %>
+            <% pos = waitlist[:position] %>
+            <tr>
+              <td>
+                <% name = User.where(id: list.rest_id).first.name %>
+                <%= name %>
+              </td>
+              <td>
+                <%= list.people %>
+              </td>
+              <td>
+                <%= pos %>
+              </td>
+              <td>
+                <%= link_to 'Cancel', list, controller: 'waitlists', action: 'destroy',method: :delete%>
+              </td>
+            </tr>
+        <% end %>
+    <%else %>
+        you have no current waitlist
+    <%end %>
+  </tbody>
+</table>
+
+<br>
