@@ -85,7 +85,7 @@
     <div class="parallax-container">
         <div class="parallax"><img src="build/img/stock/cover-user.jpg" class="width-full" ></div>
         <div class="text text-center">
-            <h1> Bernardus Billy Tjiptoning  RESTOOO</h1>
+            <h1> <%= current_user.name %> <%= current_user.id %> Restaurant</h1>
         </div>
     </div>
     <div class="content">
@@ -94,7 +94,7 @@
                 <div class="side-pannel">
                     <a href="profile.html" class="tab chosen"><span class="fa fa-home"></span> Home</a>
                     <a href="favorite.html" class="tab"><span class="fa fa-star"></span> Favorite</a>
-                    <a href="wailist.html"class="tab"><span class="fa fa-hourglass"></span> Waitlist</a>
+                    <a href="/waitlists"class="tab"><span class="fa fa-hourglass"></span> Waitlist</a>
                     <a href="delivery.html"class="tab"><span class="fa fa-rocket"></span> Delivery</a>
                     <a href="payment.html"class="tab"><span class="fa fa-credit-card"></span>Payment</a>
                     <a href="setting.html"class="tab"><span class="fa fa-cog"></span>Setting</a>

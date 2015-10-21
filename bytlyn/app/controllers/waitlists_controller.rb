@@ -4,7 +4,19 @@ class WaitlistsController < ApplicationController
   # GET /waitlists
   # GET /waitlists.json
   def index
-    @waitlists = Waitlist.all
+    # @waitlists = Waitlist.all
+    if user_signed_in?
+      if current_user.rest
+        @lists = Waitlist.get_restaurant_waitlist(current_user.id)
+        render 'rest_index.html.erb' 
+      else
+        # @lists = Waitlist.where(:cust_id == current_user.id)
+        @waitlists = Waitlist.get_customer_waitlist(current_user.id)
+        render 'cust_index.html.erb'   
+      end
+    else
+      redirect_to login_path
+    end
   end
 
   # GET /waitlists/1
@@ -24,16 +36,26 @@ class WaitlistsController < ApplicationController
   # POST /waitlists
   # POST /waitlists.json
   def create
+    cur_rest = params[:waitlist][:rest_id]
+    cur_people = params[:waitlist][:people]
+    # render text: params
+    waitlist_params = {cust_id: current_user.id, rest_id: cur_rest, people: cur_people}
     @waitlist = Waitlist.new(waitlist_params)
 
-    respond_to do |format|
-      if @waitlist.save
-        format.html { redirect_to @waitlist, notice: 'Waitlist was successfully created.' }
-        format.json { render :show, status: :created, location: @waitlist }
-      else
-        format.html { render :new }
-        format.json { render json: @waitlist.errors, status: :unprocessable_entity }
+    if @waitlist.check_params
+      respond_to do |format|
+        if @waitlist.save
+          flash.now[:notice] = 'Waitlist was successfully created.'
+          format.html { redirect_to waitlists_path, notice: 'Waitlist was successfully created.' }
+          format.json { render :show, status: :created, location: @waitlist }
+        else
+          format.html { render :new }
+          format.json { render json: @waitlist.errors, status: :unprocessable_entity }
+        end
       end
+    else 
+      flash[:error] = 'ERROR!'
+      redirect_to waitlists_path
     end
   end
 
@@ -56,7 +78,7 @@ class WaitlistsController < ApplicationController
   def destroy
     @waitlist.destroy
     respond_to do |format|
-      format.html { redirect_to waitlists_url, notice: 'Waitlist was successfully destroyed.' }
+      format.html { redirect_to waitlists_path, notice: 'Waitlist was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +91,6 @@ class WaitlistsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def waitlist_params
-      params[:waitlist]
+      params.require(:waitlist).permit(:cust_id, :rest_id, :people)
     end
 end
