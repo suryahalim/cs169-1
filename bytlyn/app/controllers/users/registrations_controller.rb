@@ -23,7 +23,12 @@ before_filter :configure_sign_up_params, only: [:create_user, :create_rest, :new
     @this_param[:rest] = false
     build_resource(@this_param)
 
+    # save the new customer to database User
     resource.save
+    # save the new customer to database Customer
+    param = {user_id: resource.id}
+    @customer = Customer.new(param)
+    @customer.save
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
@@ -47,7 +52,13 @@ before_filter :configure_sign_up_params, only: [:create_user, :create_rest, :new
     @this_param[:rest] = true
     build_resource(@this_param)
 
+    # save the new restaurant to database User
     resource.save
+    # save the new restaurant to database Restaurant
+    param = {user_id: resource.id}
+    @restaurant = Restaurant.new(param)
+    @restaurant.save
+
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
