@@ -63,6 +63,9 @@
     .wrapper-right .panel{
         margin:10px;
     }
+    .restaurant-panel {
+        padding:0;
+    }
     </style>
 
 </head>
@@ -118,7 +121,7 @@
         <div class="wrapper-right col-xs-12 col-sm-9 col-md-9 col-lg-9">
             <div class="">
                 <% @restaurants.each do |restaurant| %>
-                    <div class="panel panel-default col-md-5">
+                    <div class="panel panel-default col-md-5 restaurant-panel">
                         <div class="panel-heading">Restaurant name</div>
                         <div class="panel-body">
                             <ul>
@@ -126,14 +129,14 @@
                                 <li><%= restaurant.address %></li>
                                 <li><%= restaurant.hours %></li>
                                 <li>
-                                    <a class="btn btn-warning" href="<%= restaurant %>">Waitlist</a>
+                                    <a class="btn btn-warning" href="./waitlists/new?rest_id=<%= restaurant.id %>">Waitlist</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 <% end %>
                 
-                <!-- <%= link_to 'New Restaurant', new_restaurant_path %> -->
+<!--                 <%= link_to 'New Restaurant', new_restaurant_path %> -->
             </div>
         </div>
     </div>
