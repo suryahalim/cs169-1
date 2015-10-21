@@ -42,15 +42,20 @@ class WaitlistsController < ApplicationController
     waitlist_params = {cust_id: current_user.id, rest_id: cur_rest, people: cur_people}
     @waitlist = Waitlist.new(waitlist_params)
 
-    respond_to do |format|
-      if @waitlist.save
-        flash.now[:notice] = 'Waitlist was successfully created.'
-        format.html { redirect_to profile_path, notice: 'Waitlist was successfully created.' }
-        format.json { render :show, status: :created, location: @waitlist }
-      else
-        format.html { render :new }
-        format.json { render json: @waitlist.errors, status: :unprocessable_entity }
+    if @waitlist.check_params
+      respond_to do |format|
+        if @waitlist.save
+          flash.now[:notice] = 'Waitlist was successfully created.'
+          format.html { redirect_to waitlists_path, notice: 'Waitlist was successfully created.' }
+          format.json { render :show, status: :created, location: @waitlist }
+        else
+          format.html { render :new }
+          format.json { render json: @waitlist.errors, status: :unprocessable_entity }
+        end
       end
+    else 
+      flash[:error] = 'ERROR!'
+      redirect_to waitlists_path
     end
   end
 
