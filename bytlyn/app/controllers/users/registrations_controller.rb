@@ -25,10 +25,6 @@ before_filter :configure_sign_up_params, only: [:create_user, :create_rest, :new
 
     # save the new customer to database User
     resource.save
-    # save the new customer to database Customer
-    param = {user_id: resource.id, phone_number: 00000}
-    @customer = Customer.new(param)
-    @customer.save
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
@@ -43,7 +39,14 @@ before_filter :configure_sign_up_params, only: [:create_user, :create_rest, :new
     else
       clean_up_passwords resource
       set_minimum_password_length
-      respond_with resource
+      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
+      redirect_to signup_user_path
+    end
+    if resource.save
+      # save the new restaurant to database Restaurant
+      param = {user_id: resource.id, phone_number: 00000}
+      @restaurant = Customer.new(param)
+      @restaurant.save
     end
   end
 
