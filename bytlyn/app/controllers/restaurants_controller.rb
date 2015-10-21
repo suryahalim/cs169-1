@@ -24,6 +24,7 @@ class RestaurantsController < ApplicationController
   # POST /restaurants
   # POST /restaurants.json
   def create
+    # render text: restaurant_params
     @restaurant = Restaurant.new(restaurant_params)
 
     respond_to do |format|
@@ -69,6 +70,7 @@ class RestaurantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def restaurant_params
-      params[:restaurant]
+      # params[:restaurant]
+      params.require(:restaurant).permit(:address, :hours, :user_id)
     end
 end

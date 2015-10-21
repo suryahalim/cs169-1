@@ -1,5 +1,9 @@
 class Waitlist < ActiveRecord::Base
+
     validates :people, presence: true
+    belongs_to :customer
+    belongs_to :restaurant
+    belongs_to :user
 
     def self.get_restaurant_waitlist(user_id)
         return Waitlist.where(rest_id: user_id).order(:created_at)
@@ -31,5 +35,7 @@ class Waitlist < ActiveRecord::Base
         end
         return true
     end
+
+
 
 end

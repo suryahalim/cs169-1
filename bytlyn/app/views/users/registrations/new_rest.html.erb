@@ -71,6 +71,17 @@
                 <%= form_for(resource, as: resource_name, url: create_restaurant_path) do |f| %>
                 <%= devise_error_messages! %>
                     <div class="field">
+                    <!-- CREATING DEVISE ERROR MESSAGE -->
+                    <% flash.each do |name, msg| %>
+                      <% if msg.class == Array %>
+                        <% msg.each do |message| %>
+                          <%= content_tag :div, message, :id => "flash_#{}" %>
+                        <% end %>
+                      <% else %>
+                        <%= content_tag :div, msg, :id => "flash_#{}" %>
+                        <% end %>
+                    <% end %>
+                    <!-- CONTINUE WITH THE FORM -->
                     <%= f.label :name %><br />
                     <%= f.text_field :name, autofocus: true %>
                     </div>

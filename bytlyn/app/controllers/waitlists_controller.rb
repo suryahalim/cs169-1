@@ -4,6 +4,7 @@ class WaitlistsController < ApplicationController
   # GET /waitlists
   # GET /waitlists.json
   def index
+
     # @waitlists = Waitlist.all
     if user_signed_in?
       if current_user.rest
@@ -42,6 +43,7 @@ class WaitlistsController < ApplicationController
     waitlist_params = {cust_id: current_user.id, rest_id: cur_rest, people: cur_people}
     @waitlist = Waitlist.new(waitlist_params)
 
+
     if @waitlist.check_params
       respond_to do |format|
         if @waitlist.save
@@ -52,6 +54,7 @@ class WaitlistsController < ApplicationController
           format.html { render :new }
           format.json { render json: @waitlist.errors, status: :unprocessable_entity }
         end
+
       end
     else 
       flash[:error] = 'ERROR!'
