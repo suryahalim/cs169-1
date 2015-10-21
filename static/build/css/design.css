@@ -10,7 +10,6 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-  display: inline-block;
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
   -webkit-transition-duration: 300ms;
@@ -246,6 +245,7 @@ footer a:hover:before {
   background-color: #cc730d;
 }
 .side-pannel .tab {
+  display: inline-block;
   width: 100%;
   padding: 10px 20px;
   border-bottom: 1px solid #cccccc;
@@ -597,10 +597,9 @@ form .modern:focus {
 .box-option {
   position: relative;
   width: 100%;
-  font-size: 40px;
-  height: 300px;
+  display: inline-block;
   text-align: center;
-  padding: 50px;
+  font-size: 40px;
   color: #ffffff;
   background-color: #cccccc;
   cursor: pointer;
@@ -648,6 +647,26 @@ form .modern:focus {
   -webkit-border-bottom-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
+.box-option img {
+  -webkit-border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 100%;
+}
+.box-option.box-add-new {
+  font-size: 50px !important;
+  height: 169px;
+  background-color: #ffffff;
+  color: #333333;
+}
+.box-option.box-add-new::before {
+  background-color: #ffffff;
+}
 .box-option:hover,
 .box-option:focus {
   -webkit-transition-timing-function: ease-in-out;
@@ -661,7 +680,61 @@ form .modern:focus {
   transition-timing-function: ease-in-out;
   -webkit-transition-duration: 300ms;
   transition-duration: 300ms;
-  background: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.payment-method {
+  display: inline-block;
+  width: 100%;
+  border: 1px solid #333333;
+  padding: 15px;
+}
+.payment-method .logos {
+  width: 100%;
+}
+.payment-method .card {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  width: 110px;
+  height: 70px;
+  -webkit-border-top-left-radius: 5px;
+  border-top-left-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 1px solid #333333;
+  margin-bottom: 25px;
+  margin-right: 5px;
+}
+.payment-method .card .card-nickname {
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+.payment-method .card .card-number {
+  position: absolute;
+  font-size: 12px;
+  bottom: -20px;
+}
+.payment-method .card.card-default {
+  background-color: #cccccc;
+}
+.payment-method .card.card-default::before {
+  content: "Default";
+  font-size: 10px;
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, calc(-50% - 14px), 0);
+}
+.payment-method .card:hover {
+  background-color: #888888;
 }
 .typed-cursor {
   opacity: 1;
@@ -838,10 +911,11 @@ body.restaurant main .parallax-container::before {
 body.restaurant main .content {
   display: inline-block;
   width: 100%;
-  background-color: #ffffff;
+  background-color: #eeeeee;
 }
 body.restaurant main .content .wrapper-left {
   background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   padding: 50px 0;
 }
 body.restaurant main .content .wrapper-left button,
@@ -850,6 +924,8 @@ body.restaurant main .content .wrapper-left a {
   margin: 10px auto;
 }
 body.restaurant main .content .wrapper-right {
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   color: #333333;
   padding: 50px 0 150px 0;
 }
@@ -874,8 +950,8 @@ body.restaurant main .content .wrapper-right .r-info {
   max-width: 500px;
   margin: 20px 0;
 }
-body.profile main .container {
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+body.profile main {
+  background-color: #eeeeee;
 }
 body.profile main .parallax-container {
   z-index: 0;
@@ -902,6 +978,10 @@ body.profile main .parallax-container::before {
   transition-duration: 300ms;
 }
 body.profile main .wrapper-left {
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  padding: 10px;
   width: 100%;
   color: #ffffff;
 }
@@ -909,11 +989,36 @@ body.profile main .wrapper-left .fa {
   min-width: 25px;
 }
 body.profile main .wrapper-right {
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  width: 100%;
+  color: #333333;
   padding: 50px 0 200px 0;
+}
+body.profile main .wrapper-right .header {
+  font-size: 60px;
+  padding-bottom: 50px;
+  font-family: 'Poiret One', cursive;
+}
+body.profile main .wrapper-right .information-wrapper {
+  margin-top: 30px;
+}
+body.profile main .wrapper-right .information-wrapper .sub-header {
+  font-size: 12px;
+  color: #cccccc;
+}
+body.profile main .wrapper-right .information-wrapper .content {
+  font-size: 20px;
+  color: #333333;
+  margin-bottom: 15px;
+}
+body.profile main .wrapper-right .information-wrapper .content-small {
+  font-size: 14px;
 }
 body.profile main .wrapper-right .profile-photo {
   width: 100%;
-  border: 1px solid #cccccc;
+  border: 1px solid #cc730d;
   -webkit-border-top-left-radius: 50%;
   border-top-left-radius: 50%;
   -webkit-border-bottom-left-radius: 50%;
@@ -926,6 +1031,25 @@ body.profile main .wrapper-right .profile-photo {
 }
 body.profile main .wrapper-right .email {
   margin: 30px 0;
+}
+body.profile main .wrapper-right .box-option {
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+body.profile main .wrapper-right .payment-method {
+  margin-bottom: 50px;
+}
+body.profile main .wrapper-right .photo-wrapper .change-button {
+  position: absolute;
+  text-align: center;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  font-size: 16px;
+  color: #ffffff;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(80%, 100%, 0);
 }
 @media screen and (max-width: 767px) {
   .index .section-three {
