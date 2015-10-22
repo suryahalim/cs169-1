@@ -1,14 +1,13 @@
 class CustomFailure < Devise::FailureApp
   def redirect_url
-    restaurants_path
+    sign_in_path
   end
-
-  # Redirect to root_url
   def respond
     if http_auth?
       http_auth
     else
-      redir
+      flash[:danger] = "Email or password is incorrect"
+      redirect
     end
-   
+  end
 end

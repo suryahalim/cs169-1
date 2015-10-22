@@ -13,7 +13,7 @@ before_filter :configure_sign_in_params, only: [:create]
     # render text: "HAI"
     sign_in(resource_name, resource)
     yield resource if block_given?
-    respond_with resource, location: restaurants_path
+    respond_with resource, location: profile_path
   end
   # DELETE /resource/sign_out
   # def destroy
@@ -23,6 +23,7 @@ before_filter :configure_sign_in_params, only: [:create]
   def new
     self.resource = resource_class.new(sign_in_params)
     clean_up_passwords(resource)
+    # flash[:notice] = "Email or password is incorrect"
     yield resource if block_given?
     respond_with(resource, serialize_options(resource))
   end
