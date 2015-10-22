@@ -18,19 +18,23 @@
 	<meta name="keywords" content="" />
 	<meta name="author" content="Bytlyn" />
 	
+	<!-- Add on CSS -->
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css"> -->
+  	<link rel="stylesheet" type="text/css" href="build/css/slick.css"/>
+  	<link rel="stylesheet" type="text/css" href="build/css/slick-theme.css"/>
+
 	<!-- Bootstrap -->
 	<link href="build/css/bootstrap.css" rel="stylesheet">
-	<link href="build/css/styles.css" rel="stylesheet">
 	<link href="build/css/jquery.fancybox.css" rel="stylesheet">
 	<link href="build/css/flickity.css" rel="stylesheet" >
 	<link href="build/css/animate.css" rel="stylesheet">
 	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-	<link href="build/css/queries.css" rel="stylesheet">
 	<link href="build/css/design.css" rel="stylesheet">
 
 	<!-- Google Font -->
 	<link href='https://fonts.googleapis.com/css?family=Dosis:500' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 
 	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
@@ -53,7 +57,8 @@
 	<![endif]-->
 
 </head>
-<body class="signup">
+<body class="profile">
+<div class="loading-page"></div>
 <header>
 	<div class="row">
 		<div class="col-md-12 col-lg-12">
@@ -78,25 +83,65 @@
 	</div>
 </header>
 <main>
+	<div class="parallax-container">
+    	<div class="parallax"><img src="build/img/stock/cover-user.jpg" class="width-full" ></div>
+    	<div class="text text-center">
+    		<h1> Bernardus Billy Tjiptoning </h1>
+    	</div>
+    </div>
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
-				<form class="text-left">
-					<span class="info">Restaurant Name</span><br>
-					<input class="modern" type="text" class="right" placeholder="The Kitchen"></input><br>
-					<span class="info">Email</span><br>
-					<input class="modern" type="text" class="right" placeholder="john.smith@youremail.com"></input><br>
-					<span class="info">Open Hours</span><br>
-					<input class="modern" type="text" class="right" placeholder="08:00 AM - 07:00 PM"></input><br>
-					<span class="info">Address</span><br>
-					<input class="modern" type="text" class="right" placeholder="1234 Random St."></input><br>
-					<span class="info">Password</span><br>
-					<input class="modern" type="password" class="right" placeholder="John1998"></input><br>
-					<span class="info">Confirm Password</span><br>
-					<input class="modern" type="password" class="right" placeholder="John1998"></input><br>
-					<span class="agreement">By signing up, I agree to Bytlyn's Terms of Service, Privacy Policy, Guest Refund Policy, and Host Guarantee Terms.</span><br><br>
-					<button class="btn btn-bytlyn btn-max">Sign Up</button>
-				</form>
+			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 noPadding">
+				<div class="wrapper-left">
+					<div class="side-pannel">
+						<a href="profile.html" class="tab"><span class="fa fa-home"></span> Home</a>
+						<a href="favorite.html" class="tab"><span class="fa fa-star"></span> Favorite</a>
+						<a href="waitlist.html"class="tab chosen"><span class="fa fa-hourglass"></span> Waitlist</a>
+						<a href="delivery.html"class="tab"><span class="fa fa-rocket"></span> Delivery</a>
+						<a href="payment.html"class="tab"><span class="fa fa-credit-card"></span>Payment</a>
+						<a href="settings.html"class="tab"><span class="fa fa-cog"></span>Settings</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+				<div class="wrapper-right">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="header text-center">
+							Waitlist<br>
+						</div>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+						<a href="#">
+							<div class="box-option">
+								<img src="build/img/stock/restaurant.jpg"/>
+								<div class="text">
+									Restaurant #1<br>
+									Waitlist: #1
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+						<a href="#">
+							<div class="box-option">
+								<img src="build/img/stock/restaurant.jpg"/>
+								<div class="text">
+									Restaurant #2<br>
+									Waitlist: #2
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+						<a href="#">
+							<div class="box-option box-add-new">
+								<div class="text">
+									<span class="fa fa-plus-circle"></span>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -142,7 +187,8 @@
 </footer>
 
 <script src="build/js/jquery-1.11.3.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+<script type="text/javascript" src="build/js/slick.min.js"></script>
 <script src="build/js/script.js"></script>
-
 </body>
 </html>

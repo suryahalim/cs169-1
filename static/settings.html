@@ -18,15 +18,17 @@
 	<meta name="keywords" content="" />
 	<meta name="author" content="Bytlyn" />
 	
+	<!-- Add on CSS -->
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css"> -->
+  	<link rel="stylesheet" type="text/css" href="build/css/slick.css"/>
+  	<link rel="stylesheet" type="text/css" href="build/css/slick-theme.css"/>
+
 	<!-- Bootstrap -->
 	<link href="build/css/bootstrap.css" rel="stylesheet">
-	<link href="build/css/styles.css" rel="stylesheet">
 	<link href="build/css/jquery.fancybox.css" rel="stylesheet">
 	<link href="build/css/flickity.css" rel="stylesheet" >
 	<link href="build/css/animate.css" rel="stylesheet">
 	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-	<link href="build/css/queries.css" rel="stylesheet">
-
 	<link href="build/css/design.css" rel="stylesheet">
 
 	<!-- Google Font -->
@@ -54,7 +56,8 @@
 	<![endif]-->
 
 </head>
-<body class="signup">
+<body class="profile">
+<div class="loading-page"></div>
 <header>
 	<div class="row">
 		<div class="col-md-12 col-lg-12">
@@ -79,17 +82,49 @@
 	</div>
 </header>
 <main>
+	<div class="parallax-container">
+    	<div class="parallax"><img src="build/img/stock/cover-user.jpg" class="width-full" ></div>
+    	<div class="text text-center">
+    		<h1> Bernardus Billy Tjiptoning </h1>
+    	</div>
+    </div>
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
-				<form class="text-left">
-					
-					<span class="info">Email</span><br>
-					<input class="modern" type="text" class="right" placeholder="john.smith@youremail.com"></input><br>
-					<span class="info">Password</span><br>
-					<input class="modern" type="password" class="right" placeholder="John1998"></input><br><br>
-					<button class="btn btn-bytlyn btn-max">Log in</button>
-				</form>
+			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 noPadding">
+				<div class="wrapper-left">
+					<div class="side-pannel">
+						<a href="profile.html" class="tab"><span class="fa fa-home"></span> Home</a>
+						<a href="favorite.html" class="tab"><span class="fa fa-star"></span> Favorite</a>
+						<a href="waitlist.html"class="tab"><span class="fa fa-hourglass"></span> Waitlist</a>
+						<a href="delivery.html"class="tab"><span class="fa fa-rocket"></span> Delivery</a>
+						<a href="payment.html"class="tab"><span class="fa fa-credit-card"></span>Payment</a>
+						<a href="settings.html"class="tab chosen"><span class="fa fa-cog"></span>Settings</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+				<div class="wrapper-right">
+					<div class="col-xs-12 col-xs-offset-0 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
+						<div class="photo-wrapper">
+							<img src="build/img/stock/profile.jpg" class="profile-photo"/>
+							<div class="change-button">
+								<div class="fa fa-camera"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-xs-offset-0 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 col-lg-offset-3 col-lg-6">
+						<div class="email text-md text-center"> bernardusbilly </div>
+						<form class="text-left">
+							<span class="info">Full Name</span><br>
+							<input class="modern" type="text" placeholder="John Smith" value="Bernardus Billy Tjiptoning"></input><br>
+							<span class="info">Password</span><br>
+							<input class="modern" type="password" placeholder="John1998"></input><br>
+							<span class="info">Email</span><br>
+							<input class="modern" type="text" placeholder="john.smith@youremail.com" value="billy@bytlyn.com"></input><br><br>
+							<button class="btn btn-bytlyn btn-max">Save Changes</button>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -135,7 +170,8 @@
 </footer>
 
 <script src="build/js/jquery-1.11.3.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+<script type="text/javascript" src="build/js/slick.min.js"></script>
 <script src="build/js/script.js"></script>
-
 </body>
 </html>

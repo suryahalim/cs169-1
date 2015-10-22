@@ -21,12 +21,22 @@ class DynamicPagesController < ApplicationController
 
     def home
         if user_signed_in?
- 
             redirect_to profile_path
-
         else
             redirect_to index_path
         end
+    end
+
+    def delivery
+
+    end
+
+    def favorite
+    end
+
+    def payment
+    end
+    def settings
     end
 
 end

@@ -3,6 +3,9 @@ $(window).load(function() {
 });
 
 $(document).ready(function() {
+
+	// parallax effect 
+
 	$('.parallax').parallax();
 	$('.carousel').slick({
 		dots: true,
@@ -19,7 +22,17 @@ $(document).ready(function() {
 	      }
 	    }]
 	});
+
+	// Add New Card Form
+	$('#card-add-new').hide();
+	$('#card-add-button').click(function() {
+		$('#card-add-new').show();
+		$('#card-add-new').addClass("animated slideInUp");
+	});
 });
+
+
+
 
 // Youtube API
 

@@ -22,13 +22,21 @@ Rails.application.routes.draw do
   get 'index.html' => 'dynamic_pages#index'
   get 'signup.html' => 'dynamic_pages#signup'
   get 'profile.html' => 'dynamic_pages#profile'
+  get 'settings.html' => 'dynamic_pages#settings'
+  get 'favorite.html' => 'dynamic_pages#favorite'
+  get 'payment.html' => 'dynamic_pages#payment'
+  get 'delivery.html' => 'dynamic_pages#delivery'
 
   #without .html
   get 'index' => 'dynamic_pages#index'
   get 'signup' => 'dynamic_pages#signup'
   get 'profile' => 'dynamic_pages#profile'
   get 'restaurants' => 'restaurants#index'
-
+  get 'settings' => 'dynamic_pages#settings'
+  get 'favorite' => 'dynamic_pages#favorite'
+  get 'payment' => 'dynamic_pages#payment'
+  get 'delivery' => 'dynamic_pages#delivery'
+  get 'home' => 'dynamic_pages#home'
 
   #waitlist URL
   get 'waitlists/new/:id' => 'waitlists#new'
