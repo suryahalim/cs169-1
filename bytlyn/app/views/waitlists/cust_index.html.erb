@@ -1,47 +1,64 @@
-<p id="notice"><%= notice %></p>
 
 
-<h1><%=current_user.name %>'s Waitlists</h1>
+<body class="profile">
+<div class="loading-page"></div>
+<main>
+  <div class="parallax-container">
+      <div class="parallax"><img src="build/img/stock/cover-user.jpg" class="width-full" ></div>
+      <div class="text text-center">
+        <h1> <%=current_user.name %> </h1>
+      </div>
+    </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 noPadding">
+        <div class="wrapper-left">
+          <div class="side-pannel">
+            <a href="profile.html" class="tab"><span class="fa fa-home"></span> Home</a>
+            <a href="favorite.html" class="tab"><span class="fa fa-star"></span> Favorite</a>
+            <a href="waitlist.html"class="tab chosen"><span class="fa fa-hourglass"></span> Waitlist</a>
+            <a href="delivery.html"class="tab"><span class="fa fa-rocket"></span> Delivery</a>
+            <a href="payment.html"class="tab"><span class="fa fa-credit-card"></span>Payment</a>
+            <a href="settings.html"class="tab"><span class="fa fa-cog"></span>Settings</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+        <div class="wrapper-right">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="header text-center">
+              Waitlist<br>
+            </div>
+          </div>
+          <% if not @waitlists.empty? %>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+            <% @waitlists.each do |waitlist| %>
+                <% list = waitlist[:list] %>
+                <% pos = waitlist[:position] %>
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                  <a href="#">
+                    <div class="box-option">
+                      <img src="build/img/stock/restaurant.jpg"/>
+                      <div class="text">
+                        <% name = User.where(id: list.rest_id).first.name %>
+                          
+                        Restaurant <%= name %><br>
+                        <%= list.people %> people<br>
+                        Position: <%= pos %> <br>
+                        <%= link_to 'Cancel', list, controller: 'waitlists', action: 'destroy',method: :delete%>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+            <% end %>
+          <%else %>
+              you have no current waitlist
+          <%end %>
 
-  <tbody>
-    <% if not @waitlists.empty? %>
-        <tr>
-            <th>Restaurant</th>
-            <th># People</th>
-            <th>Position</th>
-            <th>Cancel</th>
-        </tr>
-
-        <% @waitlists.each do |waitlist| %>
-            <% list = waitlist[:list] %>
-            <% pos = waitlist[:position] %>
-            <tr>
-              <td>
-                <% name = User.where(id: list.rest_id).first.name %>
-                <%= name %>
-              </td>
-              <td>
-                <%= list.people %>
-              </td>
-              <td>
-                <%= pos %>
-              </td>
-              <td>
-                <%= link_to 'Cancel', list, controller: 'waitlists', action: 'destroy',method: :delete%>
-              </td>
-            </tr>
-        <% end %>
-    <%else %>
-        you have no current waitlist
-    <%end %>
-  </tbody>
-</table>
-
-<br>
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

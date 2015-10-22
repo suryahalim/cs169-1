@@ -1,15 +1,27 @@
-<h1>New Waitlist</h1>
+<body class="signup">
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
+                <h1>New Waitlist</h1>
 
-<%= form_for @waitlist do |f| %>
-<p>
-    <%= f.label :people %>
-    <%= f.text_field :people %>
-    <%= f.hidden_field :rest_id, :value => params[:rest_id] %>
-</p>
-<p>
-   
-</p>
-    <%= f.submit "Create waitlist" %>
-<% end %> 
+                    <%= form_for @waitlist do |f| %>
+                    <p>
+                        <%= f.label :people %>
+                        <%= f.text_field :people %>
+                        <%= f.hidden_field :rest_id, :value => params[:rest_id] %>
+                    </p>
+                    
+                     <div class="actions">
+                    <!-- <button class="btn btn-bytlyn btn-max">Sign Up</button> -->
+                    <%= f.submit "Create waitlist"%>
+                    </div>
+                    <% end %>
+            </div>
+        </div>
+    </div>
+</main>
+
+
 
 

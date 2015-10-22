@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   get 'home' => 'dynamic_pages#home'
 
   #waitlist URL
-  get 'waitlists/new/:id' => 'waitlists#new'
+  get 'waitlists_new' => 'waitlists#new'
 
   #API 
   # post 'signupuser' => 'users/registrations#new_user'
