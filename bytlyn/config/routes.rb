@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get 'index' => 'dynamic_pages#index'
   get 'signup' => 'dynamic_pages#signup'
   get 'profile' => 'dynamic_pages#profile'
+  get 'restaurants' => 'restaurants#index'
 
 
   #waitlist URL
