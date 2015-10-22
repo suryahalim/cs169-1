@@ -6,6 +6,9 @@
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
             <%= devise_error_messages! %>
+            <% if flash[:danger] %>
+              <div class="notice"><%= flash[:danger] %></div>
+            <% end %>
             <%= f.label :email %><br />
             <%= f.email_field :email, autofocus: true %>
           </div>
