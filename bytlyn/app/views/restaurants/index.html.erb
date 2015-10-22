@@ -122,14 +122,18 @@
             <div class="">
                 <% @restaurants.each do |restaurant| %>
                     <div class="panel panel-default col-md-5 restaurant-panel">
-                        <div class="panel-heading">Restaurant name</div>
+                        <div class="panel-heading"><%= @users.find_by_id(restaurant.user_id).name %></div>
                         <div class="panel-body">
-                            <ul>
-                                <li><%= restaurant.user_id %></li>
-                                <li><%= restaurant.address %></li>
-                                <li><%= restaurant.hours %></li>
+                            <img src="build/img/stock/logo-restaurant.jpg" class="img-rounded pull-left" alt="Restaurant Logo" width="134" height="126">
+                            <ul class="pull-right">
+                                <li>$$$</li>
+                                <li><% (1..5).each do |i| %>
+                                    <img src="build/img/stock/star.png" alt="Restaurant Logo" width="30" height="30">
+                                    <% end %>
+                                </li>
+                                <li>Open now!</li>
                                 <li>
-                                    <a class="btn btn-warning" href="./waitlists/new?rest_id=<%= restaurant.id %>">Waitlist</a>
+                                    <a class="btn btn-warning" href="./waitlists/new?rest_id=<%= restaurant.user_id %>">Waitlist</a>
                                 </li>
                             </ul>
                         </div>
