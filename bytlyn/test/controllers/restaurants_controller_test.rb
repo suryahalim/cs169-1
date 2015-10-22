@@ -1,3 +1,15 @@
+##################################
+# Test user_id must be integer
+# Test address must be string
+# Test hours must be string
+# Test no restaurant
+# Test no picture
+# Test no ratings
+# Test waitlist button
+# Test rating button
+# Test Open now!
+# Test Price level
+
 require 'test_helper'
 
 class RestaurantsControllerTest < ActionController::TestCase
@@ -11,10 +23,11 @@ class RestaurantsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:restaurants)
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
+  # test "should get new" do
+  #   get :new
+  #   assert_nil(Restaurant.id , "id is empty")
+  #   assert_response :success
+  # end
 
   test "should create restaurant" do
     assert_difference('Restaurant.count') do
@@ -35,7 +48,7 @@ class RestaurantsControllerTest < ActionController::TestCase
   end
 
   test "should update restaurant" do
-    patch :update, id: @restaurant, restaurant: {  }
+    patch :update, id: @restaurant, restaurant: { user_id: "10", address: "MLK", hours: "24hr" }
     assert_redirected_to restaurant_path(assigns(:restaurant))
   end
 
