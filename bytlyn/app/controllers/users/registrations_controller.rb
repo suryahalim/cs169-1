@@ -23,6 +23,7 @@ before_filter :configure_sign_up_params, only: [:create_user, :create_rest, :new
     @this_param[:rest] = false
     build_resource(@this_param)
 
+    # save the new customer to database User
     resource.save
     yield resource if block_given?
     if resource.persisted?
@@ -38,7 +39,14 @@ before_filter :configure_sign_up_params, only: [:create_user, :create_rest, :new
     else
       clean_up_passwords resource
       set_minimum_password_length
-      respond_with resource
+      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
+      redirect_to signup_user_path
+    end
+    if resource.save
+      # save the new restaurant to database Restaurant
+      param = {user_id: resource.id, phone_number: 00000}
+      @restaurant = Customer.new(param)
+      @restaurant.save
     end
   end
 
@@ -47,6 +55,7 @@ before_filter :configure_sign_up_params, only: [:create_user, :create_rest, :new
     @this_param[:rest] = true
     build_resource(@this_param)
 
+    # save the new restaurant to database User
     resource.save
     yield resource if block_given?
     if resource.persisted?
@@ -57,12 +66,20 @@ before_filter :configure_sign_up_params, only: [:create_user, :create_rest, :new
       else
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
         expire_data_after_sign_in!
-        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
       end
     else
       clean_up_passwords resource
       set_minimum_password_length
-      respond_with resource
+      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
+      redirect_to signup_restaurant_path
+    end
+
+    if resource.save
+      # save the new restaurant to database Restaurant
+      param = {user_id: resource.id}
+      @restaurant = Restaurant.new(param)
+      @restaurant.save
     end
   end
 
@@ -79,6 +96,9 @@ before_filter :configure_sign_up_params, only: [:create_user, :create_rest, :new
   # DELETE /resource
   # def destroy
   #   super
+  # end
+  # def destroy
+  #   User.find_by_id(resource.id).destroy
   # end
 
   # GET /resource/cancel

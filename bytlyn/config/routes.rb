@@ -7,6 +7,7 @@ Rails.application.routes.draw do
      get "signup-restaurant", to: "users/registrations#new_rest"
      post "create-user", to: "users/registrations#create_user"
      post "create-restaurant", to: "users/registrations#create_rest"
+     delete "destroy-user", to: "users/registrations#destroy"
      get "login", to: "users/sessions#new"
      get "sign_in", to: "users/sessions#new"
      post "sign_in", to: "users/sessions#create"
@@ -27,6 +28,10 @@ Rails.application.routes.draw do
   get 'signup' => 'dynamic_pages#signup'
   get 'profile' => 'dynamic_pages#profile'
   get 'restaurants' => 'restaurants#index'
+
+
+  #waitlist URL
+  get 'waitlists/new/:id' => 'waitlists#new'
 
   #API 
   # post 'signupuser' => 'users/registrations#new_user'
