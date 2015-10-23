@@ -5,9 +5,9 @@
 # Test no restaurant -- done
 # Test no picture -- not sure if necessary?
 # Test no ratings -- not yet implemented
-# Test waitlist button -- not yet implemented
+# Test waitlist button -- unit test see restaurant_test.rb
 # Test rating button -- not yet implemented
-# Test Open now! -- O.P.
+# Test Open now! -- not yet implemented
 # Test Price level -- may be too difficult? Sol: all price in integer
 
 require 'test_helper'
@@ -72,15 +72,16 @@ class RestaurantsControllerTest < ActionController::TestCase
     # print(@restaurant.user_id)
     # print(@customer.phone_number)
     # print(Restaurant.address)
+    # print(Time.now.strftime("%I:%M%p"))
     assert_not_same("1", @restaurant.user_id, "user_id must be integer")
   end
 
   test "address is string" do
-    assert_not_same(1893, @restaurant.address, "address must be integer")
+    assert_not_same(1893, @restaurant.address, "address must be string")
   end
 
   test "hours is string" do
-    assert_not_same(9, @restaurant.hours, "hours must be integer")
+    assert_not_same(9, @restaurant.hours, "hours must be string")
   end
 
 
@@ -92,8 +93,6 @@ class RestaurantsControllerTest < ActionController::TestCase
     @count = Restaurant.count
     assert_not_nil(@count, "No Restaurant found")
   end
-
-
 end
 
 
