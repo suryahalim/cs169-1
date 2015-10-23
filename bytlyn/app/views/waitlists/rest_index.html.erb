@@ -1,44 +1,74 @@
-<p id="notice"><%= notice %></p>
-
-<h1><%=current_user.name %>'s Waitlists</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% if not @lists.empty? %>
-        <tr>
-            <th>Name</th>
-            <th># People</th>
-            <th>Delete</th>
-        </tr>
-
-        <% @lists.each do |list| %>
-            <tr>
-              <td>
-                <% name = User.where(id: list.cust_id).first.name %>
-      
-                <%= name %>
-              </td>
-              <td>
-                <%= list.people %>
-              </td>
-            
-              <td>
-                <%= link_to 'Delete', list, controller: 'waitlists', action: 'destroy',method: :delete%>
-              </td>
-            </tr>
-        <% end %>
-    <%else %>
-        you have no current waitlist
-    <%end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Waitlist', new_waitlist_path %>
+<body class="profile">
+    <main class="">
+        <div class="parallax-container">
+            <div class="parallax"><img src="build/img/stock/cover-user.jpg" class="width-full" ></div>
+            <div class="text">
+                <h1> Restaurant List </h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="wrapper-left">
+                    <div class="side-pannel">
+                        <a href="profile" class="tab chosen"><span class="fa fa-home"></span> Home</a>
+                        <a href="favorite" class="tab"><span class="fa fa-star"></span> Favorite</a>
+                        <a href="/waitlists"class="tab"><span class="fa fa-hourglass"></span> Waitlist</a>
+                        <a href="delivery"class="tab"><span class="fa fa-rocket"></span> Delivery</a>
+                        <a href="payment"class="tab"><span class="fa fa-credit-card"></span>Payment</a>
+                        <a href="setting"class="tab"><span class="fa fa-cog"></span>Setting</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                <div class="wrapper-right">
+                    <p id="notice"><%= notice %></p>
+                    
+                    <h1><%=current_user.name %>'s Waitlists</h1>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="3"></th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <% if not @lists.empty? %>
+                            <tr>
+                                <th>Name</th>
+                                <th># People</th>
+                                <th>Delete</th>
+                            </tr>
+                            
+                            <% @lists.each do |list| %>
+                            <tr>
+                                <td>
+                                    <% name = User.where(id: list.cust_id).first.name %>
+                                    
+                                    <%= name %>
+                                </td>
+                                <td>
+                                    <%= list.people %>
+                                </td>
+                                
+                                <td>
+                                    <%= link_to 'Delete', list, controller: 'waitlists', action: 'destroy',method: :delete%>
+                                </td>
+                            </tr>
+                            <% end %>
+                            <%else %>
+                            you have no current waitlist
+                            <%end %>
+                        </tbody>
+                    </table>
+                    
+                    <br>
+                    
+                    <%= link_to 'New Waitlist', new_waitlist_path %>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    
+    
