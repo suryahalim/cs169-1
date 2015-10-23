@@ -57,7 +57,7 @@ class WaitlistsController < ApplicationController
 
       end
     else 
-      flash[:error] = 'ERROR!'
+      flash[:error] = 'You have waitlisted on this restaurant.'
       redirect_to waitlists_path
     end
   end

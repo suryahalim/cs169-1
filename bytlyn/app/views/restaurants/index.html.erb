@@ -35,7 +35,11 @@
                                 </li>
                                 <li>Open now!</li>
                                 <li>
-                                    <a class="btn btn-warning" href="./waitlists_new?rest_id=<%= restaurant.user_id %>">Waitlist</a>
+                                    <% if user_signed_in?%>
+                                        <a class="btn btn-warning" href="./waitlists_new?rest_id=<%= restaurant.user_id %>">Waitlist</a>
+                                    <% else %>
+                                        <a class="btn btn-warning" href="./login">Waitlist</a>
+                                    <% end %>
                                 </li>
                             </ul>
                         </div>

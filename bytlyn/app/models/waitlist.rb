@@ -29,6 +29,9 @@ class Waitlist < ActiveRecord::Base
         if (cust_id == rest_id) #for restaurant to put on their own waitlist
             return true
         end
+        if Restaurant.where(:user_id => cust_id).size > 0 && (cust_id != rest_id)
+            return false
+        end
         if Waitlist.where(cust_id: cust_id, rest_id: rest_id).size > 0
             errors.add(:base, "You have waitlisted on this restaurant")
             return false
