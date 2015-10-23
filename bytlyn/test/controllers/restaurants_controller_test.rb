@@ -14,10 +14,11 @@ require 'test_helper'
 
 class RestaurantsControllerTest < ActionController::TestCase
   setup do
-    @restaurant = restaurants(:rest_input)
-    # @restaurant_bad_input = restaurants(:rest_bad_input)
+    @restaurant = Restaurant.new(user_id: 1, address: '1893 Berkeley Avenue', hours: '9:00 am - 10:00 pm')
+    @restaurant.save
+    @user = User.new(id: 1, name: 'rest 1', email: 'FendyOnel@gmail.com', rest: true, password: '123123123', password_confirmation: '123123123')
+    @user.save
     @customer = customers(:one)
-    @user = users(:one)
   end
 
   test "should get index" do
