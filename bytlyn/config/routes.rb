@@ -10,7 +10,7 @@ Rails.application.routes.draw do
      delete "destroy-user", to: "users/registrations#destroy"
      get "login", to: "users/sessions#new"
      get "sign_in", to: "users/sessions#new"
-     post "sign_in", to: "users/sessions#create"
+     post "sign_in", to: "users/sessions#create", as: "new_sign_in"
      get "logout", to: "users/sessions#destroy"
   end
   devise_for :users, controllers: {registrations: "users/registrations"}
