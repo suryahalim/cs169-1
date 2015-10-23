@@ -68,30 +68,30 @@ class RestaurantsControllerTest < ActionController::TestCase
     assert_redirected_to restaurants_path
   end
 
-  test "user_id is integer" do
-    # print(@restaurant.user_id)
-    # print(@customer.phone_number)
-    # print(Restaurant.address)
-    # print(Time.now.strftime("%I:%M%p"))
-    assert_not_same("1", @restaurant.user_id, "user_id must be integer")
-  end
+  # test "user_id is integer" do
+  #   # print(@restaurant.user_id)
+  #   # print(@customer.phone_number)
+  #   # print(Restaurant.address)
+  #   # print(Time.now.strftime("%I:%M%p"))
+  #   assert_not_same("1", @restaurant.user_id, "user_id must be integer")
+  # end
 
-  test "address is string" do
-    assert_not_same(1893, @restaurant.address, "address must be string")
-  end
+  # test "address is string" do
+  #   assert_not_same(1893, @restaurant.address, "address must be string")
+  # end
 
-  test "hours is string" do
-    assert_not_same(9, @restaurant.hours, "hours must be string")
-  end
+  # test "hours is string" do
+  #   assert_not_same(9, @restaurant.hours, "hours must be string")
+  # end
 
 
-  test "no restaurant count" do
-    # Restaurant.new(user_id: 1, address: "1893 Berkeley Avenue", hours: "9:00 am - 10:00 pm") # create @restaurant instance
-    # assert_not_nil assigns(:restaurant) # makes sure that a @restaurant instance variable was set
-    # assert_difference(@restaurant.count, 1, "wrong")
-    # assert_empty(0, 'Restaurant.count', "no restaurant found")
-    @count = Restaurant.count
-    assert_not_nil(@count, "No Restaurant found")
+  # test "no restaurant count" do
+  #   # Restaurant.new(user_id: 1, address: "1893 Berkeley Avenue", hours: "9:00 am - 10:00 pm") # create @restaurant instance
+  #   # assert_not_nil assigns(:restaurant) # makes sure that a @restaurant instance variable was set
+  #   # assert_difference(@restaurant.count, 1, "wrong")
+  #   # assert_empty(0, 'Restaurant.count', "no restaurant found")
+  #   @count = Restaurant.count
+  #   assert_not_nil(@count, "No Restaurant found")
   end
 end
 
