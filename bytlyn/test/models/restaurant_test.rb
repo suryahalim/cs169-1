@@ -72,10 +72,42 @@ class RestaurantTest < ActiveSupport::TestCase
     # rest_copy = Restaurant.find(rest.id)
     rest_count = Restaurant.count
 
-    assert_equal 1, rest_count
+    assert_equal 2, rest_count
 
     assert rest.save
     assert rest.destroy
   end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 end

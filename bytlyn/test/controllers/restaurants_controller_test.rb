@@ -92,7 +92,7 @@ class RestaurantsControllerTest < ActionController::TestCase
   #   # assert_empty(0, 'Restaurant.count', "no restaurant found")
   #   @count = Restaurant.count
   #   assert_not_nil(@count, "No Restaurant found")
-  end
+  # end
 end
 
 
