@@ -18,7 +18,8 @@ class RestaurantsControllerTest < ActionController::TestCase
     @restaurant.save
     @user = User.new(id: 1, name: 'rest 1', email: 'FendyOnel@gmail.com', rest: true, password: '123123123', password_confirmation: '123123123')
     @user.save
-    @customer = customers(:one)
+    
+    
   end
 
   test "should get index" do
