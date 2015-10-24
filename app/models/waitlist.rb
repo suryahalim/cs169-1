@@ -22,14 +22,14 @@ class Waitlist < ActiveRecord::Base
     end
 
     def check_params
-        if User.find(rest_id) == nil || !User.find(rest_id).rest
-            errors.add(:rest_id, "Invalid restaurant id")
+        if User.find_by(id: cust_id) == nil || User.find_by(id: rest_id) == nil || !User.find_by(id: rest_id).rest
+            errors.add(:rest_id, "Invalid restaurant/customer id")
             return false
         end
         if (cust_id == rest_id) #for restaurant to put on their own waitlist
             return true
         end
-        if Restaurant.where(:user_id => cust_id).size > 0 && (cust_id != rest_id)
+        if User.find_by(id: cust_id).rest && (cust_id != rest_id)
             return false
         end
         if Waitlist.where(cust_id: cust_id, rest_id: rest_id).size > 0

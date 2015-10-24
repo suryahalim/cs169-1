@@ -59,6 +59,11 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.6.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -104,11 +109,6 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
-    rails_12factor (0.0.3)
-      rails_serve_static_assets
-      rails_stdout_logging
-    rails_serve_static_assets (0.0.4)
-    rails_stdout_logging (0.0.4)
     railties (4.2.2)
       actionpack (= 4.2.2)
       activesupport (= 4.2.2)
@@ -162,11 +162,11 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise
+  factory_girl_rails
   jbuilder (~> 2.0)
   jquery-rails
   pg
   rails (= 4.2.2)
-  rails_12factor
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring

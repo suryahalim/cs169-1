@@ -2,25 +2,18 @@ require 'test_helper'
 
 class CustomersControllerTest < ActionController::TestCase
   setup do
-    @customer = customers(:one)
-  end
-
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:customers)
-  end
-
-  test "should get new" do
-    get :new
-    assert_response :success
+    @customer = Customer.new(user_id:2, phone_number: 0000)
+    @customer.save
+    @user = User.new(id: 2, name: 'user 1', email: 'AtidJenad@gmail.com', rest: false, password: '123123123', password_confirmation: '123123123')
+    @user.save
+    
+    
   end
 
   test "should create customer" do
     assert_difference('Customer.count') do
-      post :create, customer: {  }
+        post :create, customer: { user_id: "10", phone_number: 00000 }
     end
-
     assert_redirected_to customer_path(assigns(:customer))
   end
 
@@ -29,13 +22,17 @@ class CustomersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, id: @customer
+  test "should get edit customer" do
+    assert_no_difference('Customer.count') do
+      get :edit, id: @customer
+    end
     assert_response :success
   end
 
   test "should update customer" do
-    patch :update, id: @customer, customer: {  }
+    assert_no_difference('Customer.count') do
+      patch :update, id: @customer, customer: { user_id: "10", phone_number: 00000 }
+    end
     assert_redirected_to customer_path(assigns(:customer))
   end
 
@@ -43,7 +40,6 @@ class CustomersControllerTest < ActionController::TestCase
     assert_difference('Customer.count', -1) do
       delete :destroy, id: @customer
     end
-
     assert_redirected_to customers_path
   end
 end

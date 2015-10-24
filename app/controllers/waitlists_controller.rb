@@ -27,7 +27,11 @@ class WaitlistsController < ApplicationController
 
   # GET /waitlists/new
   def new
-    @waitlist = Waitlist.new
+    if user_signed_in?
+      @waitlist = Waitlist.new
+    else
+      redirect_to login_path
+    end
   end
 
   # GET /waitlists/1/edit
