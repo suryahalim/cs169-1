@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 
   #waitlist URL
   get 'waitlists_new' => 'waitlists#new'
+  post 'waitlists_new' => 'waitlists#create'
 
   #API 
   # post 'signupuser' => 'users/registrations#new_user'
