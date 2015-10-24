@@ -24,7 +24,7 @@
                 <% @restaurants.each do |restaurant| %>
                     <div class="col-md-6">
                         <div class="panel panel-default restaurant-panel">
-                            <div class="panel-heading"><%= @users.find_by_id(restaurant.user_id).name %></div>
+                            <div class="panel-heading"><%= @users.find_by_id(restaurant.user_id) %></div>
                             <div class="panel-body">
                                 <div class="col-md-3">
                                     <img src="build/img/stock/logo-restaurant.jpg" class="img-thumbnail pull-left" alt="Restaurant Logo" width="134" height="126">
