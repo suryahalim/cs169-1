@@ -1,13 +1,12 @@
-<p id="notice"><%= notice %></p>
-
-<main class="home">
+<body class="profile">
+<main class="">
     <div class="parallax-container">
         <div class="parallax"><img src="build/img/stock/cover-user.jpg" class="width-full" ></div>
         <div class="text">
             <h1> Restaurant List </h1>
         </div>
     </div>
-    <div class="content" style="display: inline-block;">
+    <div class="container">
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
             <div class="wrapper-left">
                 <div class="side-pannel">
@@ -20,33 +19,38 @@
                 </div>
             </div>
         </div>
-        <div class="wrapper-right col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <div class="">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <div class="wrapper-right">
                 <% @restaurants.each do |restaurant| %>
-                    <div class="panel panel-default col-md-5 restaurant-panel">
-                        <div class="panel-heading"><%= @users.find_by_id(restaurant.user_id).name %></div>
-                        <div class="panel-body">
-                            <img src="build/img/stock/logo-restaurant.jpg" class="img-rounded pull-left" alt="Restaurant Logo" width="134" height="126">
-                            <ul class="pull-right">
-                                <li>$$$</li>
-                                <li><% (1..5).each do |i| %>
-                                    <img src="build/img/stock/star.png" alt="Restaurant Logo" width="30" height="30">
-                                    <% end %>
-                                </li>
-                                <li>Open now!</li>
-                                <li>
-                                    <a class="btn btn-warning" href="./waitlists_new?rest_id=<%= restaurant.user_id %>">Waitlist</a>
-
-                                </li>
-                            </ul>
+                    <div class="col-md-6">
+                        <div class="panel panel-default restaurant-panel">
+                            <div class="panel-heading"><%= @users.find_by_id(restaurant.user_id).name %></div>
+                            <div class="panel-body">
+                                <div class="col-md-3">
+                                    <img src="build/img/stock/logo-restaurant.jpg" class="img-thumbnail pull-left" alt="Restaurant Logo" width="134" height="126">
+                                </div>
+                                <div class="col-md-9">
+                                    <ul class="pull-right">
+                                        <li>$$$</li>
+                                        <li><% (1..5).each do |i| %>
+                                            <img src="build/img/stock/star.png" alt="Restaurant Logo" width="30" height="30">
+                                            <% end %>
+                                        </li>
+                                        <li>Open now!</li>
+                                        <li><% if (user_signed_in? && !current_user.rest) %>
+                                            <a class="btn btn-warning" href="./waitlists_new?rest_id=<%= restaurant.user_id %>">Waitlist</a>
+                                            <% elsif !user_signed_in? %>
+                                                <a class="btn btn-warning" href="./login">Waitlist</a>
+                                            <% end %>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 <% end %>
-                
-<!--                 <%= link_to 'New Restaurant', new_restaurant_path %> -->
             </div>
         </div>
     </div>
 </main>
-
 

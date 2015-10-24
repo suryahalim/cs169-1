@@ -29,6 +29,9 @@
             <div class="header text-center">
               Waitlist<br>
             </div>
+            <% if flash[:error] %>
+              <div class="error"><%= flash[:error] %></div><br>
+            <% end %>
           </div>
           <% if not @waitlists.empty? %>
 

@@ -28,15 +28,27 @@ class DynamicPagesController < ApplicationController
     end
 
     def delivery
+        if !user_signed_in?
+            redirect_to index_path
+        end
 
     end
 
     def favorite
+        if !user_signed_in?
+            redirect_to index_path
+        end
     end
 
     def payment
+        if !user_signed_in?
+            redirect_to index_path
+        end
     end
     def settings
+        if !user_signed_in?
+            redirect_to index_path
+        end
     end
 
 end
