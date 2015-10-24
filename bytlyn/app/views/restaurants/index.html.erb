@@ -6,7 +6,12 @@
             <h1> Restaurant List </h1>
         </div>
     </div>
+<<<<<<< HEAD
     <div class="container">
+=======
+    <div class="content" style="display: inline-block;">
+    <% if user_signed_in? %>
+>>>>>>> 83f2b0005090408fa9a1868e6a894809e4b7c53e
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
             <div class="wrapper-left">
                 <div class="side-pannel">
@@ -19,8 +24,14 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
             <div class="wrapper-right">
+=======
+    <% end %>
+        <div class="wrapper-right col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <div class="">
+>>>>>>> 83f2b0005090408fa9a1868e6a894809e4b7c53e
                 <% @restaurants.each do |restaurant| %>
                     <div class="col-md-6">
                         <div class="panel panel-default restaurant-panel">
