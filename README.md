@@ -7,13 +7,13 @@ This repository holds Bytlyn webpage.
 # Instructions
 
 ### Run the Server
-After downloading the files, change directory to cs169/bytlyn. Then, type rails server
+After downloading the files, change the directory to cs169/bytlyn. Then, type rails server
 ```
 $ rails server
 ```
 
 ### Tests
-To run the testing, stay in current directory (cs169/bytlyn) and run rake test.
+To run the testing, stay in the current directory (cs169/bytlyn) and run rake test.
 ```
 $ rake test
 ```
