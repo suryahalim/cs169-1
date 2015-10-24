@@ -13,7 +13,7 @@ $ rails server
 ```
 
 ### Tests
-To run the testing, stay in current directly (cs169/bytlyn) and run rake test.
+To run the testing, stay in current directory (cs169/bytlyn) and run rake test.
 ```
 $ rake test
 ```
