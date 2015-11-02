@@ -124,4 +124,102 @@ class UsersIntegrationTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_equal '/sign_in', path
   end
+
+  test "edit user's email successfully" do
+    post_via_redirect "/sign_in", 'user[email]' => 'AtidJenad@gmail.com', 'user[password]' => '123123123'
+    assert_equal '/profile', path
+
+    put_via_redirect '/users', 'user[email]' => 'JenadAtid@gmail.com', 'user[name]' => 'user 1', 'user[current_password]' => '123123123'
+    assert_response :success
+    assert_equal '/profile', path
+
+    get_via_redirect "/logout"
+
+    post_via_redirect "/sign_in", 'user[email]' => 'AtidJenad@gmail.com', 'user[password]' => '123123123'
+    assert_equal '/sign_in', path
+
+    post_via_redirect "/sign_in", 'user[email]' => 'JenadAtid@gmail.com', 'user[password]' => '123123123'
+    assert_response :success
+    assert_equal '/profile', path
+    assert_equal User.find(2).email, 'jenadatid@gmail.com'
+  end
+
+  test "edit user's password successfully" do
+    post_via_redirect "/sign_in", 'user[email]' => 'AtidJenad@gmail.com', 'user[password]' => '123123123'
+    assert_equal '/profile', path
+
+    put_via_redirect '/users', 'user[email]' => 'AtidJenad@gmail.com', 'user[name]' => 'user 1', 'user[password]' => '234234234', 'user[password_confirmation]' => '234234234', 'user[current_password]' => '123123123'
+    assert_response :success
+    assert_equal '/profile', path
+
+    get_via_redirect "/logout"
+
+    post_via_redirect "/sign_in", 'user[email]' => 'AtidJenad@gmail.com', 'user[password]' => '123123123'
+    assert_equal '/sign_in', path
+
+    post_via_redirect "/sign_in", 'user[email]' => 'AtidJenad@gmail.com', 'user[password]' => '234234234'
+    assert_response :success
+    assert_equal '/profile', path
+
+  end
+
+  test "edit user's name successfully" do
+    post_via_redirect "/sign_in", 'user[email]' => 'AtidJenad@gmail.com', 'user[password]' => '123123123'
+    assert_equal '/profile', path
+
+    put_via_redirect '/users', 'user[email]' => 'AtidJenad@gmail.com', 'user[name]' => 'user abc', 'user[current_password]' => '123123123'
+    assert_response :success
+    assert_equal '/profile', path
+
+    assert_equal User.find(2).name, 'user abc'
+  end
+
+  test "edit user but wrong current password" do
+    post_via_redirect "/sign_in", 'user[email]' => 'AtidJenad@gmail.com', 'user[password]' => '123123123'
+    assert_equal '/profile', path
+
+    put_via_redirect '/users', 'user[email]' => 'AtidJenad@gmail.com', 'user[name]' => 'user abc', 'user[current_password]' => '123122123'
+    assert_response :success
+    assert_equal '/setting', path
+
+    assert_equal User.find(2).name, 'user 1'
+
+  end
+
+  test "edit user's password but different password and confirmation password" do
+    post_via_redirect "/sign_in", 'user[email]' => 'AtidJenad@gmail.com', 'user[password]' => '123123123'
+    assert_equal '/profile', path
+
+    put_via_redirect '/users', 'user[email]' => 'AtidJenad@gmail.com', 'user[name]' => 'user 1', 'user[password]' => '2323344424', 'user[password_confirmation]' => '234234234', 'user[current_password]' => '123123123'
+    assert_response :success
+    assert_equal '/setting', path
+
+    get_via_redirect "/logout"
+
+    post_via_redirect "/sign_in", 'user[email]' => 'AtidJenad@gmail.com', 'user[password]' => '123123123'
+    assert_equal '/profile', path
+  end
+
+  test "edit user's password but <8 characters" do
+    post_via_redirect "/sign_in", 'user[email]' => 'AtidJenad@gmail.com', 'user[password]' => '123123123'
+    assert_equal '/profile', path
+
+    put_via_redirect '/users', 'user[email]' => 'AtidJenad@gmail.com', 'user[name]' => 'user 1', 'user[password]' => '123', 'user[password_confirmation]' => '123', 'user[current_password]' => '123123123'
+    assert_response :success
+    assert_equal '/setting', path
+
+    get_via_redirect "/logout"
+
+    post_via_redirect "/sign_in", 'user[email]' => 'AtidJenad@gmail.com', 'user[password]' => '123'
+    assert_equal '/sign_in', path
+    post_via_redirect "/sign_in", 'user[email]' => 'AtidJenad@gmail.com', 'user[password]' => '123123123'
+    assert_equal '/profile', path
+  end
+  test "edit user but not signed in" do
+    put_via_redirect '/users', 'user[email]' => 'AtidJenad@gmail.com', 'user[name]' => 'user abc', 'user[current_password]' => '123123123'
+    assert_response :success
+    assert_equal '/sign_in', path
+
+    assert_equal User.find(2).name, 'user 1'
+  end
 end

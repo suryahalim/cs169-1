@@ -66,7 +66,9 @@ before_filter :configure_account_update_params, only: [:update]
       respond_with resource, location: after_update_path_for(resource)
     else
       clean_up_passwords resource
-      respond_with resource
+      flash[:errors] = flash[:errors].to_a.concat resource.errors.full_messages
+      # respond_with resource
+      redirect_to setting_path
     end
   end
 
