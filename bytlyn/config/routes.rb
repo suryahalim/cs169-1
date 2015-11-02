@@ -12,6 +12,7 @@ Rails.application.routes.draw do
      get "sign_in", to: "users/sessions#new"
      post "sign_in", to: "users/sessions#create", as: "new_sign_in"
      get "logout", to: "users/sessions#destroy"
+     get 'setting', to: "users/registrations#edit"
   end
   devise_for :users, controllers: {registrations: "users/registrations"}
   # get 'sessions/new'
