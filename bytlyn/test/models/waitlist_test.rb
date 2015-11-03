@@ -3,7 +3,7 @@ require 'test_helper'
 class WaitlistTest < ActiveSupport::TestCase
   def setup
 
-    @restaurant = Restaurant.new(user_id: 1, address: '1893 Berkeley Avenue', hours: '9:00 am - 10:00 pm')
+    @restaurant = Restaurant.new(user_id: 1, address: '1893 Berkeley Avenue')
     @restaurant.save
     @user = User.new(id: 1, name: 'rest 1', email: 'FendyOnel@gmail.com', rest: true, password: '123123123', password_confirmation: '123123123')
     @user.save
@@ -13,7 +13,7 @@ class WaitlistTest < ActiveSupport::TestCase
     @user = User.new(id: 2, name: 'user 1', email: 'AtidJenad@gmail.com', rest: false, password: '123123123', password_confirmation: '123123123')
     @user.save
 
-    @restaurant = Restaurant.new(user_id: 3, address: '1893 Berkeley Avenue', hours: '9:00 am - 10:00 pm')
+    @restaurant = Restaurant.new(user_id: 3, address: '1893 Berkeley Avenue')
     @restaurant.save
     @user = User.new(id: 3, name: 'rest 2', email: 'FendyOnel2@gmail.com', rest: true, password: '123123123', password_confirmation: '123123123')
     @user.save

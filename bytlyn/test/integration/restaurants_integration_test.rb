@@ -2,7 +2,7 @@ require 'test_helper'
  
 class RestaurantIntegrationTest < ActionDispatch::IntegrationTest
   setup do
-   @restaurant = Restaurant.new(user_id: 3, address: '1892 Berkeley Avenue', hours: '9:00 am - 10:00 pm')
+   @restaurant = Restaurant.new(user_id: 3, address: '1892 Berkeley Avenue')
    @restaurant.save
    @user = User.new(id: 3, name: 'FendyOnel', email: 'FendyOnel@gmail.com', rest: true, password: '123123123', password_confirmation: '123123123')
    @user.save
@@ -44,8 +44,10 @@ class RestaurantIntegrationTest < ActionDispatch::IntegrationTest
 
     #create user test
     post_via_redirect create_restaurant_path, 'user[name]' => 'FendyBilly', 'user[email]' => 'FendyBilly@gmail.com', 'user[password]' => '123123123', 'user[password_confirmation]' => '123123123'
-    assert_equal '/profile', path
+    assert_equal '/restaurant_new', path
 
+    post_via_redirect restaurant_new_path, 'hours_attributes' => {"0" => {open: "2000-01-01 11:11:00", close: "2000-01-01 16:02:00"}}
+    assert_equal '/profile', path
     #sign in test
     post_via_redirect user_session_path, 'user[email]' => 'FendyBilly@gmail.com', 'user[password]' => '123123123'
     assert_equal '/profile', path

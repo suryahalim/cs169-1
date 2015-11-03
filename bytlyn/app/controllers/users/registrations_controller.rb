@@ -94,7 +94,7 @@ before_filter :configure_account_update_params, only: [:update]
       clean_up_passwords resource
       set_minimum_password_length
       flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
-      redirect_to restaurant_new_path
+      redirect_to signup_restaurant_path
     end
 
     # if resource.save
