@@ -3,8 +3,13 @@ class DynamicPagesController < ApplicationController
 
     def profile
         if user_signed_in?
-            if current_user.rest
-                render "profile-resto.html.erb"
+            if current_user.rest 
+                if Restaurant.find_by_user_id(current_user.id) != nil
+                    render "profile-resto.html.erb"
+                else
+                    redirect_to restaurant_new_path
+                end
+
             else
                 render "profile.html.erb"
             end

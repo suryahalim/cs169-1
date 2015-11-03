@@ -12,6 +12,7 @@ Rails.application.routes.draw do
      get "sign_in", to: "users/sessions#new"
      post "sign_in", to: "users/sessions#create", as: "new_sign_in"
      get "logout", to: "users/sessions#destroy"
+     get 'setting', to: "users/registrations#edit"
   end
   devise_for :users, controllers: {registrations: "users/registrations"}
   # get 'sessions/new'
@@ -42,6 +43,8 @@ Rails.application.routes.draw do
   get 'waitlists_new' => 'waitlists#new'
   post 'waitlists_new' => 'waitlists#create'
 
+  #restaurant URL
+  get 'restaurant_new' => 'restaurants#new'
   #API 
   # post 'signupuser' => 'users/registrations#new_user'
   # post 'signuprest' => 'users/registrations#new_rest'
