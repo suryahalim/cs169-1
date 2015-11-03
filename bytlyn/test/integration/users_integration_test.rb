@@ -22,10 +22,10 @@ class UsersIntegrationTest < ActionDispatch::IntegrationTest
 
   test "sign up restaurant user successfully" do
     assert_no_difference('Customer.count') do 
-      assert_difference [ 'User.count', 'Restaurant.count' ], 1 do
+      assert_difference [ 'User.count'], 1 do
         post_via_redirect "/create-restaurant", 'user[name]' => 'FendyBilly', 'user[email]' => 'FendyBilly@gmail.com', 'user[password]' => '123123123', 'user[password_confirmation]' => '123123123'
         assert_response :success
-        assert_equal '/restaurant-new', path
+        assert_equal '/restaurant_new', path
       end
     end
   end

@@ -43,11 +43,13 @@ class RestaurantIntegrationTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     #create user test
-    post_via_redirect create_restaurant_path, 'user[name]' => 'FendyBilly', 'user[email]' => 'FendyBilly@gmail.com', 'user[password]' => '123123123', 'user[password_confirmation]' => '123123123'
-    assert_equal '/restaurant_new', path
-
-    post_via_redirect restaurant_new_path, 'hours_attributes' => {"0" => {open: "2000-01-01 11:11:00", close: "2000-01-01 16:02:00"}}
-    assert_equal '/profile', path
+    assert_difference('Restaurant.count', 1) do
+      post_via_redirect create_restaurant_path, 'user[name]' => 'FendyBilly', 'user[email]' => 'FendyBilly@gmail.com', 'user[password]' => '123123123', 'user[password_confirmation]' => '123123123'
+      assert_equal '/restaurant_new', path
+      @id = User.find_by_email('fendybilly@gmail.com').id
+      post_via_redirect '/restaurants', 'restaurant' => {"description"=>"123", "price"=>"123", "address"=>"123", "rest_type"=>"Italian", "hours_attributes"=>{"0"=>{"open"=>"11:11", "close"=>"11:11", "rest_id"=>@id, "day_id"=>"1"}, "1"=>{"open"=>"14:22", "close"=>"14:22", "rest_id"=>@id, "day_id"=>"2"}, "2"=>{"open"=>"15:32", "close"=>"15:33", "rest_id"=>@id, "day_id"=>"3"}, "3"=>{"open"=>"03:22", "close"=>"15:32", "rest_id"=>@id, "day_id"=>"4"}, "4"=>{"open"=>"16:44", "close"=>"21:09", "rest_id"=>@id, "day_id"=>"5"}, "5"=>{"open"=>"18:06", "close"=>"19:07", "rest_id"=>@id, "day_id"=>"6"}, "6"=>{"open"=>"08:08", "close"=>"20:08", "rest_id"=>@id, "day_id"=>"7"}}, "user_id"=>@id}
+      assert_equal '/profile', path
+    end
     #sign in test
     post_via_redirect user_session_path, 'user[email]' => 'FendyBilly@gmail.com', 'user[password]' => '123123123'
     assert_equal '/profile', path
@@ -60,8 +62,11 @@ class RestaurantIntegrationTest < ActionDispatch::IntegrationTest
   test "count how many restaurants" do
     #create user test
     assert_difference('Restaurant.count', 1) do
-        post '/create-restaurant', 'user[name]' => 'Billy1', 'user[email]' => 'Billy1@gmail.com', 'user[password]' => '1235abcd', 'user[password_confirmation]' => '1235abcd'
-        get '/signup-restaurant'
+        post_via_redirect create_restaurant_path, 'user[name]' => 'FendyBilly', 'user[email]' => 'FendyBilly@gmail.com', 'user[password]' => '123123123', 'user[password_confirmation]' => '123123123'
+        assert_equal '/restaurant_new', path
+        @id = User.find_by_email('fendybilly@gmail.com').id
+        post_via_redirect '/restaurants', 'restaurant' => {"description"=>"123", "price"=>"123", "address"=>"123", "rest_type"=>"Italian", "hours_attributes"=>{"0"=>{"open"=>"11:11", "close"=>"11:11", "rest_id"=>@id, "day_id"=>"1"}, "1"=>{"open"=>"14:22", "close"=>"14:22", "rest_id"=>@id, "day_id"=>"2"}, "2"=>{"open"=>"15:32", "close"=>"15:33", "rest_id"=>@id, "day_id"=>"3"}, "3"=>{"open"=>"03:22", "close"=>"15:32", "rest_id"=>@id, "day_id"=>"4"}, "4"=>{"open"=>"16:44", "close"=>"21:09", "rest_id"=>@id, "day_id"=>"5"}, "5"=>{"open"=>"18:06", "close"=>"19:07", "rest_id"=>@id, "day_id"=>"6"}, "6"=>{"open"=>"08:08", "close"=>"20:08", "rest_id"=>@id, "day_id"=>"7"}}, "user_id"=>@id}
+        assert_equal '/profile', path
     end
 
     #tear down
