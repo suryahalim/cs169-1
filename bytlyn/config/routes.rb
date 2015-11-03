@@ -43,6 +43,8 @@ Rails.application.routes.draw do
   get 'waitlists_new' => 'waitlists#new'
   post 'waitlists_new' => 'waitlists#create'
 
+  #restaurant URL
+  get 'restaurant_new' => 'restaurants#new'
   #API 
   # post 'signupuser' => 'users/registrations#new_user'
   # post 'signuprest' => 'users/registrations#new_rest'
