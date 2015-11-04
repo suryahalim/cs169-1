@@ -4,41 +4,31 @@ This repository holds Bytlyn webpage.
 
 
 
-# Front End
+# Instructions
 
-### Download Grunt
+### Run the Server
+After downloading the files, change the directory to cs169/bytlyn. Then, type rails server
 ```
-$ npm install -g grunt-cli
-```
-
-### Using Grunt
-Default function will watch the changes in less/ folder, compile to css, then minimized to css 
-```
-$ grunt 
+$ rails server
 ```
 
-will be the same as typing
-
+### Tests
+To run the testing, stay in the current directory (cs169/bytlyn) and run rake test.
 ```
-$ grunt watch
-```
-
-
-For a one time less compiler
-```
-$ grunt less
+$ rake test
 ```
 
-# Back End
+This is the same as 
+```
+$ bundle exec rake test
+```
 
-### Download RubyOnRails
 
+To run a specific test, use: bundle exec rake test test/... (the directory). For example, to run waitlist_routes_test.rb inside integration test, use: bundle exec rake test test/integration/waitlist_routes_test.rb
 
-### Using ROR
-Front End:
-- Put HTML files in app/views/static_pages
-- Put CSS/JavaScript files in public/    (later may be transferred to app/assets)
-
+```
+$ bundle exec rake test test/integration/waitlist_routes_test.rb
+```
 
 ### Credit
 

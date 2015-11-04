@@ -1,6 +1,8 @@
 class Waitlist < ActiveRecord::Base
 
     validates :people, presence: true
+    validates :cust_id, presence: true
+    validates :rest_id, presence: true
     belongs_to :customer
     belongs_to :restaurant
     belongs_to :user
