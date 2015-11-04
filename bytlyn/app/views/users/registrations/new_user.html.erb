@@ -4,39 +4,39 @@
         <div class="row">
             <div class="col-xs-12 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
                 <%= form_for(resource, as: resource_name, url: create_user_path) do |f| %>
-                <%= devise_error_messages! %>
+                    <%= devise_error_messages! %>
                     <!-- CREATING DEVISE ERROR MESSAGE -->
+                    
                     <% flash.each do |name, msg| %>
-                      <% if msg.class == Array %>
-                        <% msg.each do |message| %>
-                          <%= content_tag :div, message, :id => "flash_#{}" %>
-                        <% end %>
-                      <% else %>
-                        <%= content_tag :div, msg, :id => "flash_#{}" %>
+                        <% if msg.class == Array %>
+                            <% msg.each do |message| %>
+                                <div class="alert alert-danger">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                    <%= content_tag :div, message, :id => "flash_#{}" %>
+                                </div>
+                            <% end %>
+                        <% else %>
+                            <%= content_tag :div, msg, :id => "flash_#{}" %>
                         <% end %>
                     <% end %>
                     <!-- CONTINUE WITH THE FORM -->
-                    <div class="field">
-                    <%= f.label :name %><br />
-                    <%= f.text_field :name, autofocus: true %>
-                    </div>
-                    <%= f.label :password %>
+                    <span class="info">Full Name</span>
+                    <%= f.text_field :name, :class => 'modern' %><br>
+                    <span class="info">Password</span>
                     <% if @minimum_password_length %>
                     <em>(<%= @minimum_password_length %> characters minimum)</em>
-                    <% end %><br />
-                    <%= f.password_field :password, autocomplete: "off" %><br>
-                    <%= f.label :password_confirmation %><br />
-                    <%= f.password_field :password_confirmation, autocomplete: "off" %><br>
-                    <div class="field">
-                      <%= f.label :email %><br />
-                      <%= f.email_field :email, autofocus: true %>
-                    </div>
-                    <span class="agreement">By signing up, I agree to Bytlyn's Terms of Service, Privacy Policy, Guest Refund Policy, and Host Guarantee Terms.</span><br><br>
-                     <div class="actions">
-                    <!-- <button class="btn btn-bytlyn btn-max">Sign Up</button> -->
-                    <%= f.submit "Sign Up"%>
-                    </div>
                     <% end %>
+
+                    <%= f.password_field :password, autocomplete: "off", :class => 'modern' %><br>
+                    <span class="info">Password Confirmation</span>
+                    <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'modern' %><br>
+                    <span class="info">Email</span>
+                    <%= f.email_field :email, :class => 'modern' %>
+                    <span class="agreement">By signing up, I agree to Bytlyn's Terms of Service, Privacy Policy, Guest Refund Policy, and Host Guarantee Terms.</span><br><br>
+                    <div class="actions">
+                        <%= f.submit "Sign Up", :class => 'btn btn-bytlyn btn-max'%>
+                    </div>
+                <% end %>
             </div>
         </div>
     </div>
