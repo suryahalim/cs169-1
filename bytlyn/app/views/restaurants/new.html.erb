@@ -23,6 +23,14 @@
                   <%= f.text_field :address, required: true %>
               </p>
               <p>
+                  <%= f.label :city %>
+                  <%= f.text_field :city, required: true %>
+              </p>
+              <p>
+                  <%= f.label :zip_code %>
+                  <%= f.text_field :zip, required: true %>
+              </p>
+              <p>
                   <%= f.label :restaurant_type %>
                   <%= f.select :rest_type, options_for_select(['American', 'Italian', 'French', 'Japanese', 'Chinese', 'Asian']), required: true %>
               </p>
