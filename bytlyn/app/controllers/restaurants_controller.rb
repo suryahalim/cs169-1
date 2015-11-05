@@ -39,13 +39,14 @@ class RestaurantsController < ApplicationController
     @hour = []
     hours.each  do |k, v|
       v[:day_id] = k.to_i + 1
+      v[:rest_id] = restaurant_params[:user_id]
       @hour << Hour.new(v)
     end
 
     
     @hour.each do |h|
       if !h.valid? 
-        flash[:error] = "Opening Hours Not Valid. Must not be empty and closing hour >= opening hour"
+        flash[:error] = "Opening Hours Not Valid. Either both open and close hour should be empty or closing hour >= opening hour"
         redirect_to restaurant_new_path
         return
       end

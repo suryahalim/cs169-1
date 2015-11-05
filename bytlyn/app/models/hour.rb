@@ -7,10 +7,12 @@ class Hour < ActiveRecord::Base
     validate :validate_open_close_hours
 
     def validate_day_id
-        errors.add(:day_id, "not within range") if day_id > 7 or day_id < 1
+        if day_id != nil
+            errors.add(:day_id, "not within range") if day_id > 7 or day_id < 1
+        end
     end
     def validate_open_close_hours
-        if open == nil || close == nil
+        if (open == nil && close != nil) || (open != nil && close == nil) 
             errors.add(:open, "hour and close hour should not be empty")
         end
         if open != nil && close != nil
