@@ -21,9 +21,11 @@ class RestaurantsController < ApplicationController
 #      render json: Restaurant.all
     resto = "b"
 #    render json: Restaurant.joins(:user).where(["email LIKE ?", "%#{search_params[:key]}%"])
-    @restaurants = Restaurant.joins(:user).where(["lower(name) LIKE ?", "%#{search_params[:key].downcase}%"])
+    #@restaurants = Restaurant.joins(:user).where(["lower(name) LIKE ?", "%#{search_params[:key].downcase}%"])
 #      @restaurants = Restaurant.find_by address: search_params[:key]
       # or .where("address = ? OR hours = ?", search_params[:key], search_params[:key])
+      @restaurants = Restaurant.within(5, :origin => '100 Spear st, San Francisco, CA')
+
       @users = User.all
       render "index"
   end
