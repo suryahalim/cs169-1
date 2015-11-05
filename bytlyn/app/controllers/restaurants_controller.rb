@@ -9,7 +9,6 @@ class RestaurantsController < ApplicationController
 
   def search
       # todo:
-      # search all column
       # search each word: http://stackoverflow.com/questions/6337381/search-on-multiple-keywords-in-a-single-search-text-field-rails
       # search by relevance
       # autocomplete: https://rubygems.org/gems/autocomplete/versions/1.0.2
@@ -18,14 +17,17 @@ class RestaurantsController < ApplicationController
       
       # gem choice :
       # textacular
-#      render json: Restaurant.all
+
+
     resto = "b"
-#    render json: Restaurant.joins(:user).where(["email LIKE ?", "%#{search_params[:key]}%"])
-    @restaurants = Restaurant.joins(:user).where(["lower(name) LIKE ?", "%#{search_params[:key].downcase}%"])
+#    render json: search_params[:key].downcase.split
+#    @restaurants = Restaurant.joins(:user).search(search_params[:key])
+    @restaurants = Restaurant.joins(:user).where("lower(name) LIKE ? OR lower(description) LIKE ? OR lower(rest_type) LIKE ? OR lower(address) LIKE ?", "%#{search_params[:key].downcase}%", "%#{search_params[:key].downcase}%", "%#{search_params[:key].downcase}%", "%#{search_params[:key].downcase}%")
 #      @restaurants = Restaurant.find_by address: search_params[:key]
       # or .where("address = ? OR hours = ?", search_params[:key], search_params[:key])
-      @users = User.all
-      render "index"
+    @users = User.all
+    render "index"
+#    render json: @restaurants.blank?
   end
 
   # GET /restaurants/1

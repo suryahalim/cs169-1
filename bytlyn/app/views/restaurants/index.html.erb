@@ -23,7 +23,7 @@
     <% end %>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
             <div class="wrapper-right">
-                <% if @restaurants != nil %>
+                <% if !@restaurants.blank?%>
                     <% @restaurants.each do |restaurant| %>
                         <% if @users.find_by_id(restaurant.user_id) != nil %>
                         <div class="col-md-6">
@@ -59,7 +59,12 @@
                     <% end %> <!--end of for loop-->
                 <% else %>
                     <h2> Search </h2>
-                    <p>Can't find anything'</p>
+                    <p>Can't find anything</p>
+                    <p>Suggestions</p>
+                    <ul style="list-style-type: circle;">
+                        <li>Make sure all words are spelled correctly
+                        <li>Try different keywords
+                    </ul>
                 <% end %>
             </div>
         </div>
