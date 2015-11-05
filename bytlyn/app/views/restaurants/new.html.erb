@@ -16,7 +16,7 @@
               </p>
               <p>
                   <%= f.label :price %>
-                  <%= f.text_field :price%>
+                  <%= f.select :price, options_for_select([['$', 1], ['$$', 2],['$$$', 3], ['$$$$', 4] ]) %>
               </p>
               <p>
                   <%= f.label :address %>
