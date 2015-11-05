@@ -1,11 +1,8 @@
 $(document).ready(function() {
-	$('.loading-page').fadeOut();
-});
 
-$(document).ready(function() {
+	$('.loading-page').hide();
 
 	// parallax effect 
-
 	$('.parallax').parallax();
 	$('.carousel').slick({
 		dots: true,
@@ -29,9 +26,12 @@ $(document).ready(function() {
 		$('#card-add-new').show();
 		$('#card-add-new').addClass("animated slideInUp");
 	});
+
+	// change profile-photo 
+	$('.change-photo-button').click(function() {
+		$('input[id="user_avatar"]').click();
+	});
 });
-
-
 
 
 // Youtube API

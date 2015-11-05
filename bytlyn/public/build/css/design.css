@@ -963,7 +963,7 @@ body.profile main {
 }
 body.profile main .parallax-container {
   z-index: 0;
-  height: 300px;
+  height: 400px;
 }
 body.profile main .parallax-container .text {
   position: absolute;
@@ -1048,12 +1048,20 @@ body.profile main .wrapper-right .box-option {
 body.profile main .wrapper-right .payment-method {
   margin-bottom: 50px;
 }
-body.profile main .wrapper-right .photo-wrapper .change-button {
+body.profile main .wrapper-right .photo-wrapper .change-photo-button {
   position: absolute;
   text-align: center;
   cursor: pointer;
-  width: 50px;
-  height: 50px;
+  padding: 7px 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-border-top-left-radius: 50%;
+  border-top-left-radius: 50%;
+  -webkit-border-bottom-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  -webkit-border-top-right-radius: 50%;
+  border-top-right-radius: 50%;
+  -webkit-border-bottom-right-radius: 50%;
+  border-bottom-right-radius: 50%;
   font-size: 16px;
   color: #ffffff;
   top: 50%;
