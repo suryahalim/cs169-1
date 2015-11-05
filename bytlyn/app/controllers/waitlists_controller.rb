@@ -43,8 +43,9 @@ class WaitlistsController < ApplicationController
   def create
     cur_rest = params[:waitlist][:rest_id]
     cur_people = params[:waitlist][:people]
+    cur_name = params[:waitlist][:name]
     # render text: params
-    waitlist_params = {cust_id: current_user.id, rest_id: cur_rest, people: cur_people}
+    waitlist_params = {cust_id: current_user.id, rest_id: cur_rest, people: cur_people, name: cur_name}
     @waitlist = Waitlist.new(waitlist_params)
     if !@waitlist.valid?
       flash[:error] = "Number of People can't be blank"
@@ -103,6 +104,6 @@ class WaitlistsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def waitlist_params
-      params.require(:waitlist).permit(:cust_id, :rest_id, :people)
+      params.require(:waitlist).permit(:cust_id, :rest_id, :people, :name)
     end
 end
