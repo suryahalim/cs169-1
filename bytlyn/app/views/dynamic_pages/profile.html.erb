@@ -24,7 +24,8 @@
             <div class="wrapper-right">
                 <div class="row">
                     <div class="col-xs-offset-3 col-xs-6 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
-                        <img src="build/img/stock/profile.jpg" class="profile-photo"/>
+                        <!-- <img src="build/img/stock/profile.jpg" class="profile-photo"/> -->
+                        <%= image_tag current_user.avatar.url(:medium), :class => 'profile-photo' %>
                     </div>
                 </div>
                 <div class="row">

@@ -25,7 +25,11 @@
         <div class="wrapper-right">
           <div class="col-xs-12 col-xs-offset-0 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
             <div class="photo-wrapper">
-              <img src="build/img/stock/profile.jpg" class="profile-photo"/>
+              <% imgurl = "/images/original/<?=$current_user.avatar_file_name?>" %>
+              <!-- <img src="current_user.avatar.url(:medium)" class="profile-photo"/> -->
+              <!-- <div class="profile-photo"> -->
+                <%= image_tag current_user.avatar.url(:medium), :class => 'profile-photo' %>
+              <!-- </div> -->
               <div class="change-button">
                 <div class="fa fa-camera"></div>
               </div>
@@ -67,6 +71,11 @@
                         <%= f.password_field :current_password, autocomplete: "off" %>
                       </div>
                       <br>
+                      <div class="field">
+                        <%= f.label :Picture %><br />
+                        <%= f.file_field :avatar%><br />
+                      </div>
+                      <!-- <div><%= image_tag current_user.avatar.url(:medium) %><br></div> -->
                       <div class="action">
                         <%= f.submit "Update" %>
                       </div>
