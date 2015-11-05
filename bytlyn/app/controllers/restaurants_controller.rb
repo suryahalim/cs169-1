@@ -7,6 +7,27 @@ class RestaurantsController < ApplicationController
       @users = User.all
   end
 
+  def search
+      # todo:
+      # search all column
+      # search each word: http://stackoverflow.com/questions/6337381/search-on-multiple-keywords-in-a-single-search-text-field-rails
+      # search by relevance
+      # autocomplete: https://rubygems.org/gems/autocomplete/versions/1.0.2
+      # advance: https://www.youtube.com/watch?v=eUtUquKc2qQ
+      # pg full text search: https://www.youtube.com/watch?v=pfZw6yErsX0
+      
+      # gem choice :
+      # textacular
+#      render json: Restaurant.all
+    resto = "b"
+#    render json: Restaurant.joins(:user).where(["email LIKE ?", "%#{search_params[:key]}%"])
+    @restaurants = Restaurant.joins(:user).where(["lower(name) LIKE ?", "%#{search_params[:key].downcase}%"])
+#      @restaurants = Restaurant.find_by address: search_params[:key]
+      # or .where("address = ? OR hours = ?", search_params[:key], search_params[:key])
+      @users = User.all
+      render "index"
+  end
+
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
@@ -100,8 +121,13 @@ class RestaurantsController < ApplicationController
     def set_restaurant
       @restaurant = Restaurant.find(params[:id])
     end
+    
     def hours_params
       params.require(:hours).permit(:close, :hour)
+    end
+    
+    def search_params
+        params.permit(:key)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
