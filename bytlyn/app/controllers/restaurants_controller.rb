@@ -62,13 +62,14 @@ class RestaurantsController < ApplicationController
     @hour = []
     hours.each  do |k, v|
       v[:day_id] = k.to_i + 1
+      v[:rest_id] = restaurant_params[:user_id]
       @hour << Hour.new(v)
     end
 
     
     @hour.each do |h|
       if !h.valid? 
-        flash[:error] = "Opening Hours Not Valid. Must not be empty and closing hour >= opening hour"
+        flash[:error] = "Opening Hours Not Valid. Either both open and close hour should be empty or closing hour >= opening hour"
         redirect_to restaurant_new_path
         return
       end
@@ -135,6 +136,6 @@ class RestaurantsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def restaurant_params
       # params[:restaurant]
-      params.require(:restaurant).permit(:address, :hours, :user_id, :rest_type, :price, :description, hours_attributes: [:day_id, :open, :close, :rest_id])
+      params.require(:restaurant).permit(:address, :city, :zip, :hours, :user_id, :rest_type, :price, :description, hours_attributes: [:day_id, :open, :close, :rest_id])
     end
 end

@@ -3,7 +3,7 @@ body.profile {
 		background-color: @gray-lighter;
 		.parallax-container {
 			z-index: 0;
-			height: 300px;
+			height: 400px;
 			.overlay-dark();
 		}
 		.wrapper-left {
@@ -64,12 +64,13 @@ body.profile {
 				margin-bottom: 50px;
 			}
 			.photo-wrapper {
-				.change-button {
+				.change-photo-button {
 					position: absolute;
 					text-align: center;
 					cursor: pointer;
-					width: 50px;
-					height: 50px;
+					padding: 7px 10px;
+					background-color: @black-a;
+					.border-radius(50%);
 					font-size: 16px;
 					color: @white;
 					top: 50%;

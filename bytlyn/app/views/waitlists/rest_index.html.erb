@@ -43,8 +43,9 @@
                                     <% @lists.each do |list| %>
                                     <tr>
                                         <td>
+
                                             <% name = User.where(id: list.cust_id).first.name %>
-                                            <%= name %>
+                                            <%= list.name %>
                                         </td>
                                         <td>
                                             <%= list.people %>
