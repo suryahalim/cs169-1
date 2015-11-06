@@ -19,22 +19,21 @@
             <a href="/waitlists"class="tab chosen"><span class="fa fa-hourglass"></span> Waitlist</a>
             <a href="delivery.html"class="tab"><span class="fa fa-rocket"></span> Delivery</a>
             <a href="payment.html"class="tab"><span class="fa fa-credit-card"></span>Payment</a>
-            <a href="settings.html"class="tab"><span class="fa fa-cog"></span>Settings</a>
+            <a href="/setting"class="tab"><span class="fa fa-cog"></span>Settings</a>
           </div>
         </div>
       </div>
       <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
         <div class="wrapper-right">
+          <div class="header text-center">
+            Waitlist
+          </div>
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="header text-center">
-              Waitlist<br>
-            </div>
             <% if flash[:error] %>
-              <div class="error"><%= flash[:error] %></div><br>
+              <div class="alert alert-danger"><%= flash[:error] %></div>
             <% end %>
           </div>
           <% if not @waitlists.empty? %>
-
             <% @waitlists.each do |waitlist| %>
                 <% list = waitlist[:list] %>
                 <% pos = waitlist[:position] %>
@@ -55,7 +54,9 @@
                 </div>
             <% end %>
           <%else %>
-              you have no current waitlist
+            <div class="alert alert-danger">
+              You are not waitlisted to any restaurant.
+            </div>
           <%end %>
 
           <div class="col-xs-12 col-sm-6 col-md-6 col-lg">

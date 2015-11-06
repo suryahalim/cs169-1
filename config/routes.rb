@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :menus
   resources :restaurants
   resources :customers
   resources :waitlists
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
      get "sign_in", to: "users/sessions#new"
      post "sign_in", to: "users/sessions#create", as: "new_sign_in"
      get "logout", to: "users/sessions#destroy"
+     get 'setting', to: "users/registrations#edit"
   end
   devise_for :users, controllers: {registrations: "users/registrations"}
   # get 'sessions/new'
@@ -37,11 +39,16 @@ Rails.application.routes.draw do
   get 'payment' => 'dynamic_pages#payment'
   get 'delivery' => 'dynamic_pages#delivery'
   get 'home' => 'dynamic_pages#home'
+  get 'restaurant_page' => 'dynamic_pages#restaurant'
 
   #waitlist URL
   get 'waitlists_new' => 'waitlists#new'
   post 'waitlists_new' => 'waitlists#create'
 
+  #restaurant URL
+  get 'restaurant_new' => 'restaurants#new'
+  get 'menus_new' => 'menus#new'
+  get 'menus_edit' => 'menus#edit'
   #API 
   # post 'signupuser' => 'users/registrations#new_user'
   # post 'signuprest' => 'users/registrations#new_rest'

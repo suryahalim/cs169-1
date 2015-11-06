@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020022841) do
+ActiveRecord::Schema.define(version: 20151105053540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,18 +26,52 @@ ActiveRecord::Schema.define(version: 20151020022841) do
   end
 
   create_table "customers", force: :cascade do |t|
-    t.integer  "user_id",      null: false
-    t.integer  "phone_number", null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "user_id",             null: false
+    t.integer  "phone_number",        null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+  end
+
+  create_table "hours", force: :cascade do |t|
+    t.integer  "rest_id",    null: false
+    t.integer  "day_id",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.time     "open"
+    t.time     "close"
+  end
+
+  create_table "menus", force: :cascade do |t|
+    t.integer  "rest_id",             null: false
+    t.string   "name",                null: false
+    t.string   "description"
+    t.integer  "price",               null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "restaurants", force: :cascade do |t|
-    t.integer  "user_id",    null: false
+    t.integer  "user_id",     null: false
     t.string   "address"
     t.string   "hours"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "rating"
+    t.integer  "price"
+    t.string   "rest_type"
+    t.text     "description"
+    t.string   "city"
+    t.string   "zip"
+    t.decimal  "lat"
+    t.decimal  "lon"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,6 +89,10 @@ ActiveRecord::Schema.define(version: 20151020022841) do
     t.boolean  "rest",                                null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -66,6 +104,7 @@ ActiveRecord::Schema.define(version: 20151020022841) do
     t.integer  "people",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
   end
 
 end

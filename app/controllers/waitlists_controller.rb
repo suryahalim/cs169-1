@@ -8,8 +8,12 @@ class WaitlistsController < ApplicationController
     # @waitlists = Waitlist.all
     if user_signed_in?
       if current_user.rest
-        @lists = Waitlist.get_restaurant_waitlist(current_user.id)
-        render 'rest_index.html.erb' 
+        if Restaurant.find_by_user_id(current_user.id) != nil
+          @lists = Waitlist.get_restaurant_waitlist(current_user.id)
+          render 'rest_index.html.erb' 
+        else
+          redirect_to restaurant_new_path
+        end
       else
         # @lists = Waitlist.where(:cust_id == current_user.id)
         @waitlists = Waitlist.get_customer_waitlist(current_user.id)
@@ -43,9 +47,15 @@ class WaitlistsController < ApplicationController
   def create
     cur_rest = params[:waitlist][:rest_id]
     cur_people = params[:waitlist][:people]
+    cur_name = params[:waitlist][:name]
     # render text: params
-    waitlist_params = {cust_id: current_user.id, rest_id: cur_rest, people: cur_people}
+    waitlist_params = {cust_id: current_user.id, rest_id: cur_rest, people: cur_people, name: cur_name}
     @waitlist = Waitlist.new(waitlist_params)
+    if !@waitlist.valid?
+      flash[:error] = "Number of People can't be blank"
+      redirect_to waitlists_new_path(:rest_id => cur_rest)
+      return
+    end
 
 
     if @waitlist.check_params
@@ -98,6 +108,6 @@ class WaitlistsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def waitlist_params
-      params.require(:waitlist).permit(:cust_id, :rest_id, :people)
+      params.require(:waitlist).permit(:cust_id, :rest_id, :people, :name)
     end
 end
