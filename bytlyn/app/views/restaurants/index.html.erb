@@ -30,20 +30,33 @@
                 <div>
                     <%= form_tag("/restaurants", method: "get", :id => "myform")do %>
                         <p>
-                        <label for="input">Search</label>
-                        <input id="input" style="margin-left:auto;margin-right:auto;margin-top:0px;margin-bottom:5px;color:black;font-size:30px;" type="text" name="key" onkeydown="if (event.keyCode == 13 && $('#myform #input').val().length != 0) { document.myform.submit(); return false; }"></input>
+                            <label for="input">Search</label>
+                            <input id="input" style="margin-left:auto;margin-right:auto;margin-top:0px;margin-bottom:5px;color:black;font-size:30px;" type="text" name="key" value="<%=@key%>"onkeydown="if (event.keyCode == 13 && $('#myform #input').val().length != 0) { document.myform.submit(); return false; }"></input>
                         </p>
                         <p>
-                        <label for="price">Price</label>
-                        <input type="range" name="price" min="1" max="4" style="width:300px;"/>
+                            <label for="price">Price</label>
+                            <% if @checkprice == "true" %>
+                                <input type="checkbox" name="checkprice" value="true" checked>
+                            <% else %>
+                                <input type="checkbox" name="checkprice" value="true">
+                            <% end %>
+                            
+                            <input type="range" name="price" min="1" max="4" value="<%=@price%>" style="width:300px;"/>
                         </p>
                         <p>
-                        <label for="rating">Rating</label>
-                        <input type="range" name="rating" min="1" max="5" style="width:300px;"/>
+                            <label for="rating">Rating</label>
+                            <% if @checkrating == "true" %>
+                                <input type="checkbox" name="checkrating" value="true" checked>
+                            <% else %>
+                                <input type="checkbox" name="checkrating" value="true">
+                            <% end %>
+                            
+                            <input type="range" name="rating" min="1" max="5" value="<%=@rating%>" style="width:300px;"/>
                         </p>
                         <p>
                         <label for="category">Category</label>
-                        <select name="category" id="category">
+                        <select name="category" id="category" value="<%=@category%>">
+                            <option value="">None</option>
                             <option value="American">American</option>
                             <option value="Italian">Italian</option>
                             <option value="French">French</option>
