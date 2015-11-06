@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get 'signup' => 'dynamic_pages#signup'
   get 'profile' => 'dynamic_pages#profile'
   get 'restaurants' => 'restaurants#index'
+  get 'search' => 'restaurants#search'
   get 'settings' => 'dynamic_pages#settings'
   get 'favorite' => 'dynamic_pages#favorite'
   get 'payment' => 'dynamic_pages#payment'

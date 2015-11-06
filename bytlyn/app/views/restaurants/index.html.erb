@@ -23,12 +23,13 @@
     <% end %>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
             <div class="wrapper-right">
-                <% @restaurants.each do |restaurant| %>
-                    <% if @users.find_by_id(restaurant.user_id) != nil %>
-                    <div class="col-md-6">
-                        <a href = './restaurant_page?rest_id=<%= restaurant.user_id %>'>
-                            <div class="panel panel-default restaurant-panel">
+                <% if !@restaurants.blank?%>
+                    <% @restaurants.each do |restaurant| %>
+                        <% if @users.find_by_id(restaurant.user_id) != nil %>
+                        <div class="col-md-6">
                             
+                            <div class="panel panel-default restaurant-panel">
+
                                 <div class="panel-heading"><%= @users.find_by_id(restaurant.user_id).name %></div>
                                 <div class="panel-body">
                                     <div class="col-md-3">
@@ -53,9 +54,20 @@
                                 </div>
                             
                             </div>
-                        </a>
-                    </div>
-                    <%end%>
+
+
+                        </div>
+                        <%end%>
+                    <% end %> <!--end of for loop-->
+                <% else %>
+                    <h2> Search </h2>
+                    <p>Can't find anything</p>
+                    <p>Suggestions</p>
+                    <ul style="list-style-type: circle;">
+                        <li>Make sure all words are spelled correctly
+                        <li>Try different keywords
+                    </ul>
+
                 <% end %>
             </div>
         </div>

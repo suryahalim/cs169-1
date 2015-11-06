@@ -9,6 +9,43 @@ class RestaurantsController < ApplicationController
       @users = User.all
   end
 
+  def search
+      # todo:
+      # search each word: http://stackoverflow.com/questions/6337381/search-on-multiple-keywords-in-a-single-search-text-field-rails
+      # search by relevance
+      # autocomplete: https://rubygems.org/gems/autocomplete/versions/1.0.2
+      # advance: https://www.youtube.com/watch?v=eUtUquKc2qQ
+      # pg full text search: https://www.youtube.com/watch?v=pfZw6yErsX0
+      
+      # gem choice :
+      # textacular
+
+
+    resto = "b"
+#    render json: search_params[:key].downcase.split
+#    @restaurants = Restaurant.joins(:user).search(search_params[:key])
+    @restaurants = Restaurant.all
+
+    @restaurants = Restaurant.joins(:user).where("lower(name) LIKE ? OR lower(description) LIKE ? OR lower(rest_type) LIKE ? OR lower(city) LIKE ?", "%#{search_params[:key].downcase}%", "%#{search_params[:key].downcase}%", "%#{search_params[:key].downcase}%", "%#{search_params[:key].downcase}%")
+    
+    # if categories field is present
+    @restaurants = @restaurants.where("lower(rest_type) LIKE ?","%#{search_params[:categories].downcase}%") if search_params[:categories].present?
+    # if rating field is present
+    @restaurants = @restaurants.where("lower(rating) LIKE ?","%#{search_params[:categories].downcase}%") if search_params[:rating].present?
+    # if price field is present
+    @restaurants = @restaurants.where("lower(price) LIKE ?","%#{search_params[:categories].downcase}%") if search_params[:price].present?
+    # search by open now (day and time)
+    @restaurants = @restaurants.joins(:hours).where("day_id = ? AND open <= ? AND close > ?","#{search_params[:day].downcase}","#{search_params[:time].downcase}","#{search_params[:time].downcase}") if search_params[:day].present? and search_params[:time].present?
+    # search by location :http://www.scribd.com/doc/2569355/Geo-Distance-Search-with-MySQL
+    # search by open hour
+    
+#      @restaurants = Restaurant.find_by address: search_params[:key]
+      # or .where("address = ? OR hours = ?", search_params[:key], search_params[:key])
+    @users = User.all
+    render "index"
+#    render json: @restaurants.blank?
+  end
+
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
@@ -119,8 +156,13 @@ class RestaurantsController < ApplicationController
     def set_restaurant
       @restaurant = Restaurant.find(params[:id])
     end
+    
     def hours_params
       params.require(:hours).permit(:close, :hour)
+    end
+    
+    def search_params
+        params.permit(:key,:categories,:rating,:price,:day,:time)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
