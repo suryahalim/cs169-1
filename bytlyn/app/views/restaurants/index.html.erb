@@ -1,7 +1,7 @@
 <body class="profile">
-<main class="">
+<main>
     <div class="parallax-container">
-        <div class="parallax"><img src="build/img/stock/cover-user.jpg" class="width-full" ></div>
+        <div class="parallax"><img src="build/img/stock/restaurant3.jpg" class="width-full" ></div>
         <div class="text">
             <h1> Restaurant List </h1>
         </div>
@@ -11,12 +11,12 @@
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
             <div class="wrapper-left">
                 <div class="side-pannel">
-                    <a href="profile" class="tab chosen"><span class="fa fa-home"></span> Home</a>
-                    <a href="favorite" class="tab"><span class="fa fa-star"></span> Favorite</a>
-                    <a href="/waitlists"class="tab"><span class="fa fa-hourglass"></span> Waitlist</a>
-                    <a href="delivery"class="tab"><span class="fa fa-rocket"></span> Delivery</a>
-                    <a href="payment"class="tab"><span class="fa fa-credit-card"></span>Payment</a>
-                    <a href="setting"class="tab"><span class="fa fa-cog"></span>Setting</a>
+                    <a href="/profile" class="tab"><span class="fa fa-home"></span> Home</a>
+                    <a href="/favorite" class="tab"><span class="fa fa-star"></span> Favorite</a>
+                    <a href="/waitlists" class="tab"><span class="fa fa-hourglass"></span> Waitlist</a>
+                    <a href="/delivery" class="tab"><span class="fa fa-rocket"></span> Delivery</a>
+                    <a href="/payment" class="tab"><span class="fa fa-credit-card"></span> Payment</a>
+                    <a href="/setting" class="tab"><span class="fa fa-cog"></span> Setting</a>
                 </div>
             </div>
         </div>
@@ -26,53 +26,71 @@
         <% else %>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <% end %>
-            <div class="wrapper-right" style="padding:20px;">
-                <div>
-                    <%= form_tag("/restaurants", method: "get", :id => "myform")do %>
-                        <p>
-                            <label for="input">Search</label>
-                            <input id="input" style="margin-left:auto;margin-right:auto;margin-top:0px;margin-bottom:5px;color:black;font-size:30px;" type="text" name="key" value="<%=@key%>"onkeydown="if (event.keyCode == 13 && $('#myform #input').val().length != 0) { document.myform.submit(); return false; }"></input>
-                        </p>
-                        <p>
-                            <label for="price">Price</label>
-                            <% if @checkprice == "true" %>
-                                <input type="checkbox" name="checkprice" value="true" checked>
-                            <% else %>
-                                <input type="checkbox" name="checkprice" value="true">
-                            <% end %>
-                            
-                            <input type="range" name="price" min="1" max="4" value="<%=@price%>" style="width:300px;"/>
-                        </p>
-                        <p>
-                            <label for="rating">Rating</label>
-                            <% if @checkrating == "true" %>
-                                <input type="checkbox" name="checkrating" value="true" checked>
-                            <% else %>
-                                <input type="checkbox" name="checkrating" value="true">
-                            <% end %>
-                            
-                            <input type="range" name="rating" min="1" max="5" value="<%=@rating%>" style="width:300px;"/>
-                        </p>
-                        <p>
-                        <label for="category">Category</label>
-                        <select name="category" id="category" value="<%=@category%>">
-                            <option value="">None</option>
-                            <option value="American">American</option>
-                            <option value="Italian">Italian</option>
-                            <option value="French">French</option>
-                            <option value="Japanese">Japanese</option>
-                            <option value="Chinese">Chinese</option>
-                            <option value="Asian">Asian</option>
-                        </select>
-                        </p>
-                        <input type="submit" style="margin-bottom:40px;">
-                    <% end %>
+            <div class="wrapper-right">
+                <% if @restaurants.blank?%>
+                    <div class="alert alert-danger">
+                    No match search result is found!
+                    <ul style="list-style-type: circle;">
+                        <li>Make sure all words are spelled correctly
+                        <li>Try different keywords
+                    </ul>
+                    </div>
+                <% end %>
+                <%= form_tag("/restaurants", method: "get", :id => "myform")do %>
                     
-                </div>
+                    <div class="info info-small">Search what you're looking for here!</div>
+                    <input id="input" class="modern" type="text" name="key" value="<%=@key%>"onkeydown="if (event.keyCode == 13 && $('#myform #input').val().length != 0) { document.myform.submit(); return false; }"></input>
+
+                    <div class="advanced-search-button" toggle="advanced-search">Advanced Search</div>
+            
+                    <div class="advanced-search-wrapper text-center">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="price-wrapper">
+                                <span class="info">Price</span>
+                                <% if @checkprice == "true" %>
+                                    <input type="checkbox" name="checkprice" value="true" checked>
+                                <% else %>
+                                    <input type="checkbox" name="checkprice" value="true">
+                                <% end %>
+                                <input type="range" name="price" min="1" max="4" value="<%=@price%>"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="price-wrapper">
+                                <span class="info">Ratings</span>
+                                <% if @checkrating == "true" %>
+                                    <input type="checkbox" name="checkrating" value="true" checked>
+                                <% else %>
+                                    <input type="checkbox" name="checkrating" value="true">
+                                <% end %>
+                                
+                                <input type="range" name="rating" min="1" max="5" value="<%=@rating%>"/>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-xs-offset-3 col-xs-6 col-sm-offset-3 col-sm-6 col-md-offset-3 col-md-6 col-lg-offset-3 col-lg-6">
+                            <div class="category-wrapper">
+                                <span class="info">Category</span>
+                                <select name="category" id="category" class="modern-select" value="<%=@category%>">
+                                    <option value="">None</option>
+                                    <option value="American">American</option>
+                                    <option value="Italian">Italian</option>
+                                    <option value="French">French</option>
+                                    <option value="Japanese">Japanese</option>
+                                    <option value="Chinese">Chinese</option>
+                                    <option value="Asian">Asian</option>
+                                </select><br>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <input type="submit" class="btn btn-bytlyn" value="Search"></input>
+                    </div>
+                <% end %>
                 <% if !@restaurants.blank?%>
                     <% @restaurants.each do |restaurant| %>
                         <% if @users.find_by_id(restaurant.user_id) != nil %>
-                        <div class="col-md-6">
+                        <div class="restaurant-list-wrapper">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             
                                 <div class="panel panel-default restaurant-panel">
                                     <a href = './restaurant_page?rest_id=<%= restaurant.user_id %>' style="display:inline-block;">
@@ -99,21 +117,11 @@
                                         </div>
                                     </div>
                                 
-                                </div>
-                            
-
+                                    </div>
+                            </div>
                         </div>
                         <%end%>
                     <% end %> <!--end of for loop-->
-                <% else %>
-                    <h2> Search </h2>
-                    <p>Can't find anything</p>
-                    <p>Suggestions</p>
-                    <ul style="list-style-type: circle;">
-                        <li>Make sure all words are spelled correctly
-                        <li>Try different keywords
-                    </ul>
-
                 <% end %>
             </div>
         </div>

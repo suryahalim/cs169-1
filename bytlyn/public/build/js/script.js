@@ -39,6 +39,11 @@ $(document).ready(function() {
         backDelay: 1000,
         loop: true
     });
+
+    $('div[toggle="advanced-search"]').click(function(){
+    	$('.advanced-search-wrapper').show();
+    	$('.advanced-search-wrapper').addClass("animated slideInUp");
+    });
 });
 
 

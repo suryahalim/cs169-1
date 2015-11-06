@@ -63,6 +63,10 @@ form {
 		font-size: 12px;
 		text-align: left;
 		color: @gray-dark;
+		&.info-small {
+			text-align: center;
+			color: @gray;
+		}
 	}
 	.modern {
 		padding: 14px 24px;
@@ -72,6 +76,17 @@ form {
 		&:hover, &:focus {
 			outline: none;
 		}
+	}
+	.modern-select {
+		.border-radius(0px);
+		height: 50px;
+		border: 1px solid @gray-light;
+		display: inline-block;
+		width: 100%;
+		margin-bottom: 15px;
+		&:focus {
+			outline: none;
+		}	
 	}
 	#restaurant_price,
 	#restaurant_rest_type {
@@ -84,6 +99,11 @@ form {
 		&:focus {
 			outline: none;
 		}	
+	}
+
+	// hack for removing the yellow autofill
+	input:-webkit-autofill {
+	    -webkit-box-shadow: 0 0 0px 1000px white inset;
 	}
 }
 
