@@ -4,19 +4,17 @@ class MenusController < ApplicationController
   # GET /menus
   # GET /menus.json
   def index
-    if user_signed_in?
-      if current_user.rest
-        if Restaurant.find_by_user_id(current_user.id) != nil
-          @lists = Menu.get_restaurant_menu(current_user.id)
-          render 'rest_menu.html.erb' 
-        else
-          redirect_to restaurant_new_path
-        end
+    if user_signed_in? and current_user.rest
+      if Restaurant.find_by_user_id(current_user.id) != nil
+        @lists = Menu.get_restaurant_menu(current_user.id)
+        render 'rest_menu.html.erb' 
+      else
+        redirect_to restaurant_new_path
+      end
 
       # else
       #   @waitlists = Waitlist.get_customer_waitlist(current_user.id)
       #   render 'cust_index.html.erb'   
-      end
     else
       redirect_to login_path
     end
@@ -29,13 +27,20 @@ class MenusController < ApplicationController
 
   # GET /menus/new
   def new
-    @menu = Menu.new
+    if user_signed_in? and current_user.rest
+      @menu = Menu.new
+    else
+      redirect_to login_path
+    end
   end
 
   # GET /menus/1/edit
   def edit
-    render 'new.html.erb'
-    # redirect_to ''
+    if user_signed_in? and current_user.rest
+      render 'new.html.erb'
+    else
+      redirect_to login_path
+    end
   end
 
   # POST /menus
@@ -81,7 +86,11 @@ class MenusController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_menu
-      @menu = Menu.find(params[:id])
+      if params[:id] != nil
+        @menu = Menu.find(params[:id])
+      else
+        redirect_to login_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
