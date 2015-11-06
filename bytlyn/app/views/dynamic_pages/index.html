@@ -2,7 +2,7 @@
 <div class="loading-page"></div>
 <main>
 	<section class="section-one text-center">
-        <%= form_tag("/search", method: "get", :id => "myform")do %>
+        <%= form_tag("/restaurants", method: "get", :id => "myform")do %>
             <input id="input" style="margin-left:auto;margin-right:auto;margin-top:100px;color:black;font-size:30px;" type="text" name="key" onkeydown="if (event.keyCode == 13 && $('#myform #input').val().length != 0) { document.myform.submit(); return false; }"></input>
         <% end %>
 	</section>
