@@ -22,6 +22,7 @@ class RestaurantsController < ApplicationController
 
 
     resto = "b"
+
 #    render json: search_params[:key].downcase.split
 #    @restaurants = Restaurant.joins(:user).search(search_params[:key])
     @restaurants = Restaurant.all
@@ -44,6 +45,7 @@ class RestaurantsController < ApplicationController
     @users = User.all
     render "index"
 #    render json: @restaurants.blank?
+
   end
 
   # GET /restaurants/1
