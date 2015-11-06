@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.2'
 # for testing devise
 gem 'factory_girl_rails'
-
+gem 'rails_12factor'
 #for password
 gem 'bcrypt', '3.1.7'
 # Use postgresql as the database for Active Record
@@ -65,3 +65,4 @@ group :development, :test do
   gem 'selenium-webdriver'
 end
 
+ruby '2.1.7'
