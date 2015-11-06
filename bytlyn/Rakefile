@@ -4,3 +4,9 @@
 require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
+
+# namespace 'selenium' do
+#     task :selenium do
+#         system "ruby selenium.rb"
+#     end
+# end
