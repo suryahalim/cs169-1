@@ -47,7 +47,7 @@ class RestaurantIntegrationTest < ActionDispatch::IntegrationTest
       post_via_redirect create_restaurant_path, 'user[name]' => 'FendyBilly', 'user[email]' => 'FendyBilly@gmail.com', 'user[password]' => '123123123', 'user[password_confirmation]' => '123123123'
       assert_equal '/restaurant_new', path
       @id = User.find_by_email('fendybilly@gmail.com').id
-      post_via_redirect '/restaurants', 'restaurant' => {"description"=>"123", "price"=>"123", "address"=>"123", "rest_type"=>"Italian", "hours_attributes"=>{"0"=>{"open"=>"11:11", "close"=>"11:11", "rest_id"=>@id, "day_id"=>"1"}, "1"=>{"open"=>"14:22", "close"=>"14:22", "rest_id"=>@id, "day_id"=>"2"}, "2"=>{"open"=>"15:32", "close"=>"15:33", "rest_id"=>@id, "day_id"=>"3"}, "3"=>{"open"=>"03:22", "close"=>"15:32", "rest_id"=>@id, "day_id"=>"4"}, "4"=>{"open"=>"16:44", "close"=>"21:09", "rest_id"=>@id, "day_id"=>"5"}, "5"=>{"open"=>"18:06", "close"=>"19:07", "rest_id"=>@id, "day_id"=>"6"}, "6"=>{"open"=>"08:08", "close"=>"20:08", "rest_id"=>@id, "day_id"=>"7"}}, "user_id"=>@id}
+      post_via_redirect '/restaurants', 'restaurant' => {"description"=>"123", "price"=>"123", "address"=>"123", "city" => "Berkeley", "zip" => "94704","rest_type"=>"Italian", "hours_attributes"=>{"0"=>{"open"=>"11:11", "close"=>"11:11", "rest_id"=>@id, "day_id"=>"1"}, "1"=>{"open"=>"14:22", "close"=>"14:22", "rest_id"=>@id, "day_id"=>"2"}, "2"=>{"open"=>"15:32", "close"=>"15:33", "rest_id"=>@id, "day_id"=>"3"}, "3"=>{"open"=>"03:22", "close"=>"15:32", "rest_id"=>@id, "day_id"=>"4"}, "4"=>{"open"=>"16:44", "close"=>"21:09", "rest_id"=>@id, "day_id"=>"5"}, "5"=>{"open"=>"18:06", "close"=>"19:07", "rest_id"=>@id, "day_id"=>"6"}, "6"=>{"open"=>"08:08", "close"=>"20:08", "rest_id"=>@id, "day_id"=>"7"}}, "user_id"=>@id}
       assert_equal '/profile', path
     end
     #sign in test
@@ -65,7 +65,7 @@ class RestaurantIntegrationTest < ActionDispatch::IntegrationTest
         post_via_redirect create_restaurant_path, 'user[name]' => 'FendyBilly', 'user[email]' => 'FendyBilly@gmail.com', 'user[password]' => '123123123', 'user[password_confirmation]' => '123123123'
         assert_equal '/restaurant_new', path
         @id = User.find_by_email('fendybilly@gmail.com').id
-        post_via_redirect '/restaurants', 'restaurant' => {"description"=>"123", "price"=>"123", "address"=>"123", "rest_type"=>"Italian", "hours_attributes"=>{"0"=>{"open"=>"11:11", "close"=>"11:11", "rest_id"=>@id, "day_id"=>"1"}, "1"=>{"open"=>"14:22", "close"=>"14:22", "rest_id"=>@id, "day_id"=>"2"}, "2"=>{"open"=>"15:32", "close"=>"15:33", "rest_id"=>@id, "day_id"=>"3"}, "3"=>{"open"=>"03:22", "close"=>"15:32", "rest_id"=>@id, "day_id"=>"4"}, "4"=>{"open"=>"16:44", "close"=>"21:09", "rest_id"=>@id, "day_id"=>"5"}, "5"=>{"open"=>"18:06", "close"=>"19:07", "rest_id"=>@id, "day_id"=>"6"}, "6"=>{"open"=>"08:08", "close"=>"20:08", "rest_id"=>@id, "day_id"=>"7"}}, "user_id"=>@id}
+        post_via_redirect '/restaurants', 'restaurant' => {"description"=>"123", "price"=>"123", "address"=>"123", "rest_type"=>"Italian", "city" => "Berkeley", "zip" => "94704","hours_attributes"=>{"0"=>{"open"=>"11:11", "close"=>"11:11", "rest_id"=>@id, "day_id"=>"1"}, "1"=>{"open"=>"14:22", "close"=>"14:22", "rest_id"=>@id, "day_id"=>"2"}, "2"=>{"open"=>"15:32", "close"=>"15:33", "rest_id"=>@id, "day_id"=>"3"}, "3"=>{"open"=>"03:22", "close"=>"15:32", "rest_id"=>@id, "day_id"=>"4"}, "4"=>{"open"=>"16:44", "close"=>"21:09", "rest_id"=>@id, "day_id"=>"5"}, "5"=>{"open"=>"18:06", "close"=>"19:07", "rest_id"=>@id, "day_id"=>"6"}, "6"=>{"open"=>"08:08", "close"=>"20:08", "rest_id"=>@id, "day_id"=>"7"}}, "user_id"=>@id}
         assert_equal '/profile', path
     end
 
@@ -73,5 +73,16 @@ class RestaurantIntegrationTest < ActionDispatch::IntegrationTest
     delete destroy_user_session_path
     delete destroy_user_path
    end
+
+  test "stuck in setting if not yet filled" do
+    post_via_redirect create_restaurant_path, 'user[name]' => 'FendyBilly', 'user[email]' => 'FendyBilly@gmail.com', 'user[password]' => '123123123', 'user[password_confirmation]' => '123123123'
+      assert_equal '/restaurant_new', path
+    get "/profile"
+      assert_redirected_to restaurant_new_path
+    get "/payment"
+      assert_redirected_to restaurant_new_path
+    get "/menus"
+      assert_redirected_to restaurant_new_path
+  end
 
 end

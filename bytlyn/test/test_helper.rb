@@ -1,9 +1,5 @@
 require 'simplecov'
 
-SimpleCov.formatters = [
-  SimpleCov::Formatter::HTMLFormatter
-]
-
 SimpleCov.start
 
 ENV['RAILS_ENV'] ||= 'test'

@@ -45,6 +45,19 @@ ActiveRecord::Schema.define(version: 20151105053540) do
     t.time     "close"
   end
 
+  create_table "menus", force: :cascade do |t|
+    t.integer  "rest_id",             null: false
+    t.string   "name",                null: false
+    t.string   "description"
+    t.integer  "price",               null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+  end
+
   create_table "restaurants", force: :cascade do |t|
     t.integer  "user_id",     null: false
     t.string   "address"

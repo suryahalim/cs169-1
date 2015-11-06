@@ -8,8 +8,12 @@ class WaitlistsController < ApplicationController
     # @waitlists = Waitlist.all
     if user_signed_in?
       if current_user.rest
-        @lists = Waitlist.get_restaurant_waitlist(current_user.id)
-        render 'rest_index.html.erb' 
+        if Restaurant.find_by_user_id(current_user.id) != nil
+          @lists = Waitlist.get_restaurant_waitlist(current_user.id)
+          render 'rest_index.html.erb' 
+        else
+          redirect_to restaurant_new_path
+        end
       else
         # @lists = Waitlist.where(:cust_id == current_user.id)
         @waitlists = Waitlist.get_customer_waitlist(current_user.id)
