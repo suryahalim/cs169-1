@@ -1,6 +1,6 @@
 class Restaurant < ActiveRecord::Base
     validates :user_id, uniqueness: true
-	belongs_to :user, :polymorphic => true
+	belongs_to :user
 	has_many :waitlist
     has_many :hours, :foreign_key => 'rest_id', :primary_key => 'user_id'
     has_many :menu, :foreign_key => 'rest_id'
