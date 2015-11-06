@@ -6,35 +6,28 @@
               <% if flash[:error] %>
                       <div class="error"><%= flash[:error] %></div><br>
                     <% end %>
-              <h1>New Restaurant</h1>
-              fill this form below about details of your restaurant
+              <div class="h2">Restaurant Sign Up Form</div>
+              Fill this form below about details of your restaurant<br><br>
 
               <%= form_for @restaurant do |f| %>
-              <p>
-                  <%= f.label :description %>
-                  <%= f.text_field :description,  size: "24x6", required: true%>
-              </p>
-              <p>
-                  <%= f.label :price %>
-                  <%= f.select :price, options_for_select([['$', 1], ['$$', 2],['$$$', 3], ['$$$$', 4] ], required: true) %>
-              </p>
-              <p>
-                  <%= f.label :address %>
-                  <%= f.text_field :address, required: true %>
-              </p>
-              <p>
-                  <%= f.label :city %>
-                  <%= f.text_field :city, required: true %>
-              </p>
-              <p>
-                  <%= f.label :zip_code %>
-                  <%= f.text_field :zip, required: true %>
-              </p>
-              <p>
-                  <%= f.label :restaurant_type %>
-                  <%= f.select :rest_type, options_for_select(['American', 'Italian', 'French', 'Japanese', 'Chinese', 'Asian']), required: true %>
-              </p>
-              <h2> Opening Hours </h2><br>
+              <span class="info">Description</span>
+              <%= f.text_field :description,  size: "24x6", required: true, :class => 'modern' %>
+              
+              <span class="info">Price</span>
+              <%= f.select :price, options_for_select([['Cheap - $', 1], ['Affordable - $$', 2],['Expensive - $$$', 3], ['Very Expensive - $$$$', 4]])%>
+              <span class="info">Address</span>
+              <%= f.text_field :address, required: true, :class => 'modern' %>
+
+              <span class="info">City</span>
+              <%= f.text_field :city, required: true, :class => 'modern'  %>
+
+              <span class="info">Zipcode</span>
+              <%= f.text_field :zip, required: true, :class => 'modern'  %>
+            
+              <span class="info">Restaurant Type</span>
+              <%= f.select :rest_type, options_for_select(['American', 'Italian', 'French', 'Japanese', 'Chinese', 'Asian']) %>
+
+              <div class="h3"> Opening Hours </div>
               <% days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %>
               <% i = 0 %>
               <p>
@@ -54,7 +47,7 @@
               </p>
 
               	<%= f.hidden_field :user_id, :value => current_user.id %>
-                  <%= f.submit "Create restaurant" %>
+                  <%= f.submit "Create restaurant", :class => 'btn btn-max btn-bytlyn'%>
               <% end %>
 
 

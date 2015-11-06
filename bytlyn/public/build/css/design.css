@@ -595,6 +595,26 @@ form .modern:hover,
 form .modern:focus {
   outline: none;
 }
+form #restaurant_price,
+form #restaurant_rest_type {
+  -webkit-border-top-left-radius: 0px;
+  border-top-left-radius: 0px;
+  -webkit-border-bottom-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  -webkit-border-top-right-radius: 0px;
+  border-top-right-radius: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  height: 50px;
+  border: 1px solid #cccccc;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 15px;
+}
+form #restaurant_price:focus,
+form #restaurant_rest_type:focus {
+  outline: none;
+}
 .box-option {
   position: relative;
   width: 100%;
