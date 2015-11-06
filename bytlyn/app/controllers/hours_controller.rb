@@ -1,4 +1,5 @@
 class HoursController < ApplicationController
+  
     def create
     # render text: restaurant_params
     @hour = Hour.new(hour_params)
