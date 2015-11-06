@@ -26,33 +26,34 @@
                 <% @restaurants.each do |restaurant| %>
                     <% if @users.find_by_id(restaurant.user_id) != nil %>
                     <div class="col-md-6">
-                        
-                        <div class="panel panel-default restaurant-panel">
-
-                            <div class="panel-heading"><%= @users.find_by_id(restaurant.user_id).name %></div>
-                            <div class="panel-body">
-                                <div class="col-md-3">
-                                    <img src="build/img/stock/logo-restaurant.jpg" class="img-thumbnail pull-left" alt="Restaurant Logo" width="134" height="126">
+                        <a href = './restaurant_page?rest_id=<%= restaurant.user_id %>'>
+                            <div class="panel panel-default restaurant-panel">
+                            
+                                <div class="panel-heading"><%= @users.find_by_id(restaurant.user_id).name %></div>
+                                <div class="panel-body">
+                                    <div class="col-md-3">
+                                        <img src="build/img/stock/logo-restaurant.jpg" class="img-thumbnail pull-left" alt="Restaurant Logo" width="134" height="126">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <ul class="pull-right">
+                                            <li>$$$</li>
+                                            <li><% (1..5).each do |i| %>
+                                                <img src="build/img/stock/star.png" alt="Restaurant Logo" width="30" height="30">
+                                                <% end %>
+                                            </li>
+                                            <li>Open now!</li>
+                                            <li><% if (user_signed_in? && !current_user.rest) %>
+                                                <a class="btn btn-warning" href="./waitlists_new?rest_id=<%= restaurant.user_id %>">Waitlist</a>
+                                                <% elsif !user_signed_in? %>
+                                                    <a class="btn btn-warning" href="./login">Waitlist</a>
+                                                <% end %>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="col-md-9">
-                                    <ul class="pull-right">
-                                        <li>$$$</li>
-                                        <li><% (1..5).each do |i| %>
-                                            <img src="build/img/stock/star.png" alt="Restaurant Logo" width="30" height="30">
-                                            <% end %>
-                                        </li>
-                                        <li>Open now!</li>
-                                        <li><% if (user_signed_in? && !current_user.rest) %>
-                                            <a class="btn btn-warning" href="./waitlists_new?rest_id=<%= restaurant.user_id %>">Waitlist</a>
-                                            <% elsif !user_signed_in? %>
-                                                <a class="btn btn-warning" href="./login">Waitlist</a>
-                                            <% end %>
-                                        </li>
-                                    </ul>
-                                </div>
+                            
                             </div>
-                        </div>
-
+                        </a>
                     </div>
                     <%end%>
                 <% end %>
