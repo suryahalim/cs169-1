@@ -14,7 +14,13 @@ class RestaurantsController < ApplicationController
       
       # gem choice :
       # textacular
-      
+      @key = search_params[:key].present? ? search_params[:key] : ""
+      @checkprice = search_params[:checkprice].present? ? search_params[:checkprice] : "false"
+      @price = search_params[:price].present? ? search_params[:price] : "1"
+      @checkrating = search_params[:checkrating].present? ? search_params[:checkrating] : "false"
+      @rating = search_params[:rating].present? ? search_params[:rating] : "1"
+      @category = search_params[:category].present? ? search_params[:category] : ""
+
       @restaurants = Restaurant.all
       
       # if has key to search for
@@ -23,9 +29,9 @@ class RestaurantsController < ApplicationController
       # if categories field is present
       @restaurants = @restaurants.where("lower(rest_type) LIKE ?","%#{search_params[:categories].downcase}%") if search_params[:categories].present?
       # if rating field is present
-      @restaurants = @restaurants.where("rating = ?","#{search_params[:rating].downcase}") if search_params[:rating].present?
+      @restaurants = @restaurants.where("rating = ?","#{search_params[:rating].downcase}") if search_params[:checkrating]
       # if price field is present
-      @restaurants = @restaurants.where("price = ?","#{search_params[:price].downcase}") if search_params[:price].present?
+      @restaurants = @restaurants.where("price = ?","#{search_params[:price].downcase}") if search_params[:checkprice]
       # search by open now (day and time)
       @restaurants = @restaurants.joins(:hours).where("day_id = ? AND open <= ? AND close > ?","#{search_params[:day].downcase}","#{search_params[:time].downcase}","#{search_params[:time].downcase}") if search_params[:day].present? and search_params[:time].present?
       # search by location :http://www.scribd.com/doc/2569355/Geo-Distance-Search-with-MySQL
@@ -33,7 +39,6 @@ class RestaurantsController < ApplicationController
       
       @users = User.all
   end
-
 
 #note for search
 #      @restaurants = Restaurant.find_by address: search_params[:key]
@@ -157,7 +162,7 @@ class RestaurantsController < ApplicationController
     end
     
     def search_params
-        params.permit(:key,:categories,:rating,:price,:day,:time)
+        params.permit(:key,:categories,:rating,:price,:day,:time,:checkprice,:checkrating)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
