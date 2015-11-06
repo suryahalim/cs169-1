@@ -6,8 +6,13 @@ class MenusController < ApplicationController
   def index
     if user_signed_in?
       if current_user.rest
-        @lists = Menu.get_restaurant_menu(current_user.id)
-        render 'rest_menu.html.erb' 
+        if Restaurant.find_by_user_id(current_user.id) != nil
+          @lists = Menu.get_restaurant_menu(current_user.id)
+          render 'rest_menu.html.erb' 
+        else
+          redirect_to restaurant_new_path
+        end
+
       # else
       #   @waitlists = Waitlist.get_customer_waitlist(current_user.id)
       #   render 'cust_index.html.erb'   

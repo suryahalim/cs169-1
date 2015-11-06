@@ -14,12 +14,12 @@ require 'test_helper'
 
 class RestaurantsControllerTest < ActionController::TestCase
   setup do
-    @restaurant = Restaurant.new("description"=>"123", "price"=>"123", "address"=>"123", "rest_type"=>"Italian", "hours_attributes"=>{"0"=>{"open"=>"11:11", "close"=>"11:11", "rest_id"=>"90", "day_id"=>"1"}, "1"=>{"open"=>"14:22", "close"=>"14:22", "rest_id"=>"90", "day_id"=>"2"}, "2"=>{"open"=>"15:32", "close"=>"15:33", "rest_id"=>"90", "day_id"=>"3"}, "3"=>{"open"=>"03:22", "close"=>"15:32", "rest_id"=>"90", "day_id"=>"4"}, "4"=>{"open"=>"16:44", "close"=>"21:09", "rest_id"=>"90", "day_id"=>"5"}, "5"=>{"open"=>"18:06", "close"=>"19:07", "rest_id"=>"90", "day_id"=>"6"}, "6"=>{"open"=>"08:08", "close"=>"20:08", "rest_id"=>"90", "day_id"=>"7"}}, "user_id"=>"90")
-    assert @restaurant.save
-    @user = User.new(id: 1, name: 'rest 1', email: 'FendyOnel@gmail.com', rest: true, password: '123123123', password_confirmation: '123123123')
-    @user.save
-    
-    
+    @restaurant = Restaurant.create("description"=>"123", "price"=>"123", "address"=>"123", "rest_type"=>"Italian", "zip" =>"94704", "city" =>"berkeley", "hours_attributes"=>{"0"=>{"open"=>"11:11", "close"=>"11:11", "rest_id"=>"90", "day_id"=>"1"}, "1"=>{"open"=>"14:22", "close"=>"14:22", "rest_id"=>"90", "day_id"=>"2"}, "2"=>{"open"=>"15:32", "close"=>"15:33", "rest_id"=>"90", "day_id"=>"3"}, "3"=>{"open"=>"03:22", "close"=>"15:32", "rest_id"=>"90", "day_id"=>"4"}, "4"=>{"open"=>"16:44", "close"=>"21:09", "rest_id"=>"90", "day_id"=>"5"}, "5"=>{"open"=>"18:06", "close"=>"19:07", "rest_id"=>"90", "day_id"=>"6"}, "6"=>{"open"=>"08:08", "close"=>"20:08", "rest_id"=>"90", "day_id"=>"7"}}, "user_id"=>"90")
+    assert_response :success
+    # assert @restaurant.save
+    @user = User.create(id: 1, name: 'rest 1', email: 'FendyOnel@gmail.com', rest: true, password: '123123123', password_confirmation: '123123123')
+    assert_response :success
+    # assert @user.save
   end
 
   test "should get index" do
@@ -29,9 +29,11 @@ class RestaurantsControllerTest < ActionController::TestCase
   end
 
   # test "should get new" do
-  #   post :create, user: { email: "abc@gmail.com", encrypted_password: "abcd", reset_password_token: "abcd", reset_password_sent_at: "2015-10-09", remember_created_at: "2015-10-09", current_sign_in_at: "2015-10-10", last_sign_in_at: "2015-10-10", current_sign_in_ip: "192.168.1.5", last_sign_in_ip: "192.168.1.9", name: "FendyOnel", rest: true }
-  #   get :new
+  #   # post :create, user: { email: "abc@gmail.com", encrypted_password: "abcd", reset_password_token: "abcd", reset_password_sent_at: "2015-10-09", remember_created_at: "2015-10-09", current_sign_in_at: "2015-10-10", last_sign_in_at: "2015-10-10", current_sign_in_ip: "192.168.1.5", last_sign_in_ip: "192.168.1.9", name: "FendyOnel", rest: true }
+  #   sign_in @user
   #   assert_response :success
+  #   # assert_redirected_to restaurant_new_path
+  #   assert_template "new"
   # end
 
   # test "should get new" do
@@ -43,7 +45,6 @@ class RestaurantsControllerTest < ActionController::TestCase
     assert_difference('Restaurant.count') do
         post :create, restaurant: { "description"=>"123", "price"=>"123", "address"=>"123", "city" => "Berkeley", "zip" => "94704",  "rest_type"=>"Italian", "hours_attributes"=>{"0"=>{"open"=>"11:11", "close"=>"11:11", "rest_id"=>"34", "day_id"=>"1"}, "1"=>{"open"=>"14:22", "close"=>"14:22", "rest_id"=>"34", "day_id"=>"1"}, "2"=>{"open"=>"15:32", "close"=>"15:33", "rest_id"=>"34", "day_id"=>"1"}, "3"=>{"open"=>"03:22", "close"=>"15:32", "rest_id"=>"34", "day_id"=>"1"}, "4"=>{"open"=>"16:44", "close"=>"21:09", "rest_id"=>"34", "day_id"=>"1"}, "5"=>{"open"=>"18:06", "close"=>"19:07", "rest_id"=>"34", "day_id"=>"1"}, "6"=>{"open"=>"08:08", "close"=>"20:08", "rest_id"=>"34", "day_id"=>"1"}}, "user_id"=>"34"}
     end
-
     assert_redirected_to profile_path
   end
 
@@ -61,8 +62,31 @@ class RestaurantsControllerTest < ActionController::TestCase
   end
 
   test "should update restaurant" do
-    patch :update, id: @restaurant.id, restaurant: { user_id: "5", address: "MLK1"}
+    patch :update, id: @restaurant.id, restaurant: {description: "MLK1"}
+    @restaurant = Restaurant.where(user_id: 90).first
     assert_redirected_to restaurant_path(assigns(:restaurant))
+    assert_equal(@restaurant["description"], "MLK1")
+
+    patch :update, id: @restaurant.id, restaurant: {price: "2"}
+    @restaurant = Restaurant.where(user_id: 90).first
+    assert_redirected_to restaurant_path(assigns(:restaurant))
+    assert_equal(@restaurant["price"], 2)
+
+    patch :update, id: @restaurant.id, restaurant: {rest_type: "Mexican"}
+    @restaurant = Restaurant.where(user_id: 90).first
+    assert_redirected_to restaurant_path(assigns(:restaurant))
+    assert_equal(@restaurant["rest_type"], "Mexican")
+
+    patch :update, id: @restaurant.id, restaurant: {city: "Mexico"}
+    @restaurant = Restaurant.where(user_id: 90).first
+    assert_redirected_to restaurant_path(assigns(:restaurant))
+    assert_equal(@restaurant["city"], "Mexico")
+
+    patch :update, id: @restaurant.id, restaurant: {zip: "92020"}
+    @restaurant = Restaurant.where(user_id: 90).first
+    assert_redirected_to restaurant_path(assigns(:restaurant))
+    assert_equal(@restaurant["zip"], "92020")
+
   end
 
   test "should destroy restaurant" do

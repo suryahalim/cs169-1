@@ -74,4 +74,19 @@ class RestaurantIntegrationTest < ActionDispatch::IntegrationTest
     delete destroy_user_path
    end
 
+  test "stuck in setting if not yet filled" do
+    post_via_redirect create_restaurant_path, 'user[name]' => 'FendyBilly', 'user[email]' => 'FendyBilly@gmail.com', 'user[password]' => '123123123', 'user[password_confirmation]' => '123123123'
+      assert_equal '/restaurant_new', path
+    get "/profile"
+      assert_redirected_to restaurant_new_path
+    get "/waitlists"
+      assert_equal '/restaurant_new', path
+    get "/payment"
+      assert_redirected_to restaurant_new_path
+    get "/setting"
+      assert_redirected_to restaurant_new_path
+    get "/menus"
+      assert_redirected_to restaurant_new_path
+  end
+
 end
