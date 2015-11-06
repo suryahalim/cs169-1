@@ -29,7 +29,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'geokit-rails'
-
+gem 'simplecov', :require => false, :group => :test
 gem 'rspec-rails', '~> 3.0'
 gem 'database_cleaner'
 gem 'capybara'
