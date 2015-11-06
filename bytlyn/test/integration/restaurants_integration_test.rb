@@ -79,11 +79,7 @@ class RestaurantIntegrationTest < ActionDispatch::IntegrationTest
       assert_equal '/restaurant_new', path
     get "/profile"
       assert_redirected_to restaurant_new_path
-    get "/waitlists"
-      assert_equal '/restaurant_new', path
     get "/payment"
-      assert_redirected_to restaurant_new_path
-    get "/setting"
       assert_redirected_to restaurant_new_path
     get "/menus"
       assert_redirected_to restaurant_new_path
