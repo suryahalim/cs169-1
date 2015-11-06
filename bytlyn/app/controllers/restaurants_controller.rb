@@ -1,3 +1,5 @@
+require "net/http"
+require "uri"
 class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
   # GET /restaurants
@@ -71,6 +73,22 @@ class RestaurantsController < ApplicationController
   # POST /restaurants.json
   def create
     # render text: restaurant_params
+    url = "http://api.zippopotam.us/us/" + restaurant_params[:zip]
+    uri = URI.parse(url)
+    response = Net::HTTP.get_response(uri)
+    if response.body == nil or response.body.empty? or response.body == '{}'
+      flash[:error] = "restaurant zip code not valid"
+      redirect_to restaurant_new_path
+      return
+    else 
+      response = JSON.parse(response.body)
+      place = response['places']
+      a = {}
+      a[:lat] = place[0]['latitude']
+      params[:restaurant][:lat] = place[0]['latitude']
+      params[:restaurant][:lon] = place[0]['longitude']
+    end
+
     @restaurant = Restaurant.new(restaurant_params)
     hours = restaurant_params[:hours_attributes]
     @hour = []
@@ -100,7 +118,7 @@ class RestaurantsController < ApplicationController
 
     respond_to do |format|
       if @restaurant.save
-        format.html { redirect_to profile_path, notice: 'Restaurant was successfully created.' }
+        format.html { redirect_to profile_path, notice: 'Restaurant was successfully created.'}
         format.json { render :show, status: :created, location: @restaurant }
       else
         format.html { render :new }
@@ -150,6 +168,6 @@ class RestaurantsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def restaurant_params
       # params[:restaurant]
-      params.require(:restaurant).permit(:address, :city, :zip, :hours, :user_id, :rest_type, :price, :description, hours_attributes: [:day_id, :open, :close, :rest_id])
+      params.require(:restaurant).permit(:address, :city, :zip, :hours, :user_id, :rest_type, :price, :description, :lon, :lat,hours_attributes: [:day_id, :open, :close, :rest_id])
     end
 end

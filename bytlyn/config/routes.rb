@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :menus
   resources :restaurants
   resources :customers
   resources :waitlists
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
   get 'payment' => 'dynamic_pages#payment'
   get 'delivery' => 'dynamic_pages#delivery'
   get 'home' => 'dynamic_pages#home'
+  get 'restaurant_page' => 'dynamic_pages#restaurant'
 
   #waitlist URL
   get 'waitlists_new' => 'waitlists#new'
@@ -46,6 +48,8 @@ Rails.application.routes.draw do
 
   #restaurant URL
   get 'restaurant_new' => 'restaurants#new'
+  get 'menus_new' => 'menus#new'
+  get 'menus_edit' => 'menus#edit'
   #API 
   # post 'signupuser' => 'users/registrations#new_user'
   # post 'signuprest' => 'users/registrations#new_rest'

@@ -55,5 +55,11 @@ class DynamicPagesController < ApplicationController
             redirect_to index_path
         end
     end
-
+    def restaurant
+        if user_signed_in?
+            render "restaurant.html.erb"
+        else
+            redirect_to login_path
+        end
+    end
 end

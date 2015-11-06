@@ -41,7 +41,7 @@ class RestaurantsControllerTest < ActionController::TestCase
 
   test "should create restaurant" do
     assert_difference('Restaurant.count') do
-        post :create, restaurant: { "description"=>"123", "price"=>"123", "address"=>"123", "rest_type"=>"Italian", "hours_attributes"=>{"0"=>{"open"=>"11:11", "close"=>"11:11", "rest_id"=>"34", "day_id"=>"1"}, "1"=>{"open"=>"14:22", "close"=>"14:22", "rest_id"=>"34", "day_id"=>"1"}, "2"=>{"open"=>"15:32", "close"=>"15:33", "rest_id"=>"34", "day_id"=>"1"}, "3"=>{"open"=>"03:22", "close"=>"15:32", "rest_id"=>"34", "day_id"=>"1"}, "4"=>{"open"=>"16:44", "close"=>"21:09", "rest_id"=>"34", "day_id"=>"1"}, "5"=>{"open"=>"18:06", "close"=>"19:07", "rest_id"=>"34", "day_id"=>"1"}, "6"=>{"open"=>"08:08", "close"=>"20:08", "rest_id"=>"34", "day_id"=>"1"}}, "user_id"=>"34"}
+        post :create, restaurant: { "description"=>"123", "price"=>"123", "address"=>"123", "city" => "Berkeley", "zip" => "94704",  "rest_type"=>"Italian", "hours_attributes"=>{"0"=>{"open"=>"11:11", "close"=>"11:11", "rest_id"=>"34", "day_id"=>"1"}, "1"=>{"open"=>"14:22", "close"=>"14:22", "rest_id"=>"34", "day_id"=>"1"}, "2"=>{"open"=>"15:32", "close"=>"15:33", "rest_id"=>"34", "day_id"=>"1"}, "3"=>{"open"=>"03:22", "close"=>"15:32", "rest_id"=>"34", "day_id"=>"1"}, "4"=>{"open"=>"16:44", "close"=>"21:09", "rest_id"=>"34", "day_id"=>"1"}, "5"=>{"open"=>"18:06", "close"=>"19:07", "rest_id"=>"34", "day_id"=>"1"}, "6"=>{"open"=>"08:08", "close"=>"20:08", "rest_id"=>"34", "day_id"=>"1"}}, "user_id"=>"34"}
     end
 
     assert_redirected_to profile_path
@@ -49,7 +49,7 @@ class RestaurantsControllerTest < ActionController::TestCase
 
   test "should show restaurant" do
     assert_difference('Restaurant.count') do
-      post :create, restaurant: { "description"=>"123", "price"=>"123", "address"=>"123", "rest_type"=>"Italian", "hours_attributes"=>{"0"=>{"open"=>"11:11", "close"=>"11:11", "rest_id"=>"17", "day_id"=>"1"}, "1"=>{"open"=>"14:22", "close"=>"14:22", "rest_id"=>"17", "day_id"=>"2"}, "2"=>{"open"=>"15:32", "close"=>"15:33", "rest_id"=>"17", "day_id"=>"3"}, "3"=>{"open"=>"03:22", "close"=>"15:32", "rest_id"=>"17", "day_id"=>"4"}, "4"=>{"open"=>"16:44", "close"=>"21:09", "rest_id"=>"17", "day_id"=>"5"}, "5"=>{"open"=>"18:06", "close"=>"19:07", "rest_id"=>"17", "day_id"=>"6"}, "6"=>{"open"=>"08:08", "close"=>"20:08", "rest_id"=>"17", "day_id"=>"7"}}, "user_id"=>"17"}
+      post :create, restaurant: { "description"=>"123", "price"=>"123", "address"=>"123", "city" => "Berkeley", "zip" => "94704","rest_type"=>"Italian", "hours_attributes"=>{"0"=>{"open"=>"11:11", "close"=>"11:11", "rest_id"=>"17", "day_id"=>"1"}, "1"=>{"open"=>"14:22", "close"=>"14:22", "rest_id"=>"17", "day_id"=>"2"}, "2"=>{"open"=>"15:32", "close"=>"15:33", "rest_id"=>"17", "day_id"=>"3"}, "3"=>{"open"=>"03:22", "close"=>"15:32", "rest_id"=>"17", "day_id"=>"4"}, "4"=>{"open"=>"16:44", "close"=>"21:09", "rest_id"=>"17", "day_id"=>"5"}, "5"=>{"open"=>"18:06", "close"=>"19:07", "rest_id"=>"17", "day_id"=>"6"}, "6"=>{"open"=>"08:08", "close"=>"20:08", "rest_id"=>"17", "day_id"=>"7"}}, "user_id"=>"17"}
     end
     get :show, id: @restaurant.id
     assert_response :success
