@@ -3,7 +3,7 @@ class Restaurant < ActiveRecord::Base
 	belongs_to :user
 	has_many :waitlist
     has_many :hours, :foreign_key => 'rest_id', :primary_key => 'user_id'
-    has_many :menu, :foreign_key => 'rest_id'
+    has_many :menus, :foreign_key => 'rest_id', :primary_key => 'user_id'
     # validate :has_seven_hours
     accepts_nested_attributes_for :hours, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
 
