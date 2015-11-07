@@ -31,6 +31,19 @@ $(document).ready(function() {
 	$('.change-photo-button').click(function() {
 		$('input[id="user_avatar"]').click();
 	});
+
+	// typed.js for landing page
+	$('#typed').typed({
+        strings: ["Fettuccine", "Lasagna", "Pad Thai", "Fried Rice"],
+        typeSpeed: 0,
+        backDelay: 1000,
+        loop: true
+    });
+
+    $('div[toggle="advanced-search"]').click(function(){
+    	$('.advanced-search-wrapper').show();
+    	$('.advanced-search-wrapper').addClass("animated slideInUp");
+    });
 });
 
 

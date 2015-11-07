@@ -29,7 +29,7 @@ class Restaurant < ActiveRecord::Base
         
         if search
                 find(:all, :order => "created_at DESC", :conditions => ['lower(address) LIKE ?', "%#{search}%"])
-            else
+        else
                 find(:all, :order => "created_at DESC")
         end
     end
