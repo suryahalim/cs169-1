@@ -29,8 +29,14 @@ class WaitlistTest < ActiveSupport::TestCase
     status = @list.save
     assert_equal(status, true)
   end
+  
+  test "Correct Waitlist parameter name" do
+    @list = Waitlist.new(cust_id: 2, rest_id: 1, people: 3, name: "jessica")
+    status = @list.save
+    assert_equal(status, true)
+  end
 
-  # error should be catch outside db. don't let error reach db
+
   test "no cust id" do
     @list = Waitlist.new(cust_id: "", rest_id: 1, people: 3)
     @list.save

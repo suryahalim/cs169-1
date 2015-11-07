@@ -11,11 +11,11 @@ class UserTest < ActiveSupport::TestCase
     assert_equal(true, status)
   end
 
-  test "No Name" do #for now, name is allowed to be empty
+  test "No Name Not Saved" do 
     ex = User.new(name: "", email: "user@example.com",
                      password: "foobar123", password_confirmation: "foobar123", rest: false)
     status = ex.save
-    assert_equal(true, status)
+    assert_equal(false, status)
   end
 
   test "No Email" do
