@@ -182,7 +182,81 @@ class RestaurantsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:restaurants)
   end
 
+  # -----------------------------
 
+  test "search by key 1" do
+    get :index, {'key' => '12'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key 1 and rating" do
+    get :index, {'key' => '12', 'rating' => '1'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key 1 and category" do
+    get :index, {'key' => '12', 'category' => 'Italian'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key 1, category, and rating" do
+    get :index, {'key' => '12', 'category' => 'Italian', 'rating' => '1'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key 1, category, and price" do
+    get :index, {'key' => '12', 'category' => 'Italian', 'price' => '1'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key 1, category, rating and price" do
+    get :index, {'key' => '12', 'category' => 'Italian', 'rating' => '1', 'price' => '1'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  # -----------------------------
+
+  test "search by key 2" do
+    get :index, {'key' => 'afakjabfkaf'}
+    assert_not_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key 2 and rating" do
+    get :index, {'key' => 'fafaafdafdag', 'rating' => '1'}
+    assert_not_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key 2 and category" do
+    get :index, {'key' => 'afafdafadf', 'category' => 'Italian'}
+    assert_not_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key 2, category, and rating" do
+    get :index, {'key' => 'fadfafaadsfa', 'category' => 'Italian', 'rating' => '1'}
+    assert_not_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key 2, category, and price" do
+    get :index, {'key' => 'afaafdafd', 'category' => 'Italian', 'price' => '1'}
+    assert_not_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key 2, category, rating and price" do
+    get :index, {'key' => 'afadffadsadf', 'category' => 'Italian', 'rating' => '1', 'price' => '1'}
+    assert_not_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
   # test "should get new" do
   #   # post :create, user: { email: "abc@gmail.com", encrypted_password: "abcd", reset_password_token: "abcd", reset_password_sent_at: "2015-10-09", remember_created_at: "2015-10-09", current_sign_in_at: "2015-10-10", last_sign_in_at: "2015-10-10", current_sign_in_ip: "192.168.1.5", last_sign_in_ip: "192.168.1.9", name: "FendyOnel", rest: true }
   #   sign_in @user
