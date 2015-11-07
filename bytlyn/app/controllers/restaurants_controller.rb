@@ -27,7 +27,7 @@ class RestaurantsController < ApplicationController
       @restaurants = Restaurant.joins(:user).where("lower(name) LIKE ? OR lower(description) LIKE ? OR lower(rest_type) LIKE ? OR lower(city) LIKE ?", "%#{search_params[:key].downcase}%", "%#{search_params[:key].downcase}%", "%#{search_params[:key].downcase}%", "%#{search_params[:key].downcase}%") if search_params[:key].present?
       
       # if categories field is present
-      @restaurants = @restaurants.where("lower(rest_type) LIKE ?","%#{search_params[:categories].downcase}%") if search_params[:categories].present?
+      @restaurants = @restaurants.where("lower(rest_type) LIKE ?","%#{search_params[:category].downcase}%") if search_params[:category].present?
       # if rating field is present
       @restaurants = @restaurants.where("rating = ?","#{search_params[:rating].downcase}") if search_params[:checkrating]
       # if price field is present
@@ -162,7 +162,7 @@ class RestaurantsController < ApplicationController
     end
     
     def search_params
-        params.permit(:key,:categories,:rating,:price,:day,:time,:checkprice,:checkrating)
+        params.permit(:key,:category,:rating,:price,:day,:time,:checkprice,:checkrating)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
