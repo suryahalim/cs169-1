@@ -648,6 +648,50 @@ form #restaurant_rest_type:focus {
 form input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
+.card-view {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 5px;
+  border: none;
+  box-shadow: 0 1px 5px #ffffff;
+  transition: box-shadow 0.5s;
+  margin-bottom: 10px;
+}
+.card-view .card-content {
+  position: relative;
+  text-align: left;
+}
+.card-view .card-content .card-header {
+  position: relative;
+  display: inline-block;
+  font-size: 20px;
+  padding: 2px 5px;
+  margin: 5px 0;
+  background-size: 200% 100%;
+  background-image: linear-gradient(to right, #ffffff 50%, rgba(204, 115, 13, 0.8) 50%);
+  border-left: 2px solid rgba(204, 115, 13, 0.8);
+  transition: background-position 1s ease-in-out, color 0.5s;
+  -o-transition: background-position 1s ease-in-out, color 0.5s;
+  -moz-transition: background-position 1s ease-in-out, color 0.5s;
+  -webkit-transition: background-position 1s ease-in-out, color 0.5s;
+}
+.card-view .card-content .card-header:hover {
+  background-position: -100% 0;
+  color: #ffffff;
+}
+.card-view .card-content .card-button {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: 10px;
+  transform: translate3d(0, -50%, 0);
+  -webkit-transfrom: translate3d(0, -50%, 0);
+}
+.card-view:hover {
+  transition: box-shadow 0.5s;
+  box-shadow: 0 1px 5px rgba(204, 115, 13, 0.8);
+}
 .box-option {
   position: relative;
   width: 100%;
@@ -1147,7 +1191,7 @@ body.profile main .wrapper-right .advanced-search-button:before {
   height: 1px;
   bottom: 0;
   left: 0;
-  background-color: #000000;
+  background-color: #888888;
   visibility: hidden;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
