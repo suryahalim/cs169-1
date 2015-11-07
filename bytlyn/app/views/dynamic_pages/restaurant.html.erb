@@ -9,7 +9,7 @@
     </div>
     <section class="content">
 		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-			<% if user_signed_in? && !current_user.rest %>
+			<% if !user_signed_in? || !current_user.rest %>
 				<div class="wrapper-left text-center">
 					<a href="/waitlists_new?rest_id=<%=params[:rest_id] %>" class="btn btn-bytlyn">Waitlist</a><br>
 					<a href="delivery" class="btn btn-bytlyn">Delivery</a><br>
