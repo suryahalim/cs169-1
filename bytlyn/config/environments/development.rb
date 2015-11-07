@@ -9,6 +9,17 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  # paperclip aws s3 configuration for image storage
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :bucket => 'bytlyn-development',
+    :s3_credentials => {
+      :bucket => ENV['bytlyn-development'],
+      :access_key_id => ENV['AKIAIHGCOC2OKKBGB7NQ'],
+      :secret_access_key => ENV['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']
+    }
+  }
+
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false

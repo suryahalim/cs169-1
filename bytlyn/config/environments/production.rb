@@ -10,6 +10,17 @@ Rails.application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
+  # paperclip aws s3 configuration for image storage
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :bucket => 'bytlyn-production',
+    :s3_credentials => {
+      :bucket => ENV['bytlyn-production'],
+      :access_key_id => ENV['AKIAIHGCOC2OKKBGB7NQ'],
+      :secret_access_key => ENV['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']
+    }
+  }
+
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
