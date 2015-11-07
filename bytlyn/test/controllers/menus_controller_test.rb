@@ -31,7 +31,7 @@ class MenusControllerTest < ActionController::TestCase
     assert_generates "/menus", controller: "menus"
   end
 
-  # should redirect to login path since user is signed in
+  # should redirect to login path since customer is signed in
   test "should not get index" do
     sign_out @user2
     sign_in @user1
@@ -91,6 +91,7 @@ class MenusControllerTest < ActionController::TestCase
     assert_redirected_to menus_path
   end
 
+  # should successfuly destroy the menu since the user is a restaurant
   test "should destroy menu" do
     assert_difference('Menu.count', -1) do
       delete :destroy, id: @menu
