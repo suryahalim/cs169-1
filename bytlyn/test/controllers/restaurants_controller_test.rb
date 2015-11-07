@@ -14,10 +14,10 @@ require 'test_helper'
 
 class RestaurantsControllerTest < ActionController::TestCase
   setup do
-    @restaurant = Restaurant.create("description"=>"123", "price"=>"123", "address"=>"123", "rest_type"=>"Italian", "zip" =>"94704", "city" =>"berkeley", "hours_attributes"=>{"0"=>{"open"=>"11:11", "close"=>"11:11", "rest_id"=>"90", "day_id"=>"1"}, "1"=>{"open"=>"14:22", "close"=>"14:22", "rest_id"=>"90", "day_id"=>"2"}, "2"=>{"open"=>"15:32", "close"=>"15:33", "rest_id"=>"90", "day_id"=>"3"}, "3"=>{"open"=>"03:22", "close"=>"15:32", "rest_id"=>"90", "day_id"=>"4"}, "4"=>{"open"=>"16:44", "close"=>"21:09", "rest_id"=>"90", "day_id"=>"5"}, "5"=>{"open"=>"18:06", "close"=>"19:07", "rest_id"=>"90", "day_id"=>"6"}, "6"=>{"open"=>"08:08", "close"=>"20:08", "rest_id"=>"90", "day_id"=>"7"}}, "user_id"=>"90")
+    @restaurant = Restaurant.new("description"=>"123", "price"=>"1", "address"=>"123", "rest_type"=>"Italian", "rating" => "1", "zip" =>"94704", "city" =>"berkeley", "hours_attributes"=>{"0"=>{"open"=>"11:11", "close"=>"11:11", "rest_id"=>"90", "day_id"=>"1"}, "1"=>{"open"=>"14:22", "close"=>"14:22", "rest_id"=>"90", "day_id"=>"2"}, "2"=>{"open"=>"15:32", "close"=>"15:33", "rest_id"=>"90", "day_id"=>"3"}, "3"=>{"open"=>"03:22", "close"=>"15:32", "rest_id"=>"90", "day_id"=>"4"}, "4"=>{"open"=>"16:44", "close"=>"21:09", "rest_id"=>"90", "day_id"=>"5"}, "5"=>{"open"=>"18:06", "close"=>"19:07", "rest_id"=>"90", "day_id"=>"6"}, "6"=>{"open"=>"08:08", "close"=>"20:08", "rest_id"=>"90", "day_id"=>"7"}}, "user_id"=>"90")
     assert_response :success
-    # assert @restaurant.save
-    @user = User.create(id: 1, name: 'rest 1', email: 'FendyOnel@gmail.com', rest: true, password: '123123123', password_confirmation: '123123123')
+    assert @restaurant.save
+    @user = User.create(id: 90, name: 'rest 1', email: 'FendyOnel@gmail.com', rest: true, password: '123123123', password_confirmation: '123123123')
     assert_response :success
     # assert @user.save
   end
@@ -28,10 +28,158 @@ class RestaurantsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:restaurants)
   end
 
-  test "should get search" do
-    get :index, {'key' => 'a', 'category' => 'French', "price" => 1, "rating" => 2, 'day' => 1, 'time' => "10:00 pm"}
-    assert_response :success
-    assert_not_nil assigns(:restaurants)    
+  test "search by key" do
+    get :index, {'key' => '123'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by category" do
+    get :index, {'category' => 'Italian'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by price" do
+    get :index, {'price' => '1'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by rating" do
+    get :index, {'rating' => '1'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by category and price" do
+    get :index, {'category' => 'Italian', 'price' => '1'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key and rating" do
+    get :index, {'key' => '123', 'rating' => '1'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key and category" do
+    get :index, {'key' => '123', 'category' => 'Italian'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key, category, and rating" do
+    get :index, {'key' => '123', 'category' => 'Italian', 'rating' => '1'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key, category, and price" do
+    get :index, {'key' => '123', 'category' => 'Italian', 'price' => '1'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key, category, rating and price" do
+    get :index, {'key' => '123', 'category' => 'Italian', 'rating' => '1', 'price' => '1'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by category, and rating" do
+    get :index, {'category' => 'Italian', 'rating' => '1'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by category, rating, and price" do
+    get :index, {'category' => 'Italian', 'price' => '1', 'rating' => '1'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by rating, and price" do
+    get :index, {'price' => '1', 'rating' => '1'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  # --------------------------------
+
+  test "search by key error" do
+    get :index, {'key' => '123jadfj'}
+    assert_not_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key error and rating" do
+    get :index, {'key' => '123jadfj', 'rating' => '1'}
+    assert_not_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key error and category" do
+    get :index, {'key' => '123jadfj', 'category' => 'Italian'}
+    assert_not_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key error, category, and rating" do
+    get :index, {'key' => '123jadfj', 'category' => 'Italian', 'rating' => '1'}
+    assert_not_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key error, category, and price" do
+    get :index, {'key' => '123jadfj', 'category' => 'Italian', 'price' => '1'}
+    assert_not_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key error, category, rating and price" do
+    get :index, {'key' => '123jadfj', 'category' => 'Italian', 'rating' => '1', 'price' => '1'}
+    assert_not_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  # --------------------------------
+
+  test "search by key empty" do
+    get :index, {'key' => ''}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key empty and rating" do
+    get :index, {'key' => '', 'rating' => '1'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key empty and category" do
+    get :index, {'key' => '', 'category' => 'Italian'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key empty, category, and rating" do
+    get :index, {'key' => '', 'category' => 'Italian', 'rating' => '1'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key empty, category, and price" do
+    get :index, {'key' => '', 'category' => 'Italian', 'price' => '1'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
+  end
+
+  test "search by key empty, category, rating and price" do
+    get :index, {'key' => '', 'category' => 'Italian', 'rating' => '1', 'price' => '1'}
+    assert_includes(assigns(:restaurants), @restaurant)
+    assert_not_nil assigns(:restaurants)
   end
 
 
