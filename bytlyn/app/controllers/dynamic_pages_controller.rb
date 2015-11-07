@@ -1,5 +1,5 @@
 class DynamicPagesController < ApplicationController
-    before_action :authenticate_user!, except: [:index, :show, :login, :signup, :signup_rest, :signup_user, :home]
+    before_action :authenticate_user!, except: [:restaurant,:index, :show, :login, :signup, :signup_rest, :signup_user, :home]
 
     def profile
         if user_signed_in?
@@ -69,10 +69,11 @@ class DynamicPagesController < ApplicationController
         end
     end
     def restaurant
-        if user_signed_in?
-            render "restaurant.html.erb"
-        else
-            redirect_to login_path
-        end
+        # if user_signed_in?
+        render "restaurant.html.erb"
+
+        # else
+            # redirect_to login_path
+        # end
     end
 end
