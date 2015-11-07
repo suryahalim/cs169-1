@@ -8,7 +8,7 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
-
+ 
   # paperclip aws s3 configuration for image storage
   config.paperclip_defaults = {
     :storage => :s3,
