@@ -28,6 +28,13 @@ class RestaurantsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:restaurants)
   end
 
+  test "should get search" do
+    get :index, {'key' => 'a', 'category' => 'French', "price" => 1, "rating" => 2, 'day' => 1, 'time' => "10:00 pm"}
+    assert_response :success
+    assert_not_nil assigns(:restaurants)    
+  end
+
+
   # test "should get new" do
   #   # post :create, user: { email: "abc@gmail.com", encrypted_password: "abcd", reset_password_token: "abcd", reset_password_sent_at: "2015-10-09", remember_created_at: "2015-10-09", current_sign_in_at: "2015-10-10", last_sign_in_at: "2015-10-10", current_sign_in_ip: "192.168.1.5", last_sign_in_ip: "192.168.1.9", name: "FendyOnel", rest: true }
   #   sign_in @user
