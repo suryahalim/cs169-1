@@ -769,7 +769,7 @@ form input:-webkit-autofill {
 }
 .box-option.box-add-new {
   font-size: 50px !important;
-  height: 169px;
+  height: 130px;
   background-color: #ffffff;
   color: #333333;
 }
@@ -960,6 +960,9 @@ body.signup main {
 body.signup main h1 {
   color: #333333;
   text-transform: uppercase;
+}
+body.signup main .page-header {
+  font-size: 30px;
 }
 body.signup main .row:nth-child(2) {
   padding-top: 30px;
