@@ -22,6 +22,7 @@ This is the same as
 ```
 $ bundle exec rake test
 ```
+After test is raked, to see coverage report, check cs169/bytlyn/coverage/index.html
 
 ### Automated UI Test
 We use the Selenium IDE for Automated UI Testing. These are the steps to use the test.
