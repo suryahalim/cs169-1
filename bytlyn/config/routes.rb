@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'favorite.html' => 'dynamic_pages#favorite'
   get 'payment.html' => 'dynamic_pages#payment'
   get 'delivery.html' => 'dynamic_pages#delivery'
+  get 'team.html' => 'dynamic_pages#team'
 
   #without .html
   get 'index' => 'dynamic_pages#index'
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
   get 'delivery' => 'dynamic_pages#delivery'
   get 'home' => 'dynamic_pages#home'
   get 'restaurant_page' => 'dynamic_pages#restaurant'
+  get 'team' => 'dynamic_pages#team'
 
   #waitlist URL
   get 'waitlists_new' => 'waitlists#new'

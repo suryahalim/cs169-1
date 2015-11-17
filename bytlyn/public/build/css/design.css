@@ -187,6 +187,16 @@ footer a:hover:before {
   transform: translate3d(-50%, -50%, 0);
   -webkit-transform: translate3d(-50%, -50%, 0);
 }
+.shape-circle {
+  -webkit-border-top-left-radius: 50%;
+  border-top-left-radius: 50%;
+  -webkit-border-bottom-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  -webkit-border-top-right-radius: 50%;
+  border-top-right-radius: 50%;
+  -webkit-border-bottom-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
 .parallax-container {
   position: relative;
   overflow: hidden;
@@ -991,6 +1001,65 @@ body.signup main .rest-pic {
 }
 body.signup main .agreement {
   font-size: 12px;
+}
+body.team main {
+  background-color: #eeeeee;
+}
+body.team main .parallax-container {
+  z-index: 0;
+  height: 500px;
+}
+body.team main .parallax-container .text {
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+}
+body.team main .parallax-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+}
+body.team main .container {
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  color: #333333;
+  padding: 100px 0;
+}
+body.team main .container .team-wrapper {
+  padding: 20px 0;
+}
+body.team main .container .team-wrapper .team-description {
+  padding: 10px 0;
+}
+body.team main .container .team-wrapper .team-description .td-name {
+  font-weight: bold;
+}
+body.team main .container .team-wrapper .team-description .td-title {
+  color: #888888;
+}
+body.team main .container .team-wrapper .team-description hr {
+  margin: 10px 0;
+}
+body.team main .container .team-wrapper .team-description .socmed {
+  width: 30px;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+body.team main .container .team-wrapper .team-description .socmed:hover,
+body.team main .container .team-wrapper .team-description .socmed:focus {
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
 }
 body.restaurant main .restaurant-name {
   margin-top: 200px;
