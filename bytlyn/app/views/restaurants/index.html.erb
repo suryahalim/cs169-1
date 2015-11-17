@@ -168,7 +168,13 @@
                                             <%else%>
                                                 Currently Close.
                                             <%end%>
+
                                         </div>
+                                        <% if (user_signed_in? && !current_user.rest) %>
+                                            <a class="btn btn-bytlyn" href="./favorite?user_id=<%= restaurant.user_id %>">Add Favorite</a>
+                                            <% elsif !user_signed_in? %>
+                                                <a class="btn btn-bytlyn" href="./login">Waitlist</a>
+                                            <% end %>
                                         </div>
                                     </div>
                                 </div>
