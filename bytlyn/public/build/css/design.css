@@ -707,7 +707,7 @@ form input:-webkit-autofill {
   width: 100%;
   display: inline-block;
   text-align: center;
-  font-size: 40px;
+  font-size: 32px;
   color: #ffffff;
   background-color: #cccccc;
   cursor: pointer;
@@ -957,6 +957,9 @@ body.signup main {
   color: #333333;
   font-size: 12px;
 }
+body.signup main a {
+  color: #0000ff;
+}
 body.signup main h1 {
   color: #333333;
   text-transform: uppercase;
@@ -1005,6 +1008,9 @@ body.signup main .rest-pic {
 }
 body.signup main .agreement {
   font-size: 12px;
+}
+body.signup main .link-signup {
+  padding-top: 30px;
 }
 body.team main {
   background-color: #eeeeee;
