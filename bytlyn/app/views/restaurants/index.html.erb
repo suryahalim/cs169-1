@@ -130,7 +130,7 @@
                                 <div class="card-view">
                                     <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                                         <div class="row">
-                                            <%= image_tag(@users.find_by_id(restaurant.user_id).avatar.url(:thumb), :class => "width-full")%>
+                                            <%= image_tag(@users.find_by_id(restaurant.user_id).avatar.url(:medium), :class => "width-full")%>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
@@ -148,15 +148,17 @@
                                             </div>
                                         </a>
                                         <div class="card-info">
-                                            <%=restaurant.price%>
+                                            <% for i in 1..restaurant.price.to_i do%>
+                                                $
+                                            <% end%>
                                         </div>
                                         <div class="card-rating">
                                             <%=restaurant.rating%>
                                             <div class="rating-restaurant text-md">
                                                 <span class="fa fa-star"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                <span class="fa fa-star-o"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
                                                 <span class="fa fa-star-o"></span>
                                             </div>
                                         </div>
