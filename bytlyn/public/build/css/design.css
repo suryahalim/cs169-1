@@ -64,7 +64,6 @@ header .wrapper-title .logo {
 header .wrapper-title .title {
   display: inline-block;
   line-height: 30px;
-  text-transform: uppercase;
 }
 header .wrapper-title:hover {
   background-color: rgba(255, 255, 255, 0.3);
@@ -845,6 +844,81 @@ form input:-webkit-autofill {
 .payment-method .card:hover {
   background-color: #888888;
 }
+.shopping-cart svg {
+  position: absolute;
+  top: 43px;
+  right: 48%;
+}
+.shopping-cart .shopping-cart-title {
+  cursor: pointer;
+}
+.shopping-cart .shopping-cart-wrapper {
+  position: absolute;
+  display: inline-block;
+  top: 53px;
+  right: 0;
+  width: 400px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.shopping-cart .shopping-cart-wrapper .single-cart {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  cursor: pointer;
+}
+.shopping-cart .shopping-cart-wrapper .single-cart.empty-cart {
+  color: #333333;
+  cursor: default;
+  font-size: 12px;
+}
+.shopping-cart .shopping-cart-wrapper .single-cart.japanese-background {
+  background-image: url("../img/stock/japanese.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+}
+.shopping-cart .shopping-cart-wrapper .single-cart.japanese-background .text {
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+}
+.shopping-cart .shopping-cart-wrapper .single-cart.japanese-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+}
+.shopping-cart .shopping-cart-wrapper .single-cart .cart-restaurant {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 30px;
+}
+.shopping-cart .shopping-cart-wrapper .single-cart .cart-order-id {
+  position: absolute;
+  top: 55px;
+  left: 20px;
+  font-size: 12px;
+  color: #eeeeee;
+}
+.shopping-cart .shopping-cart-wrapper .single-cart .cart-amount {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  font-size: 30px;
+  color: #28d20d;
+}
 .typed-cursor {
   opacity: 1;
   -webkit-animation: blink 0.7s infinite;
@@ -956,9 +1030,6 @@ body.signup main {
   padding: 150px 0;
   color: #333333;
   font-size: 12px;
-}
-body.signup main a {
-  color: #0000ff;
 }
 body.signup main h1 {
   color: #333333;
