@@ -5,12 +5,14 @@ class FavoritesController < ApplicationController
   # GET /favorites.json
   def index
     if user_signed_in?
-      if Restaurant.find_by_user_id(current_user.id) != nil
-        @lists = Favorite.get_restaurant_favorite(current_user.id)
-        render 'index.html.erb' 
-      else
-        redirect_to restaurant_new_path
-      end  
+      # if Restaurant.find_by_user_id(current_user.id) != nil
+      @favorites = Favorite.get_restaurant_favorite(current_user.id)
+      @users = User.all
+      @restaurants = Restaurant.all
+      #   render 'index.html.erb' 
+      # else
+      #   redirect_to restaurant_new_path
+      # end  
     else
       redirect_to login_path
     end
@@ -37,24 +39,24 @@ class FavoritesController < ApplicationController
   # POST /favorite
   # POST /favorite.json
   def create
-    cur_rest = params[:favorite][:rest_id]
-    favorite_params = {cust_id: current_user.id, rest_id: cur_rest, price: cur_rest.price}
+    cur_rest = params[:rest_id]
+    favorite_params = {cust_id: current_user.id, rest_id: cur_rest}
     @favorite = Favorite.new(favorite_params)
 
-    if @favorite.favorite_params
+    if @favorite.check_params
       respond_to do |format|
         if @favorite.save
           flash.now[:notice] = 'Successfully added to favorite list.'
-          format.html { redirect_to favorites_path, notice: 'Favorite was successfully created.' }
+          format.html { redirect_to favorites_new_path, notice: 'Favorite was successfully created.' }
           format.json { render :show, status: :created, location: @favorite }
         else
-          format.html { render :new }
+          format.html { redirect_to restaurants_list_path }
           format.json { render json: @favorite.errors, status: :unprocessable_entity }
         end
 
       end
     else 
-      flash[:error] = 'You have favorite on this restaurant.'
+     flash[:error] = 'You have favorite on this restaurant.'
       redirect_to favorites_path
     end
   end
@@ -86,7 +88,7 @@ class FavoritesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_favorite
-      @favorite = Restaurant.find(params[:id])
+      @favorite = Favorite.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

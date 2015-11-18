@@ -49,10 +49,10 @@
                                             </div>
                                         </a>
                                         <div class="card-info">
-                                            <%=favorite.price%>
+                                            <%=@restaurants.find_by_id(favorite.user_id).price%>
                                         </div>
                                         <div class="card-rating">
-                                            <%=favorite.rating%>
+                                            <%=@restaurants.find_by_id(favorite.user_id).rating%>
                                             <div class="rating-restaurant text-md">
                                                 <span class="fa fa-star"></span>
                                                 <span class="fa fa-star-o"></span>
@@ -71,9 +71,6 @@
                                             <%end%>
 
                                         </div>
-                                        <% if (user_signed_in? && !current_user.rest) %>
-                                            <a class="btn btn-bytlyn" href="./favorite?user_id=<%= restaurant.user_id %>">Add Favorite</a>
-                                            <% end %>
                                         </div>
                                     </div>
                                 </div>

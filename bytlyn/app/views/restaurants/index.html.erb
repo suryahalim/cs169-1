@@ -171,7 +171,10 @@
 
                                         </div>
                                         <% if (user_signed_in? && !current_user.rest) %>
-                                            <a class="btn btn-bytlyn" href="./favorites_new?rest_id=<%= restaurant.user_id %>">Add Favorite</a>
+                                            <form class="btn btn-bytlyn" action="./favorites_new?rest_id=<%= restaurant.user_id %>" method="POST" name="favorite">
+                                            <a href="#" onclick="document.favorite.submit();">Add Favorite</a>
+                                            </form>
+                                            <!-- <a class="btn btn-bytlyn" data-method="post" href="./favorite?user_id=<%= restaurant.user_id %>">Add Favorite</a> -->
                                             <% end %>
                                         </div>
                                     </div>
