@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :versions
+  resources :carts
   resources :menus
   resources :restaurants
   resources :customers
@@ -40,6 +42,7 @@ Rails.application.routes.draw do
   get 'delivery' => 'dynamic_pages#delivery'
   get 'home' => 'dynamic_pages#home'
   get 'restaurant_page' => 'dynamic_pages#restaurant'
+  post 'restaurant_page' => 'carts#create'
 
   #waitlist URL
   get 'waitlists_new' => 'waitlists#new'

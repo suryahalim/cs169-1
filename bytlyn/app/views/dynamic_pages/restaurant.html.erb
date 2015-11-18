@@ -25,6 +25,14 @@
 					  	<%= image_tag menu.avatar.url(:medium), :class => "thumbnail", width: '285', height: '200' %><br>
 					  	<%= menu.name %><br>
 					  	$<%= menu.price %>
+					  	<% if user_signed_in? %>
+						  	<%= form_for :cart do |f| %>
+		                    	<%= f.hidden_field :rest_id, :value => params[:rest_id] %>
+		                    	<%= f.hidden_field :cust_id, :value =>  current_user.id%>
+		                    	<%= f.hidden_field :menu_id, :value =>  menu.id%>
+			                <%= f.submit "+"%>
+			                <% end %>
+			            <% end%>
 					  </div>
 					<% end %>
 				</div>
