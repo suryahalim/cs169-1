@@ -1,61 +1,61 @@
 class FavoritesController < ApplicationController
   before_action :set_favorite, only: [:show, :edit, :update, :destroy]
 
-  # GET /menus
-  # GET /menus.json
+  # GET /favorites
+  # GET /favorites.json
   def index
-    if user_signed_in? and current_user.rest
+    if user_signed_in?
       if Restaurant.find_by_user_id(current_user.id) != nil
         @lists = Favorite.get_restaurant_favorite(current_user.id)
         render 'index.html.erb' 
       else
         redirect_to restaurant_new_path
-      end
-
-      # else
-      #   @waitlists = Waitlist.get_customer_waitlist(current_user.id)
-      #   render 'cust_index.html.erb'   
+      end  
     else
       redirect_to login_path
     end
   end
 
-  # GET /menus/1
-  # GET /menus/1.json
+  # GET /favorites/1
+  # GET /favorites/1.json
   def show
   end
 
-  # GET /menus/new
+  # GET /favorites/new
   def new
-    if user_signed_in? and current_user.rest
+    if user_signed_in?
       @favorite = Favorite.new
     else
       redirect_to login_path
     end
   end
 
-  # GET /menus/1/edit
+  # GET /favorites/1/edit
   def edit
-    if user_signed_in? and current_user.rest
-      render 'new.html.erb'
-    else
-      redirect_to login_path
-    end
   end
 
   # POST /favorite
   # POST /favorite.json
   def create
-    @favorite = Favorite.new(menu_params)
+    cur_rest = params[:favorite][:rest_id]
+    favorite_params = {cust_id: current_user.id, rest_id: cur_rest, price: cur_rest.price}
+    @favorite = Favorite.new(favorite_params)
 
-    respond_to do |format|
-      if @favorite.save
-        format.html { redirect_to favorite_path, notice: 'Favorite was successfully added 1.' }
-        format.json { render :show, status: :created, location: @favorite }
-      else
-        format.html { render :new }
-        format.json { render json: @favorite.errors, status: :unprocessable_entity }
+    if @favorite.favorite_params
+      respond_to do |format|
+        if @favorite.save
+          flash.now[:notice] = 'Successfully added to favorite list.'
+          format.html { redirect_to favorites_path, notice: 'Favorite was successfully created.' }
+          format.json { render :show, status: :created, location: @favorite }
+        else
+          format.html { render :new }
+          format.json { render json: @favorite.errors, status: :unprocessable_entity }
+        end
+
       end
+    else 
+      flash[:error] = 'You have favorite on this restaurant.'
+      redirect_to favorites_path
     end
   end
 
@@ -63,8 +63,8 @@ class FavoritesController < ApplicationController
   # PATCH/PUT /favorite/1.json
   def update
     respond_to do |format|
-      if @favorite.update(menu_params)
-        format.html { redirect_to favorite_path, notice: 'Favorite was successfully added 2.' }
+      if @favorite.update(favorite_params)
+        format.html { redirect_to favorite_path, notice: 'Favorite was successfully added.' }
         format.json { render :show, status: :ok, location: @favorite }
       else
         format.html { render :edit }
@@ -73,12 +73,12 @@ class FavoritesController < ApplicationController
     end
   end
 
-  # DELETE /menus/1
-  # DELETE /menus/1.json
+  # DELETE /favorites/1
+  # DELETE /favorites/1.json
   def destroy
     @favorite.destroy
     respond_to do |format|
-      format.html { redirect_to menus_url, notice: 'Restaurant was successfully removed from favorite list.' }
+      format.html { redirect_to favorites_url, notice: 'Restaurant was successfully removed from favorite list.' }
       format.json { head :no_content }
     end
   end
@@ -86,16 +86,11 @@ class FavoritesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_favorite
-      if params[:id] != nil
-        @favorite = Favorite.find(params[:id])
-      else
-        redirect_to login_path
-      end
+      @favorite = Restaurant.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def favorite_params
-      params.require(:favorites).permit(:rest_id, :user_id)
+      params.require(:favorites).permit(:cust_id, :rest_id)
     end
-end
-end
+  end

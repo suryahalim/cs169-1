@@ -1,6 +1,7 @@
 class Customer < ActiveRecord::Base
 	belongs_to :user
-	has_many :waitlist, :favorites
+	has_many :waitlist
+	has_many :favorites
 
     
 end
