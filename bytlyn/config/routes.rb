@@ -48,7 +48,7 @@ Rails.application.routes.draw do
 
   get 'favorites_new' => 'favorites#index'
   post 'favorites_new' => 'favorites#create'
-  get 'favorites_new' => 'favorites#destroy'
+  get 'favorites_dest' => 'favorites#destroy'
 
   #restaurant URL
   get 'restaurant_new' => 'restaurants#new'
