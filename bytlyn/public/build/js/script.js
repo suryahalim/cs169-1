@@ -32,6 +32,24 @@ $(document).ready(function() {
 		$('input[id="user_avatar"]').click();
 	});
 
+	// shopping cart
+	var cartShown = false;
+	$('.shopping-cart-wrapper').hide();
+	$('.shopping-cart svg').hide();
+
+	$('.shopping-cart-title').click(function() {
+		if (cartShown == false) {
+			$('.shopping-cart-wrapper').show();
+			$('.shopping-cart svg').show();
+			cartShown = true;
+		} else {
+			$('.shopping-cart-wrapper').hide();
+			$('.shopping-cart svg').hide();
+			cartShown = false;
+		}
+		
+	});
+
 	// typed.js for landing page
 	$('#typed').typed({
         strings: ["Fettuccine", "Lasagna", "Pad Thai", "Fried Rice"],
