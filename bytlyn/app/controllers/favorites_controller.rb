@@ -7,8 +7,8 @@ class FavoritesController < ApplicationController
     if user_signed_in?
       # if Restaurant.find_by_user_id(current_user.id) != nil
       @favorites = Favorite.get_restaurant_favorite(current_user.id)
+      @restaurants= Restaurant.all.uniq
       @users = User.all
-      @restaurants = Restaurant.all
       #   render 'index.html.erb' 
       # else
       #   redirect_to restaurant_new_path

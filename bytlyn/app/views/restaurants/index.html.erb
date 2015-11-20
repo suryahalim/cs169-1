@@ -12,7 +12,7 @@
             <div class="wrapper-left">
                 <div class="side-pannel">
                     <a href="/profile" class="tab"><span class="fa fa-home"></span> Home</a>
-                    <a href="/favorite" class="tab"><span class="fa fa-star"></span> Favorite</a>
+                    <a href="/favorites" class="tab"><span class="fa fa-star"></span> Favorite</a>
                     <a href="/waitlists" class="tab"><span class="fa fa-hourglass"></span> Waitlist</a>
                     <a href="/delivery" class="tab"><span class="fa fa-rocket"></span> Delivery</a>
                     <a href="/payment" class="tab"><span class="fa fa-credit-card"></span> Payment</a>
@@ -171,8 +171,8 @@
 
                                         </div>
                                         <% if (user_signed_in? && !current_user.rest) %>
-                                            <form class="btn btn-bytlyn" action="./favorites_new?rest_id=<%= restaurant.user_id %>" method="POST" name="favorite">
-                                            <a href="#" onclick="document.favorite.submit();">Add Favorite</a>
+                                            <form action="./favorites_new?rest_id=<%= restaurant.user_id %>" method="POST">
+                                            <input type="submit" class="btn btn-bytlyn" value ="Add Favorite"></input>
                                             </form>
                                             <!-- <a class="btn btn-bytlyn" data-method="post" href="./favorite?user_id=<%= restaurant.user_id %>">Add Favorite</a> -->
                                             <% end %>

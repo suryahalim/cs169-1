@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   get 'waitlists_new' => 'waitlists#new'
   post 'waitlists_new' => 'waitlists#create'
 
-  get 'favorites_new' => 'favorites#new'
+  get 'favorites_new' => 'favorites#index'
   post 'favorites_new' => 'favorites#create'
 
   #restaurant URL
