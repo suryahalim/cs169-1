@@ -23,17 +23,14 @@
 			</div>
 			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 				<div class="wrapper-right">
-					<% if !@favorites.blank?%>
-                    <% @favorites.each do |favorite| %>
                         <% @restaurants.each do |restaurant| %>
-                        <% if (favorite.rest_id) != @restaurants.find_by_user_id(favorite.rest_id) %>
-                        <% if @users.find_by_id(favorite.rest_id) != nil %>
+                        <% if @users.find_by_id(restaurant.user_id) != nil %>
                         <div class="restaurant-list-wrapper">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <div class="card-view">
                                     <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                                         <div class="row">
-                                            <%= image_tag(@users.find_by_id(favorite.rest_id).avatar.url(:thumb), :class => "width-full")%>
+                                            <%= image_tag(@users.find_by_id(restaurant.user_id).avatar.url(:thumb), :class => "width-full")%>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
@@ -48,14 +45,14 @@
                                             </div>
                                             <a href = './restaurant_page?rest_id=<%= restaurant.user_id %>'>
                                                 <div class="card-header">
-                                                    <%= @users.find_by_id(favorite.rest_id).name %>
+                                                    <%= @users.find_by_id(restaurant.user_id).name %>
                                                 </div>
                                             </a>
                                                 <div class="card-info">
-                                                    <%=@restaurants.find_by_user_id(favorite.rest_id).price%>
+                                                    <%=restaurant.price%>
                                                 </div>
                                                 <div class="card-rating">
-                                                    <%=@restaurants.find_by_user_id(favorite.rest_id).rating%>
+                                                    <%=restaurant.rating%>
                                                     <div class="rating-restaurant text-md">
                                                         <span class="fa fa-star"></span>
                                                         <span class="fa fa-star-o"></span>
@@ -65,7 +62,7 @@
                                                     </div>
                                                 </div>
                                         <div class="card-time">
-                                            <% hourDay =  Hour.where(rest_id: favorite.rest_id).where(day_id: Time.now.wday)%>
+                                            <% hourDay =  Hour.where(rest_id: restaurant.user_id).where(day_id: Time.now.wday)%>
                                             <% if !hourDay.blank? && hourDay.first.open != nil && hourDay.first.close != nil && hourDay.first.close.strftime("%H:%M") > Time.now.strftime("%H:%M") && hourDay.first.open.strftime("%H:%M") < Time.now.strftime("%H:%M") %>
 
                                                 Open now!
@@ -82,11 +79,6 @@
                         </div>
                         <% end %>
                         <%end%>
-                        <%end%>
-                    <% end %> <!--end of for loop-->
-                <% else %>
-                    <div class="alert alert-danger">You do not have favorite restaurants.</div>
-                <% end %>
 				</div>
 			</div>
 		</div>

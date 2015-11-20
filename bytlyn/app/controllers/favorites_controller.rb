@@ -6,8 +6,11 @@ class FavoritesController < ApplicationController
   def index
     if user_signed_in?
       # if Restaurant.find_by_user_id(current_user.id) != nil
-      @favorites = Favorite.get_restaurant_favorite(current_user.id)
-      @restaurants= Restaurant.all.uniq
+      favorites = Favorite.get_restaurant_favorite(current_user.id)
+      temp = favorites.collect do |favorite|
+        Restaurant.find_by_user_id(favorite.rest_id)
+      end
+      @restaurants = Restaurant.find(temp)
       @users = User.all
       #   render 'index.html.erb' 
       # else

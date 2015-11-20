@@ -8,8 +8,8 @@ class Favorite < ActiveRecord::Base
 	validates :rest_id, presence: true
 
     def self.get_restaurant_favorite(user_id)
-	   Favorite.where(cust_id: user_id).uniq
-   end
+       Favorite.where(cust_id: user_id)
+    end
 
     def check_params
         if User.find_by(id: cust_id) == nil || User.find_by(id: rest_id) == nil || !User.find_by(id: rest_id).rest
