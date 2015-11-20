@@ -1,3 +1,3 @@
 AWS.config(
-access_key_id: 'AKIAIHGCOC2OKKBGB7NQ',
-secret_access_key: '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')
+access_key_id: 'AKIAISMBCST6IB77XTBA',
+secret_access_key: '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')

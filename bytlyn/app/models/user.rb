@@ -9,9 +9,9 @@ class User < ActiveRecord::Base
   					:storage => :s3,
   					:bucket => 'bytlyn-development',
 					:s3_credentials => {
-					:access_key_id => ENV['AKIAIHGCOC2OKKBGB7NQ'],
+					:access_key_id => ENV['AKIAISMBCST6IB77XTBA'],
 					:bucket => ENV['bytlyn-development'],
-					:secret_access_key => ENV['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']
+					:secret_access_key => ENV['uPAGWwaetq4xgELzU0m0kw/ata4r2LusgspaoXa6']
 				}
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 end

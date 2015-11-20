@@ -1,0 +1,79 @@
+<body class="signup">
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
+                <div class="page-header">Delivery Checkout</div>
+                <% if flash[:error] %>
+                  <div class="error"><%= flash[:error] %></div><br>
+                <% end %>
+                <%= form_for :delivery do |f| %>
+                <p>
+                    Enter your phone number:
+                    <%= f.text_field :phone %>
+                </p>
+                <p>   
+                    <%= f.label :address %>
+                    <%= f.text_field :address, required: true %>
+                </p>
+                    <%= f.hidden_field :rest_id, :value => params[:rest_id] %>
+                    <%= f.hidden_field :total, :value => params[:total] %>
+                    <%= f.hidden_field :user_id, :value => current_user.id %>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr><th colspan="3"></th></tr>
+                        </thead>
+                        
+                        <tbody >
+                            <% if not params[:cart_id].empty? %>
+                            <tr>
+                                <td>Picture</th>
+                                <td>Name</th>
+                                <td>Price</th>
+                                <td>Qty</th>
+                            </tr>
+                            
+                            <% params[:cart_id].each do |cid|%>
+                            <tr>
+                                <% @menu = Menu.find(Cart.find(cid).menu_id) %>
+                                <td>
+                                    <%= image_tag(@menu.avatar.url(:thumb), :width => '50', :height => '50')%>
+                                </td>
+                                <td>
+                                    <!--% name = User.where(id: list.cust_id).first.name %> -->
+                                    <%= @menu.name %>
+                                </td>
+                                <td>
+                                    <%= @menu.price %>
+                                </td>
+                                <td>
+                                    <%= Cart.find(cid).qty %>
+                                </td>
+                            </tr>
+                            <% end %>
+                            <%else %>
+                            You have no delivery.
+                            <%end %>
+                        </tbody>
+                    </table>
+                <p>
+                    <div class="page-header">Total = $<%= params[:total] %></div>
+                </p>
+                <div class="actions">
+                    <br><br>
+                <%= f.submit "Checkout", :class => "btn btn-bytlyn btn-max"%>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+                    
+
+
+
+
+  

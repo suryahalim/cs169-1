@@ -103,34 +103,47 @@
 					</div>
 				<%end%>
 				<div class="col-xs-offset-0 col-xs-2 col-sm-offset-0 col-sm-2 col-md-offset-0 col-md-2 col-lg-offset-1 col-lg-2">
-					<div class="shopping-cart">
-						<div class="wrapper-title shopping-cart-title">
-							<svg height="10" width="10">
-		  						<polygon points="0,10 5,3 10,10" style="fill:white;" />
-		  					</svg>
-							<div class="title">
-								<span class="fa fa-shopping-cart"></span>
+					<% if !current_user.rest %>
+						<div class="shopping-cart">
+							<div class="wrapper-title shopping-cart-title">
+								<svg height="10" width="10">
+			  						<polygon points="0,10 5,3 10,10" style="fill:white;" />
+			  					</svg>
+								<div class="title">
+									<span class="fa fa-shopping-cart"></span>
+								</div>
+							</div>
+							<div class="shopping-cart-wrapper">
+								<% @cur_cart = Cart.current_cart(current_user.id) %>
+								<% if @cur_cart[:cart].empty? %>
+									<div class="single-cart empty-cart">
+										<div class="center-all">
+											Your cart is currently empty
+										</div>
+									</div>
+								<% else %>
+									<% @cur_cart[:cart].each do |rest, total| %>
+									<div class="single-cart japanese-background">
+									
+										<div class="cart-restaurant">
+											<%= User.find(rest).name %>
+										</div>
+										<div class="cart-order-id">
+											#321507
+										</div>
+										<div class="cart-amount">
+											$<%= total %>
+											<button class="btn btn-red">
+								                <!-- <a class="btn btn-bytlyn" href="./delivery_new?user_id=<%= current_user.id %>"> -->
+								            <%= link_to "Checkout", delivery_new_path(rest_id: rest, total: total, cart_id: @cur_cart[:id][rest])%></button>
+										</div>
+									
+									</div>
+									<% end%>
+								<% end %>
 							</div>
 						</div>
-						<div class="shopping-cart-wrapper">
-							<div class="single-cart empty-cart">
-								<div class="center-all">
-									Your cart is currently empty
-								</div>
-							</div>
-							<div class="single-cart japanese-background">
-								<div class="cart-restaurant">
-									Kiraku
-								</div>
-								<div class="cart-order-id">
-									#321507
-								</div>
-								<div class="cart-amount">
-									$12
-								</div>
-							</div>
-						</div>
-					</div>
+					<% end %>
 				</div>
 				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 					<a rel="nofollow" data-method="delete" href="/users/sign_out" class="wrapper-title">

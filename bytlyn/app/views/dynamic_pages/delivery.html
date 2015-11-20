@@ -29,7 +29,7 @@
 						Delivery<br>
 					</div>
 				</div>
-				<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+				<!-- <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
 					<a href="#">
 						<div class="box-option">
 							<img src="build/img/stock/restaurant.jpg"/>
@@ -40,20 +40,58 @@
 							</div>
 						</div>
 					</a>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-					<a href="#">
-						<div class="box-option">
-							<img src="build/img/stock/restaurant.jpg"/>
-							<div class="text">
-								Order #2<br>
-								Total order: #<br>
-								Total price: $
+				</div> -->
+				<% if !current_user.rest %>
+					<% @delivery = Delivery.get_delivery_cust(current_user.id) %>
+					<% count = 0 %>
+					<% @delivery.each do |del| %>
+					<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+						<% count += 1 %>
+						<a href="#">
+							<div class="box-option">
+								<img src="build/img/stock/restaurant.jpg"/>
+								<div class="text">
+									Order #<%= count%><br>
+									Total orders: <br>
+									<% @order = Delivery.get_order(del) %>
+									<% @order.each do |ord| %>
+										<%= ord %><br>
+									<%end%>
+									Total price: $<%= del.total %>
+								</div>
 							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+						</a>
+					</div>
+					<%end%>
+				<% else %>
+					<% @delivery = Delivery.get_delivery_rest(current_user.id) %>
+					<!-- <%= @delivery %> -->
+					<% count = 0 %>
+					<% @delivery.each do |del| %>
+					<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+						<% count += 1 %>
+						<a href="#">
+							<div class="box-option">
+								<img src="build/img/stock/restaurant.jpg"/>
+								<div class="text">
+									Order #<%= count%><br>
+									Total orders: <br>
+									<% @order = Delivery.get_order(del) %>
+									<% @order.each do |ord| %>
+										<%= ord %><br>
+									<%end%>
+									Total price: $<%= del.total %>
+									Phone: <%= del.phone %>
+									Address: <%= del.address %> 
+									<%= link_to 'Cancel', del, controller: 'deliveries', action: 'destroy',method: :delete%>
+								</div>
+							</div>
+						</a>
+					</div>
+					<%end%>
+					
+				<%end%>
+				<!-- <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
 					<a href="#">
 						<div class="box-option box-add-new">
 							<div class="text">
@@ -61,7 +99,7 @@
 							</div>
 						</div>
 					</a>
-				</div>
+				</div> -->
 				<div class="col-xs-offset-0 col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 col-lg-offset-3 col-lg-6">
 					<div class="payment-method">
 						<div class="card card-default">

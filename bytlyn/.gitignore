@@ -11,3 +11,9 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore files that contain access key
+/app/models/user.rb
+/config/environments/development.rb
+/config/environments/production.rb
+/config/initializers/aws.rb

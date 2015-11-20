@@ -26,12 +26,14 @@
 					  	<%= menu.name %><br>
 					  	$<%= menu.price %>
 					  	<% if user_signed_in? %>
-						  	<%= form_for :cart do |f| %>
-		                    	<%= f.hidden_field :rest_id, :value => params[:rest_id] %>
-		                    	<%= f.hidden_field :cust_id, :value =>  current_user.id%>
-		                    	<%= f.hidden_field :menu_id, :value =>  menu.id%>
-			                <%= f.submit "+"%>
-			                <% end %>
+					  		<% if !current_user.rest %>
+							  	<%= form_for :cart do |f| %>
+			                    	<%= f.hidden_field :rest_id, :value => params[:rest_id] %>
+			                    	<%= f.hidden_field :cust_id, :value =>  current_user.id%>
+			                    	<%= f.hidden_field :menu_id, :value =>  menu.id%>
+				                <%= f.submit "+", data: { confirm: 'Are you sure?' }%>
+				                <% end %>
+				            <%end%>
 			            <% end%>
 					  </div>
 					<% end %>

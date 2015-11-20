@@ -15,8 +15,8 @@ Rails.application.configure do
     :bucket => 'bytlyn-development',
     :s3_credentials => {
       :bucket => ENV['bytlyn-development'],
-      :access_key_id => ENV['AKIAIHGCOC2OKKBGB7NQ'],
-      :secret_access_key => ENV['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']
+      :access_key_id => ENV['AKIAISMBCST6IB77XTBA'],
+      :secret_access_key => ENV['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']
     }
   }
 
