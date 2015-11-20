@@ -6,8 +6,9 @@
 			<div class="title center-all">
 				Craving for <span id="typed">Burger</span>
 			</div>
+			
 	        <%= form_tag("/restaurants", method: "get", :id => "myform", :class => "center-all")do %>
-	            <input id="input" class="modern search-bar" type="text" name="key" onkeydown="if (event.keyCode == 13 && $('#myform #input').val().length != 0) { document.myform.submit(); return false; }"></input>
+	            <input id="input" class="modern search-bar" type="text" name="key" onkeydown="if (event.keyCode == 13 && $('#myform #input').val().length != 0) { document.myform.submit(); return false;}" placeholder="Search for the food you want"></input>
 	        <% end %>
     	</div>
 	</section>
