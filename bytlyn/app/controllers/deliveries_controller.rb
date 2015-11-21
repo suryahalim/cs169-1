@@ -81,7 +81,7 @@ class DeliveriesController < ApplicationController
     else 
       flash[:alert] = "Something went wrong while processing your transaction. Please try again!"
       gon.client_token = generate_client_token
-      render :new
+      redirect_to profile_path
     end
 
   end

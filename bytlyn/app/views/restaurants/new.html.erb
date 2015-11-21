@@ -2,11 +2,12 @@
 <main>
     <div class="container">
         <div class="row">
+          <div class="text-center page-header">Restaurant Sign Up Form</div>
             <div class="col-xs-12 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
               <% if flash[:error] %>
                       <div class="error"><%= flash[:error] %></div><br>
                     <% end %>
-              <div class="h2">Restaurant Sign Up Form</div>
+              
               Fill this form below about details of your restaurant<br><br>
 
               <%= form_for @restaurant do |f| %>
@@ -28,6 +29,7 @@
               <%= f.select :rest_type, options_for_select(['American', 'Italian', 'French', 'Japanese', 'Chinese', 'Asian']) %>
 
               <div class="h3"> Opening Hours </div>
+              Leave blank if closed for the day
               <% days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %>
               <% i = 0 %>
               <p>
