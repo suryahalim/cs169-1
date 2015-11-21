@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :restaurants
   resources :customers
   resources :waitlists
+  resources :favorites
   devise_scope :user do
      get "signup-user", to: "users/registrations#new_user"
      get "signup-restaurant", to: "users/registrations#new_rest"
@@ -34,7 +35,7 @@ Rails.application.routes.draw do
   get 'index' => 'dynamic_pages#index'
   get 'signup' => 'dynamic_pages#signup'
   get 'profile' => 'dynamic_pages#profile'
-  get 'restaurants' => 'restaurants#index'
+  get 'restaurants' => 'restaurants#index', as: 'restaurants_list'
   get 'settings' => 'dynamic_pages#settings'
   get 'favorite' => 'dynamic_pages#favorite'
   get 'payment' => 'dynamic_pages#payment'
@@ -46,6 +47,10 @@ Rails.application.routes.draw do
   #waitlist URL
   get 'waitlists_new' => 'waitlists#new'
   post 'waitlists_new' => 'waitlists#create'
+
+  get 'favorites_new' => 'favorites#index'
+  post 'favorites_new' => 'favorites#create'
+  get 'favorites_dest' => 'favorites#destroy'
 
   #restaurant URL
   get 'restaurant_new' => 'restaurants#new'

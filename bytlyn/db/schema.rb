@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105053540) do
+ActiveRecord::Schema.define(version: 20151120033537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 20151105053540) do
     t.string   "password_digest"
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.integer  "cust_id",    null: false
+    t.integer  "rest_id",    null: false
+    t.integer  "version",    null: false
+    t.integer  "menu_id",    null: false
+    t.integer  "qty",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "customers", force: :cascade do |t|
     t.integer  "user_id",             null: false
     t.integer  "phone_number",        null: false
@@ -34,6 +44,22 @@ ActiveRecord::Schema.define(version: 20151105053540) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+  end
+
+  create_table "deliveries", force: :cascade do |t|
+    t.integer  "phone",      null: false
+    t.integer  "rest_id",    null: false
+    t.integer  "version",    null: false
+    t.integer  "user_id",    null: false
+    t.string   "address",    null: false
+    t.float    "total",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.string "cust_id", null: false
+    t.string "rest_id", null: false
   end
 
   create_table "hours", force: :cascade do |t|
@@ -97,6 +123,14 @@ ActiveRecord::Schema.define(version: 20151105053540) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "versions", force: :cascade do |t|
+    t.integer  "cust_id",    null: false
+    t.integer  "rest_id",    null: false
+    t.integer  "count",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "waitlists", force: :cascade do |t|
     t.integer  "rest_id",    null: false
