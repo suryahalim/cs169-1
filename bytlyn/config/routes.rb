@@ -52,6 +52,8 @@ Rails.application.routes.draw do
   get 'delivery' => 'deliveries#index'
   post 'delivery_new' => 'deliveries#create'
   post '/deliveries/new' => 'deliveries#create'
+  post 'update_status' => 'deliveries#update_status'
+  get 'delivery_history' => 'deliveries#history'
 
   #waitlist URL
   get 'waitlists_new' => 'waitlists#new'

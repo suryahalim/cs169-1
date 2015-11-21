@@ -25,7 +25,10 @@
     <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
       <div class="wrapper-right">
         <div class="header text-center">
-          Delivery
+          Delivery 
+          <% if @history %>
+            History
+          <%end%>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <% if flash[:error] %>
@@ -43,7 +46,7 @@
                         
                       Restaurant <%= name %><br>
                       Total: $<%= delivery.total%><br>
-                      Status: Order Processed<br>
+                      <%= Delivery.status_string(delivery.status) %><br>
                     </div>
                   </div>
                 </a>

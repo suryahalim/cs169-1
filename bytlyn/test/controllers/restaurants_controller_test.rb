@@ -329,10 +329,10 @@ class RestaurantsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, id: @restaurant.id
-    assert_response :success
-  end
+  # test "should get edit" do
+  #   get :edit, id: @restaurant.id
+  #   assert_response :success
+  # end
 
   test "should update restaurant" do
     patch :update, id: @restaurant.id, restaurant: {description: "MLK1"}
