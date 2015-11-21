@@ -14,4 +14,9 @@ class User < ActiveRecord::Base
 					:secret_access_key => ENV['uPAGWwaetq4xgELzU0m0kw/ata4r2LusgspaoXa6']
 				}
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
+  def has_payment_info?
+    braintree_customer_id
+  end
+
 end

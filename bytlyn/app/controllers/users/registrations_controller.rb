@@ -143,6 +143,7 @@ before_filter :configure_account_update_params, only: [:update]
   def configure_account_update_params
     devise_parameter_sanitizer.for(:account_update) << :name
     devise_parameter_sanitizer.for(:account_update) << :avatar
+    devise_parameter_sanitizer.for(:account_update) << :braintree_customer_id
   end
 
   # The path used after sign up.
