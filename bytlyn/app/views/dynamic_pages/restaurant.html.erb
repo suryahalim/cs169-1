@@ -48,9 +48,33 @@
 					<span class="fa fa-star"></span>
 					<span class="fa fa-star-o"></span>
 				</div>
+				<% restaurant = Restaurant.where(user_id: params[:rest_id]).first %>
 				<div class="r-info text-sm text-center">
-					<%= Restaurant.where(user_id: params[:rest_id]).first.description %>
+					<%= restaurant.description %>
 				</div>
+				<br>
+				<div class="r-info text-sm text-center">
+					
+					<b>Address: </b> <br>
+					<%= restaurant.address %> <br>
+					<%= restaurant.city %><br>
+					<%= restaurant.zip %>
+
+
+				</div>
+				<br>
+				<div class="r-info text-sm text-center">
+					<b>Opening Hours:</b> <br>
+					Monday: <%= @monday_time%><br>
+					Tuesday: <%= @tuesday_time%><br>
+					Wednesday: <%= @wednesday_time%><br>
+					Thursday: <%= @thursday_time%><br>
+					Friday: <%= @friday_time%><br>
+					Saturday: <%= @saturday_time%><br>
+					Sunday: <%= @sunday_time%><br>
+
+				</div>
+
 			</div>
 		</div>
     </section>

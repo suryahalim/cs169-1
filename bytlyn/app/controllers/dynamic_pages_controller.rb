@@ -70,6 +70,71 @@ class DynamicPagesController < ApplicationController
     end
     def restaurant
         # if user_signed_in?
+        @hour = Hour.where(rest_id: params[:rest_id])
+        @monday = @hour.where(day_id: 1)
+        @monday = @monday.first
+        if (@monday.open != nil && @monday.open != nil)
+            
+            @monday_time = @monday.open.strftime('%H:%M') + " - " + @monday.close.strftime('%H:%M') 
+
+        else 
+            @monday_time = 'closed'
+        end
+        @tuesday = @hour.where(day_id: 2)
+        @tuesday = @tuesday.first
+        if (@tuesday.open != nil && @tuesday.open != nil)
+            
+            @tuesday_time = @tuesday.open.strftime('%H:%M') + " - " + @tuesday.close.strftime('%H:%M') 
+
+        else 
+            @tuesday_time = 'closed'
+        end
+        @wednesday = @hour.where(day_id: 3)
+        @wednesday = @wednesday.first
+        if (@wednesday.open != nil && @wednesday.open!= nil)
+            
+            @wednesday_time = @wednesday.open.strftime('%H:%M') + " - " + @wednesday.close.strftime('%H:%M') 
+
+        else 
+            @wednesday_time = 'closed'
+        end
+        @thursday = @hour.where(day_id: 4)
+        @thursday = @thursday.first
+        if (@thursday.open != nil && @thursday.open != nil)
+            
+            @thursday_time = @thursday.open.strftime('%H:%M') + " - " + @thursday.close.strftime('%H:%M') 
+
+        else 
+            @thursday_time = 'closed'
+        end
+        @friday = @hour.where(day_id: 5)
+        @friday = @friday.first
+        if (@friday.open != nil && @friday.open!= nil)
+            
+            @friday_time = @friday.open.strftime('%H:%M') + " - " + @friday.close.strftime('%H:%M') 
+
+        else 
+            @friday_time = 'closed'
+        end
+        @saturday = @hour.where(day_id: 6)
+        @saturday = @saturday.first
+        if (@saturday.open != nil && @saturday.close != nil)
+            
+            @saturday_time = @saturday.open.strftime('%H:%M') + " - " + @saturday.close.strftime('%H:%M') 
+
+        else 
+            @saturday_time = 'closed'
+        end
+        @sunday = @hour.where(day_id: 7)
+        @sunday = @sunday.first
+        if (@sunday.open != nil && @sunday.close != nil)
+            
+            @sunday_time = @sunday.open.strftime('%H:%M') + " - " + @sunday.close.strftime('%H:%M') 
+
+        else 
+            @sunday_time = 'closed'
+        end
+
         render "restaurant.html.erb"
 
         # else

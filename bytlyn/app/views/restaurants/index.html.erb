@@ -9,16 +9,18 @@
     <div class="container">
     <% if user_signed_in? && (!current_user.rest || Restaurant.find_by_user_id(current_user.id) != nil) %>
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+
             <div class="row">
                 <div class="wrapper-left">
                     <div class="side-pannel">
                         <a href="/profile" class="tab"><span class="fa fa-home"></span> Home</a>
-                        <a href="/favorite" class="tab"><span class="fa fa-star"></span> Favorite</a>
+                        <a href="/favorites" class="tab"><span class="fa fa-star"></span> Favorite</a>
                         <a href="/waitlists" class="tab"><span class="fa fa-hourglass"></span> Waitlist</a>
                         <a href="/delivery" class="tab"><span class="fa fa-rocket"></span> Delivery</a>
                         <a href="/payment" class="tab"><span class="fa fa-credit-card"></span> Payment</a>
                         <a href="/setting" class="tab"><span class="fa fa-cog"></span> Setting</a>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -150,15 +152,17 @@
                                             </div>
                                         </a>
                                         <div class="card-info">
-                                            <%=restaurant.price%>
+                                            <% for i in 1..restaurant.price.to_i do%>
+                                                $
+                                            <% end%>
                                         </div>
                                         <div class="card-rating">
                                             <%=restaurant.rating%>
                                             <div class="rating-restaurant text-md">
                                                 <span class="fa fa-star"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                <span class="fa fa-star-o"></span>
-                                                <span class="fa fa-star-o"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
                                                 <span class="fa fa-star-o"></span>
                                             </div>
                                         </div>
@@ -171,7 +175,14 @@
                                             <%else%>
                                                 Currently Close.
                                             <%end%>
+
                                         </div>
+                                        <% if (user_signed_in? && !current_user.rest) %>
+                                            <form action="./favorites_new?rest_id=<%= restaurant.user_id %>" method="POST">
+                                            <input type="submit" class="btn btn-bytlyn" value ="Add Favorite"></input>
+                                            </form>
+                                            <!-- <a class="btn btn-bytlyn" data-method="post" href="./favorite?user_id=<%= restaurant.user_id %>">Add Favorite</a> -->
+                                            <% end %>
                                         </div>
                                     </div>
                                 </div>
