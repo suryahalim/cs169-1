@@ -1,5 +1,6 @@
 class Cart < ActiveRecord::Base
 	require 'set'
+	belongs_to :customer, :foreign_key => 'cust_id', :primary_key => 'user_id'
 
 	def self.current_cart(param)
 		@currentVersions = Version.where(cust_id: param[0])

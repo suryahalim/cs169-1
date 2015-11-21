@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th> ID </th>
       <th>Cust</th>
       <th>Rest</th>
       <th>Version</th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @carts.each do |cart| %>
       <tr>
+        <td><%= cart.id %> </td>
         <td><%= cart.cust_id %></td>
         <td><%= cart.rest_id %></td>
         <td><%= cart.version %></td>
