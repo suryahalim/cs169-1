@@ -66,7 +66,7 @@ class CartsController < ApplicationController
       respond_to do |format|
         if @cart.save
           # link = '/restaurant_page?rest_id=' + params[:rest_id].to_s
-          format.html { redirect_to restaurants_path}
+          format.html { redirect_to restaurant_page_path(:rest_id => @cart.rest_id)}
           # format.json { render :show, status: :created, location: @cart }
         else
           format.html { render :new }
@@ -99,6 +99,19 @@ class CartsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to carts_url, notice: 'Cart was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def clear
+    if user_signed_in?
+      cur_version = version_check(cust_id: current_user.id, rest_id: params[:rest_id])
+      carts = Cart.find_cart(current_user.id, params[:rest_id], cur_version)
+      carts.each do |cart|
+        cart.destroy
+      end
+      redirect_to restaurant_page_path(:rest_id => params[:rest_id])
+    else
+      redirect_to login_path
     end
   end
 

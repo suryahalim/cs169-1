@@ -142,6 +142,10 @@
 											<button class="btn btn-red">
 								                <!-- <a class="btn btn-bytlyn" href="./delivery_new?user_id=<%= current_user.id %>"> -->
 								            <%= link_to "Checkout", delivery_new_path(rest_id: rest, total: total, cart_id: @cur_cart[:id][rest])%></button>
+								            <button class="btn btn-red">
+								                
+								                <%= link_to 'Clear', {:controller => "carts", :action => "clear", :rest_id => rest} , :method=>:post  %>
+								            </button>
 										</div>
 									
 									</div>

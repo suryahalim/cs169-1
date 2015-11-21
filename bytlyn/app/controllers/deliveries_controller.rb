@@ -29,8 +29,12 @@ class DeliveriesController < ApplicationController
 
   # GET /deliveries/new
   def new
-    @delivery = Delivery.new
-    gon.client_token = generate_client_token
+    if user_signed_in?
+      @delivery = Delivery.new
+      gon.client_token = generate_client_token
+    else
+      redirect_to login_path
+    end
   end
 
   # GET /deliveries/1/edit
@@ -40,48 +44,52 @@ class DeliveriesController < ApplicationController
   # POST /deliveries
   # POST /deliveries.json
   def create
-    unless current_user.has_payment_info?
-      @result = Braintree::Transaction.sale(
+    if user_signed_in?
+      unless current_user.has_payment_info?
+        @result = Braintree::Transaction.sale(
+                    amount: delivery_params[:total],
+                    payment_method_nonce: params[:payment_method_nonce],
+                    customer: {
+                      first_name: current_user.name,
+                      email: current_user.email,
+                      phone: delivery_params[:phone]
+                    },
+                    options: {
+                      store_in_vault: true
+                    })
+
+      else
+        @result = Braintree::Transaction.sale(
                   amount: delivery_params[:total],
-                  payment_method_nonce: params[:payment_method_nonce],
-                  customer: {
-                    first_name: current_user.name,
-                    email: current_user.email,
-                    phone: delivery_params[:phone]
-                  },
-                  options: {
-                    store_in_vault: true
-                  })
-
-    else
-      @result = Braintree::Transaction.sale(
-                amount: delivery_params[:total],
-                payment_method_nonce: params[:payment_method_nonce])
-    end
-    if @result.success?
-      current_user.update(braintree_customer_id: @result.transaction.customer_details.id) unless current_user.has_payment_info?
-      @delivery = Delivery.new(delivery_params)
-      rest = delivery_params[:rest_id]
-      cust = delivery_params[:user_id]
-      params = {rest_id: rest, cust_id: cust}
-      @version = Version.where(rest_id: rest, cust_id: cust).first
-      @delivery.version = @version.count
-      params[:count] = @version.count + 1
-
-      respond_to do |format|
-        @version.update(params)
-        if @delivery.save
-          format.html { redirect_to restaurants_path , notice: 'Thank you. Your order is being processed'}
-          # format.json { render :show, status: :created, location: @delivery }
-        else
-          format.html { render :new }
-          format.json { render json: @delivery.errors, status: :unprocessable_entity }
-        end
+                  payment_method_nonce: params[:payment_method_nonce])
       end
-    else 
-      flash[:alert] = "Something went wrong while processing your transaction. Please try again!"
-      gon.client_token = generate_client_token
-      redirect_to profile_path
+      if @result.success?
+        current_user.update(braintree_customer_id: @result.transaction.customer_details.id) unless current_user.has_payment_info?
+        @delivery = Delivery.new(delivery_params)
+        rest = delivery_params[:rest_id]
+        cust = delivery_params[:user_id]
+        params = {rest_id: rest, cust_id: cust}
+        @version = Version.where(rest_id: rest, cust_id: cust).first
+        @delivery.version = @version.count
+        params[:count] = @version.count + 1
+
+        respond_to do |format|
+          @version.update(params)
+          if @delivery.save
+            format.html { redirect_to restaurants_path , notice: 'Thank you. Your order is being processed'}
+            # format.json { render :show, status: :created, location: @delivery }
+          else
+            format.html { render :new }
+            format.json { render json: @delivery.errors, status: :unprocessable_entity }
+          end
+        end
+      else 
+        flash[:alert] = "Something went wrong while processing your transaction. Please try again!"
+        gon.client_token = generate_client_token
+        redirect_to profile_path
+      end
+    else
+      redirect_to login_path
     end
 
   end
