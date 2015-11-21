@@ -15,6 +15,7 @@ class DeliveriesController < ApplicationController
   # GET /deliveries/new
   def new
     @delivery = Delivery.new
+    gon.client_token = generate_client_token
   end
 
   # GET /deliveries/1/edit
@@ -24,24 +25,34 @@ class DeliveriesController < ApplicationController
   # POST /deliveries
   # POST /deliveries.json
   def create
-    @delivery = Delivery.new(delivery_params)
-    rest = delivery_params[:rest_id]
-    cust = delivery_params[:user_id]
-    params = {rest_id: rest, cust_id: cust}
-    @version = Version.where(rest_id: rest, cust_id: cust).first
-    @delivery.version = @version.count
-    params[:count] = @version.count + 1
+    @result = Braintree::Transaction.sale(
+              amount: delivery_params[:total],
+              payment_method_nonce: params[:payment_method_nonce])
+    if @result.success?
+      @delivery = Delivery.new(delivery_params)
+      rest = delivery_params[:rest_id]
+      cust = delivery_params[:user_id]
+      params = {rest_id: rest, cust_id: cust}
+      @version = Version.where(rest_id: rest, cust_id: cust).first
+      @delivery.version = @version.count
+      params[:count] = @version.count + 1
 
-    respond_to do |format|
-      @version.update(params)
-      if @delivery.save
-        format.html { redirect_to restaurants_path , notice: 'Thank you. Your order is being processed'}
-        # format.json { render :show, status: :created, location: @delivery }
-      else
-        format.html { render :new }
-        format.json { render json: @delivery.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        @version.update(params)
+        if @delivery.save
+          format.html { redirect_to restaurants_path , notice: 'Thank you. Your order is being processed'}
+          # format.json { render :show, status: :created, location: @delivery }
+        else
+          format.html { render :new }
+          format.json { render json: @delivery.errors, status: :unprocessable_entity }
+        end
       end
+    else 
+      flash[:alert] = "Something went wrong while processing your transaction. Please try again!"
+      gon.client_token = generate_client_token
+      render :new
     end
+
   end
 
   # PATCH/PUT /deliveries/1
@@ -76,6 +87,10 @@ class DeliveriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def delivery_params
-      params.require(:delivery).permit(:phone, :rest_id, :version, :user_id, :address, :total)
+      params.require(:delivery).permit(:phone, :rest_id, :version, :user_id, :address, :total, :payment_method_nonce)
+    end
+
+    def generate_client_token
+      Braintree::ClientToken.generate
     end
 end

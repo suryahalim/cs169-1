@@ -74,7 +74,7 @@ class CartsController < ApplicationController
         end
       end
     else
-      redirect_to carts_path
+      redirect_to restaurant_page_path(:rest_id => @cart.rest_id)
     end
   end
 
