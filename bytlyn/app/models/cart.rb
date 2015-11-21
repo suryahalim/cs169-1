@@ -25,4 +25,8 @@ class Cart < ActiveRecord::Base
 		end
 		return {cart: cartArrayTotal, id: cartArrayId}
 	end
+
+	def self.find_cart(cust_id, rest_id, version)
+		@cart = Cart.where(cust_id: cust_id, rest_id: rest_id, version: version)
+	end
 end

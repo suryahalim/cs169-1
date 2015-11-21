@@ -4,7 +4,22 @@ class DeliveriesController < ApplicationController
   # GET /deliveries
   # GET /deliveries.json
   def index
-    @deliveries = Delivery.all
+     if user_signed_in?
+      if current_user.rest
+        if Restaurant.find_by_user_id(current_user.id) != nil
+          @deliveries = Delivery.get_restaurant_delivery(current_user.id)
+          render 'rest_index.html.erb' 
+        else
+          redirect_to restaurant_new_path
+        end
+      else
+        # @lists = Waitlist.where(:cust_id == current_user.id)
+        @deliveries = Delivery.get_customer_delivery(current_user.id)
+        render 'cust_index.html.erb'   
+      end
+    else
+      redirect_to login_path
+    end
   end
 
   # GET /deliveries/1
@@ -83,6 +98,10 @@ class DeliveriesController < ApplicationController
         format.json { render json: @delivery.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def payment
+    gon.client_token = generate_client_token
   end
 
   # DELETE /deliveries/1

@@ -29,6 +29,7 @@
 						Payment<br>
 					</div>
 				</div>
+				<div id="payment-form"></div>
 				<div class="col-xs-offset-0 col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 col-lg-offset-3 col-lg-6">
 					<div class="payment-method">
 						<div class="card card-default">
@@ -68,3 +69,12 @@
 		</div>
 	</div>
 </main>
+
+<script>
+// We generated a client token for you so you can test out this code
+// immediately. In a production-ready integration, you will need to
+// generate a client token on your server (see section below).
+braintree.setup(gon.client_token, "dropin", {
+  container: "payment-form"
+});
+</script>

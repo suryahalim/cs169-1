@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'profile.html' => 'dynamic_pages#profile'
   get 'settings.html' => 'dynamic_pages#settings'
   get 'favorite.html' => 'dynamic_pages#favorite'
-  get 'payment.html' => 'dynamic_pages#payment'
+  get 'payment.html' => 'deliveries#payment'
   get 'delivery.html' => 'dynamic_pages#delivery'
   get 'team.html' => 'dynamic_pages#team'
 
@@ -40,8 +40,7 @@ Rails.application.routes.draw do
   get 'restaurants' => 'restaurants#index'
   get 'settings' => 'dynamic_pages#settings'
   get 'favorite' => 'dynamic_pages#favorite'
-  get 'payment' => 'dynamic_pages#payment'
-  get 'delivery' => 'dynamic_pages#delivery'
+  get 'payment' => 'deliveries#payment'
   get 'home' => 'dynamic_pages#home'
   get 'restaurant_page' => 'dynamic_pages#restaurant'
   post 'restaurant_page' => 'carts#create'
@@ -49,6 +48,7 @@ Rails.application.routes.draw do
 
   #delivery URL
   get 'delivery_new' => 'deliveries#new'
+  get 'delivery' => 'deliveries#index'
   post 'delivery_new' => 'deliveries#create'
   post '/deliveries/new' => 'deliveries#create'
 

@@ -20,4 +20,24 @@ class Delivery < ActiveRecord::Base
 		return menuArray
 	end
 
+	def self.get_customer_delivery(user_id)
+		return Delivery.where(user_id: user_id)
+
+	end
+
+	def self.get_restaurant_delivery(user_id)
+		delivery_list = Delivery.where(rest_id: user_id)
+		list_and_cart = []
+		delivery_list.each do |delivery|
+			this_cart = Cart.find_cart(delivery.user_id, delivery.rest_id, delivery.version)
+			this_menu = []
+			this_cart.each do |cart|
+				this_menu << {name: Menu.find(cart.menu_id).name, qty: cart.qty}
+			end
+
+			list_and_cart << {:delivery => delivery, :cart => this_menu}
+		end
+		return list_and_cart
+	end
+
 end
