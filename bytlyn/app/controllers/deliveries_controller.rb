@@ -22,6 +22,27 @@ class DeliveriesController < ApplicationController
     end
   end
 
+  def history
+    if user_signed_in?
+      if current_user.rest
+        if Restaurant.find_by_user_id(current_user.id) != nil
+          @deliveries = Delivery.get_restaurant_delivery_history(current_user.id)
+          @history = true
+          render 'rest_index.html.erb' 
+        else
+          redirect_to restaurant_new_path
+        end
+      else
+        # @lists = Waitlist.where(:cust_id == current_user.id)
+        @deliveries = Delivery.get_customer_delivery_history(current_user.id)
+        @history = true
+        render 'cust_index.html.erb'   
+      end
+    else
+      redirect_to login_path
+    end
+  end
+
   # GET /deliveries/1
   # GET /deliveries/1.json
   def show
@@ -71,6 +92,7 @@ class DeliveriesController < ApplicationController
         params = {rest_id: rest, cust_id: cust}
         @version = Version.where(rest_id: rest, cust_id: cust).first
         @delivery.version = @version.count
+        @delivery.status = 1
         params[:count] = @version.count + 1
 
         respond_to do |format|
@@ -111,7 +133,19 @@ class DeliveriesController < ApplicationController
   def payment
     gon.client_token = generate_client_token
   end
+  def update_status
+    @delivery = Delivery.find(params[:delivery])
+    respond_to do |format|
+      if @delivery.update(status: @delivery.status + 1)
 
+        format.html { redirect_to '/delivery', notice: 'Delivery was successfully updated.' }
+        format.json { render :show, status: :ok, location: @delivery }
+      else
+        format.html { redirect_to '/delivery' }
+        format.json { render json: @delivery.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   # DELETE /deliveries/1
   # DELETE /deliveries/1.json
   def destroy

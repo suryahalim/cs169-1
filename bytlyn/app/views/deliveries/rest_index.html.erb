@@ -28,7 +28,12 @@
                         <p id="notice"><%= notice %></p>
                         
                         <div class="text-center">
-                            <h1><%=current_user.name %>'s Delivery</h1>
+                            
+
+                            <h1><%=current_user.name %>'s Delivery 
+                            <% if @history %>
+                                History
+                                <%end%></h1>
                             <table class="table table-striped">
                                 <thead>
                                     <tr><th colspan="6"></th></tr>
@@ -74,8 +79,11 @@
                                         </td>
                                         <td>
                                             <!-- <button class="btn btn-red">Delete</button> -->
-                                           
-                                            <button class="btn btn-red"><%= link_to 'Done', del, controller: 'deliveries', action: 'destroy',method: :delete%></button>
+                                            <% if del.status < 4 %>
+                                                <button class="btn btn-red"><%= link_to Delivery.status_string(del.status + 1), {:controller => "deliveries", :action => "update_status", :delivery => del} , :method=>:post%></button>
+                                            <%else %>
+                                                <%= Delivery.status_string(del.status) %>
+                                            <% end %>
                                             
                                         </td>
                                     </tr>
