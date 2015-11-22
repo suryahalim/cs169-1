@@ -58,7 +58,9 @@ Rails.application.routes.draw do
   #waitlist URL
   get 'waitlists_new' => 'waitlists#new'
   post 'waitlists_new' => 'waitlists#create'
-
+  post 'update_status_success' => 'waitlists#update_status_success'
+  post 'update_status_no_show' => 'waitlists#update_status_no_show'
+  get 'waitlist_history' => 'waitlists#history'
 
   get 'favorites_new' => 'favorites#index'
   post 'favorites_new' => 'favorites#create'

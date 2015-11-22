@@ -26,7 +26,8 @@
                         <p id="notice"><%= notice %></p>
                         
                         <div class="text-center">
-                            <h1><%=current_user.name %>'s Waitlists</h1>
+                            <h1><%=current_user.name %>'s Waitlist 
+                                <% if @history %> History <%end%></h1>
                             <table class="table table-striped">
                                 <thead>
                                     <tr><th colspan="3"></th></tr>
@@ -37,7 +38,12 @@
                                     <tr>
                                         <td>Name</th>
                                         <td># People</th>
+                                        <%if @history%>
+
+                                        <td>Status</th>
+                                        <%else %>
                                         <td></th>
+                                        <%end%>
                                     </tr>
                                     
                                     <% @lists.each do |list| %>
@@ -51,9 +57,15 @@
                                             <%= list.people %>
                                         </td>
                                         <td>
+                                            <% if list.status == 1 %>
+                                                <button class="btn btn-red"><%= link_to 'Get In', {:controller => "waitlists", :action => "update_status_success", :waitlist => list} , :method=>:post%></button>
+                                                <button class="btn btn-red"><%= link_to 'No Show', {:controller => "waitlists", :action => "update_status_no_show", :waitlist => list} , :method=>:post%></button>
+                                            <%else %>
+                                                <%= Waitlist.status_string(list.status) %>
+                                            <% end %>
                                             <!-- <button class="btn btn-red">Delete</button>
                                             <%= link_to 'Delete', list, controller: 'waitlists', action: 'destroy',method: :delete%> -->
-                                            <button class="btn btn-red"><%= link_to 'Delete', list, controller: 'waitlists', action: 'destroy',method: :delete%></button>
+                                            
                                             
                                         </td>
                                     </tr>

@@ -25,31 +25,31 @@ class WaitlistTest < ActiveSupport::TestCase
   end
 
   test "Correct Waitlist parameter" do
-    @list = Waitlist.new(cust_id: 2, rest_id: 1, people: 3)
+    @list = Waitlist.new(cust_id: 2, rest_id: 1, people: 3, status: 1)
     status = @list.save
     assert_equal(status, true)
   end
   
   test "Correct Waitlist parameter name" do
-    @list = Waitlist.new(cust_id: 2, rest_id: 1, people: 3, name: "jessica")
+    @list = Waitlist.new(cust_id: 2, rest_id: 1, people: 3, name: "jessica",status: 1)
     status = @list.save
     assert_equal(status, true)
   end
 
 
   test "no cust id" do
-    @list = Waitlist.new(cust_id: "", rest_id: 1, people: 3)
+    @list = Waitlist.new(cust_id: "", rest_id: 1, people: 3,status: 1)
     @list.save
     # assert_equal(status, false)
   end
   test "no rest id" do
-    @list = Waitlist.new(cust_id: 2, rest_id: "", people: 3)
+    @list = Waitlist.new(cust_id: 2, rest_id: "", people: 3,status: 1)
     status = @list.save
     assert_equal(status, false)
   end
 
   test "no people" do
-    @list = Waitlist.new(cust_id: 2, rest_id: 1, people: "")
+    @list = Waitlist.new(cust_id: 2, rest_id: 1, people: "",status: 1)
     status = @list.save
     assert_equal(status, false)
   end
@@ -57,30 +57,30 @@ class WaitlistTest < ActiveSupport::TestCase
   # should be implemented in controller
   test "id rest_id is invalid" do
 
-    @list = Waitlist.new(cust_id: 4, rest_id: 2, people: 3)
+    @list = Waitlist.new(cust_id: 4, rest_id: 2, people: 3,status: 1)
     status = @list.check_params
     assert_equal(status, false)
 
-    @list = Waitlist.new(cust_id: 3, rest_id: 2, people: 3)
+    @list = Waitlist.new(cust_id: 3, rest_id: 2, people: 3,status: 1)
     status = @list.check_params
     assert_equal(status, false)
   end
 
   test "id cust_id is invalid" do #restaurant can't waitlist on other restaurant
-    @list = Waitlist.new(cust_id: 2, rest_id: 1, people: 3)
+    @list = Waitlist.new(cust_id: 2, rest_id: 1, people: 3,status: 1)
     status = @list.check_params
     assert_equal(status, true)
   end
 
   test "cust_id == rest_id able to waitlist more than once" do
     assert_difference('Waitlist.count', 1) do 
-        @list = Waitlist.new(cust_id: 1, rest_id: 1, people: 3)
+        @list = Waitlist.new(cust_id: 1, rest_id: 1, people: 3,status: 1)
         status = @list.check_params
         assert_equal(status, true)
         @list.save
     end
     assert_difference('Waitlist.count', 1) do 
-        @list = Waitlist.new(cust_id: 1, rest_id: 1, people: 4)
+        @list = Waitlist.new(cust_id: 1, rest_id: 1, people: 4,status: 1)
         status = @list.check_params
         assert_equal(status, true)
         @list.save
@@ -89,23 +89,23 @@ class WaitlistTest < ActiveSupport::TestCase
 
   #same customer can't waitlist on the same restaurant more than once
   test "unique customer to restaurant waitlist" do
-    @list = Waitlist.new(cust_id: 2, rest_id: 1, people: 3)
+    @list = Waitlist.new(cust_id: 2, rest_id: 1, people: 3,status: 1)
     status = @list.check_params
     assert_equal(status, true)
     @list.save
-    @list = Waitlist.new(cust_id: 2, rest_id: 1, people: 3)
+    @list = Waitlist.new(cust_id: 2, rest_id: 1, people: 3,status: 1)
     status = @list.check_params
     assert_equal(status, false)
 
   end
 
   test "position simple" do
-    @list1 = Waitlist.new(cust_id: 2, rest_id: 1, people: 3)
+    @list1 = Waitlist.new(cust_id: 2, rest_id: 1, people: 3,status: 1)
     status = @list1.check_params
     assert_equal(status, true)
     @list1.save
 
-    @list2 = Waitlist.new(cust_id: 4, rest_id: 1, people: 3)
+    @list2 = Waitlist.new(cust_id: 4, rest_id: 1, people: 3,status: 1)
     status = @list2.check_params
     assert_equal(status, true)
     @list2.save
@@ -116,12 +116,12 @@ class WaitlistTest < ActiveSupport::TestCase
   end
 
   test "position if deleted 1st place" do
-    @list1 = Waitlist.new(cust_id: 2, rest_id: 1, people: 3)
+    @list1 = Waitlist.new(cust_id: 2, rest_id: 1, people: 3,status: 1)
     status = @list1.check_params
     assert_equal(status, true)
     @list1.save
 
-    @list2 = Waitlist.new(cust_id: 4, rest_id: 1, people: 3)
+    @list2 = Waitlist.new(cust_id: 4, rest_id: 1, people: 3,status: 1)
     status = @list2.check_params
     assert_equal(status, true)
     @list2.save
@@ -137,12 +137,12 @@ class WaitlistTest < ActiveSupport::TestCase
   end
 
   test "position if deleted 2nd place" do
-    @list1 = Waitlist.new(cust_id: 2, rest_id: 1, people: 3)
+    @list1 = Waitlist.new(cust_id: 2, rest_id: 1, people: 3,status: 1)
     status = @list1.check_params
     assert_equal(status, true)
     @list1.save
 
-    @list2 = Waitlist.new(cust_id: 4, rest_id: 1, people: 3)
+    @list2 = Waitlist.new(cust_id: 4, rest_id: 1, people: 3,status: 1)
     status = @list2.check_params
     assert_equal(status, true)
     @list2.save
@@ -158,22 +158,22 @@ class WaitlistTest < ActiveSupport::TestCase
   end
 
   test "position in 2 restaurants" do
-    @list1 = Waitlist.new(cust_id: 2, rest_id: 1, people: 3)
+    @list1 = Waitlist.new(cust_id: 2, rest_id: 1, people: 3,status: 1)
     status = @list1.check_params
     assert_equal(status, true)
     @list1.save
 
-    @list2 = Waitlist.new(cust_id: 4, rest_id: 1, people: 3)
+    @list2 = Waitlist.new(cust_id: 4, rest_id: 1, people: 3,status: 1)
     status = @list2.check_params
     assert_equal(status, true)
     @list2.save
 
-    @list3 = Waitlist.new(cust_id: 4, rest_id: 3, people: 3)
+    @list3 = Waitlist.new(cust_id: 4, rest_id: 3, people: 3,status: 1)
     status = @list3.check_params
     assert_equal(status, true)
     @list3.save
 
-    @list4 = Waitlist.new(cust_id: 2, rest_id: 3, people: 3)
+    @list4 = Waitlist.new(cust_id: 2, rest_id: 3, people: 3,status: 1)
     status = @list4.check_params
     assert_equal(status, true)
     @list4.save
@@ -185,22 +185,22 @@ class WaitlistTest < ActiveSupport::TestCase
   end
 
   test "delete position in 2 restaurants" do
-    @list1 = Waitlist.new(cust_id: 2, rest_id: 1, people: 3)
+    @list1 = Waitlist.new(cust_id: 2, rest_id: 1, people: 3,status: 1)
     status = @list1.check_params
     assert_equal(status, true)
     @list1.save
 
-    @list2 = Waitlist.new(cust_id: 4, rest_id: 1, people: 3)
+    @list2 = Waitlist.new(cust_id: 4, rest_id: 1, people: 3,status: 1)
     status = @list2.check_params
     assert_equal(status, true)
     @list2.save
 
-    @list3 = Waitlist.new(cust_id: 4, rest_id: 3, people: 3)
+    @list3 = Waitlist.new(cust_id: 4, rest_id: 3, people: 3,status: 1)
     status = @list3.check_params
     assert_equal(status, true)
     @list3.save
 
-    @list4 = Waitlist.new(cust_id: 2, rest_id: 3, people: 3)
+    @list4 = Waitlist.new(cust_id: 2, rest_id: 3, people: 3,status: 1)
     status = @list4.check_params
     assert_equal(status, true)
     @list4.save

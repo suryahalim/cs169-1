@@ -26,6 +26,9 @@
       <div class="wrapper-right">
         <div class="header text-center">
           Waitlist
+          <% if @history %>
+            History
+          <%end%>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <% if flash[:error] %>
@@ -45,8 +48,15 @@
                         
                       Restaurant <%= name %><br>
                       <%= list.people %> people<br>
-                      Position: <%= pos %> <br>
-                      <%= link_to 'Cancel', list, controller: 'waitlists', action: 'destroy',method: :delete%>
+                      <%if !@history %>
+                        Position: <%= pos %> <br>
+                        <button class="btn btn-red">
+                          <%= link_to 'Cancel', list, controller: 'waitlists', action: 'destroy',method: :delete%>
+                        </button>
+                      <% else %>
+                        Status: <%= Waitlist.status_string(list.status) %>
+                      <%end%>
+
                     </div>
                   </div>
                 </a>
