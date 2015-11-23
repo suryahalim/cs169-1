@@ -97,19 +97,19 @@ class WaitlistsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /waitlists/1
-  # PATCH/PUT /waitlists/1.json
-  def update
-    respond_to do |format|
-      if @waitlist.update(waitlist_params)
-        format.html { redirect_to @waitlist, notice: 'Waitlist was successfully updated.' }
-        format.json { render :show, status: :ok, location: @waitlist }
-      else
-        format.html { render :edit }
-        format.json { render json: @waitlist.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # # PATCH/PUT /waitlists/1
+  # # PATCH/PUT /waitlists/1.json
+  # def update
+  #   respond_to do |format|
+  #     if @waitlist.update(waitlist_params)
+  #       format.html { redirect_to @waitlist, notice: 'Waitlist was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @waitlist }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @waitlist.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   def update_status_success
     @waitlist = Waitlist.find(params[:waitlist])

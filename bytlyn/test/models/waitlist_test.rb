@@ -223,5 +223,51 @@ class WaitlistTest < ActiveSupport::TestCase
     assert_equal([@list4], Waitlist.get_restaurant_waitlist(3))
   end
 
+  test "history not show up in get waitlist" do
+    @list1 = Waitlist.new(cust_id: 2, rest_id: 1, people: 3,status: 1)
+    status = @list1.check_params
+    assert_equal(status, true)
+    @list1.save
 
+    @list2 = Waitlist.new(cust_id: 2, rest_id: 3, people: 3,status: 2)
+    status = @list2.check_params
+    assert_equal(status, true)
+    @list2.save
+
+    @list3 = Waitlist.new(cust_id: 4, rest_id: 1, people: 3,status: 3)
+    status = @list3.check_params
+    assert_equal(status, true)
+    @list3.save
+
+    assert_equal([{:list => @list1, :position => 1}], Waitlist.get_customer_waitlist(2))
+    assert_equal([@list1], Waitlist.get_restaurant_waitlist(1))
+   end
+
+   test "history customer" do
+    @list1 = Waitlist.new(cust_id: 2, rest_id: 1, people: 3,status: 1)
+    status = @list1.check_params
+    assert_equal(status, true)
+    @list1.save
+
+    @list2 = Waitlist.new(cust_id: 2, rest_id: 3, people: 3,status: 2)
+    status = @list2.check_params
+    assert_equal(status, true)
+    @list2.save
+
+    @list3 = Waitlist.new(cust_id: 4, rest_id: 1, people: 3,status: 3)
+    status = @list3.check_params
+    assert_equal(status, true)
+    @list3.save
+
+    assert_equal([{:list => @list2, :position => nil}], Waitlist.get_customer_waitlist_history(2))
+    assert_equal([@list3], Waitlist.get_restaurant_waitlist_history(1))
+   end
+
+   test "status string" do
+    assert_equal("On Waitlist", Waitlist.status_string(1))
+    assert_equal("Got In", Waitlist.status_string(2))
+    assert_equal("No Show", Waitlist.status_string(3))
+    assert_equal("Unknown", Waitlist.status_string(4))
+end
+    
 end

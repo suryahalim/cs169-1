@@ -10,6 +10,7 @@ class CustomersControllerTest < ActionController::TestCase
     
   end
 
+
   test "should create customer" do
     assert_difference('Customer.count') do
         post :create, customer: { user_id: "10", phone_number: 00000 }
@@ -42,4 +43,5 @@ class CustomersControllerTest < ActionController::TestCase
     end
     assert_redirected_to customers_path
   end
+
 end
