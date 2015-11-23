@@ -53,7 +53,9 @@
                                                 </div>
                                             </a>
                                                 <div class="card-info">
-                                                    <%=restaurant.price%>
+                                                    <% for i in 1..restaurant.price.to_i do%>
+                                                        $
+                                                    <% end%>
                                                 </div>
                                                 <div class="card-rating">
                                                     <%=restaurant.rating%>
