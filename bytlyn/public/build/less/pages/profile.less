@@ -60,6 +60,26 @@ body.profile {
 				font-size: 14px;
 				margin-bottom: 30px;
 			}
+			.payment-detail {
+				.payment-content-wrapper {
+					border-bottom: 1px solid @gray-light;
+					padding: 20px 0;
+					.text-left,
+					.text-right {
+						width: 49%;
+						display: inline-block;
+					}
+					.payment-count {
+						color: @gray-light;
+					}
+					&:last-child {
+						border-bottom: none;
+					}
+				}
+				.payment-shipping {
+					color: @green;
+				}
+			}
 			.payment-method {
 				margin-bottom: 50px;
 			}

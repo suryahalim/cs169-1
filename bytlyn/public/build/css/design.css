@@ -1305,6 +1305,24 @@ body.profile main .wrapper-right .box-option {
   font-size: 14px;
   margin-bottom: 30px;
 }
+body.profile main .wrapper-right .payment-detail .payment-content-wrapper {
+  border-bottom: 1px solid #cccccc;
+  padding: 20px 0;
+}
+body.profile main .wrapper-right .payment-detail .payment-content-wrapper .text-left,
+body.profile main .wrapper-right .payment-detail .payment-content-wrapper .text-right {
+  width: 49%;
+  display: inline-block;
+}
+body.profile main .wrapper-right .payment-detail .payment-content-wrapper .payment-count {
+  color: #cccccc;
+}
+body.profile main .wrapper-right .payment-detail .payment-content-wrapper:last-child {
+  border-bottom: none;
+}
+body.profile main .wrapper-right .payment-detail .payment-shipping {
+  color: #7d695d;
+}
 body.profile main .wrapper-right .payment-method {
   margin-bottom: 50px;
 }
