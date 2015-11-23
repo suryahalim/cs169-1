@@ -12,12 +12,14 @@
 			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 noPadding">
 				<div class="wrapper-left">
 					<div class="side-pannel">
-						<a href="/profile" class="tab"><span class="fa fa-home"></span> Home</a>
-	                    <a href="/favorites" class="tab chosen"><span class="fa fa-star"></span> Favorite</a>
-	                    <a href="/waitlists"class="tab"><span class="fa fa-hourglass"></span> Waitlist</a>
-	                    <a href="/delivery"class="tab"><span class="fa fa-rocket"></span> Delivery</a>
-	                    <a href="/payment"class="tab"><span class="fa fa-credit-card"></span>Payment</a>
-	                    <a href="/setting"class="tab"><span class="fa fa-cog"></span>Setting</a>
+						<a href="profile" class="tab"><span class="fa fa-home"></span> Home</a>
+                        <%if !current_user.rest %>
+                            <a href="favorite" class="tab chosen"><span class="fa fa-star"></span> Favorite</a>
+                        <%end%>
+                        <a href="/waitlists"class="tab"><span class="fa fa-hourglass"></span> Waitlist</a>
+                        <a href="delivery"class="tab"><span class="fa fa-rocket"></span> Delivery</a>
+                        <a href="/waitlist_history"class="tab"><span class="fa fa-history"></span>History</a>
+                        <a href="setting"class="tab"><span class="fa fa-cog"></span>Setting</a>
 					</div>
 				</div>
 			</div>

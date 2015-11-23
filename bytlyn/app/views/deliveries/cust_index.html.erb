@@ -12,12 +12,24 @@
       <div class="row">
         <div class="wrapper-left">
           <div class="side-pannel">
-            <a href="/profile" class="tab"><span class="fa fa-home"></span> Home</a>
-            <a href="/favorite" class="tab"><span class="fa fa-star"></span> Favorite</a>
+            <a href="profile" class="tab"><span class="fa fa-home"></span> Home</a>
+            <%if !current_user.rest %>
+                <a href="favorite" class="tab"><span class="fa fa-star"></span> Favorite</a>
+            <%end%>
             <a href="/waitlists"class="tab"><span class="fa fa-hourglass"></span> Waitlist</a>
-            <a href="/delivery"class="tab chosen"><span class="fa fa-rocket"></span> Delivery</a>
-            <a href="/payment"class="tab"><span class="fa fa-credit-card"></span>Payment</a>
-            <a href="/setting"class="tab"><span class="fa fa-cog"></span>Setting</a>
+    
+            <%if @history %>
+                <a href="delivery"class="tab"><span class="fa fa-rocket"></span> Delivery</a>
+            <%else %>
+                <a href="delivery"class="tab chosen"><span class="fa fa-rocket"></span> Delivery</a>
+            <%end%>
+
+            <%if @history %>
+              <a href="/waitlist_history"class="tab chosen"><span class="fa fa-history"></span>History</a>
+            <%else %>
+              <a href="/waitlist_history"class="tab"><span class="fa fa-history"></span>History</a>
+            <%end %>
+            <a href="setting"class="tab"><span class="fa fa-cog"></span>Setting</a>
           </div>
         </div>
       </div>
