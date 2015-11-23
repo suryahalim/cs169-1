@@ -5,8 +5,6 @@ class Delivery < ActiveRecord::Base
 	end
 
 	def self.get_delivery_rest(params)
-		# render text: params
-		# return params
 		return Delivery.where(rest_id: params)
 	end
 

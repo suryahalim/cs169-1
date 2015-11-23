@@ -14,7 +14,7 @@ class DynamicPagesController < ApplicationController
                 render "profile.html.erb"
             end
         else
-            redirect_to index_path
+            redirect_to sign_in_path
         end 
     end
 
@@ -32,40 +32,7 @@ class DynamicPagesController < ApplicationController
             redirect_to profile_path
             end 
         else
-            redirect_to index_path
-        end
-    end
-
-    def delivery
-        if !user_signed_in?
-            redirect_to index_path
-        elsif current_user.rest && Restaurant.find_by_user_id(current_user.id) == nil
-            redirect_to restaurant_new_path
-        end
-
-    end
-
-    def favorite
-        if !user_signed_in?
-            redirect_to index_path
-        elsif current_user.rest && Restaurant.find_by_user_id(current_user.id) == nil
-            redirect_to restaurant_new_path
-        end
-    end
-
-    def payment
-        if !user_signed_in?
-            redirect_to index_path
-        elsif current_user.rest && Restaurant.find_by_user_id(current_user.id) == nil
-            redirect_to restaurant_new_path
-        end
-    end
-    def settings
-        if !user_signed_in? 
-
-            redirect_to index_path
-        elsif current_user.rest && Restaurant.find_by_user_id(current_user.id) == nil
-            redirect_to restaurant_new_path
+            redirect_to sign_in_path
         end
     end
     def restaurant
