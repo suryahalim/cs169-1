@@ -27,6 +27,9 @@
                       Favorite Restaurants
                     </div>
                     <% if !@restaurants.empty? %>
+                    <% if flash[:notice] -%>
+                        <p class='alert alert-danger text-center'><%=h flash[:notice] %></p>
+                    <% end %>
                         <% @restaurants.each do |restaurant| %>
                         <% if @users.find_by_id(restaurant.user_id) != nil %>
                         <div class="restaurant-list-wrapper">
@@ -87,8 +90,11 @@
                         <% end %>
                         <%end%>
                     <% else %>
-                        You have no favorite restaurants! <br>
-                        Check out our restaurant lists to add to favorites 
+                        <% if flash[:notice] -%>
+                            <p class='alert alert-danger text-center'><%=h flash[:notice] %></p>
+                        <% end %>
+                        <p class='alert alert-danger'>You have no favorite restaurants! <br>
+                        Check out our restaurant lists to add to favorites </p>
                     <% end %>
 				</div>
 			</div>
