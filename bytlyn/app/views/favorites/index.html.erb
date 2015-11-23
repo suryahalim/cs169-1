@@ -29,6 +29,9 @@
                       Favorite Restaurants
                     </div>
                     <% if !@restaurants.empty? %>
+                    <% if flash[:notice] -%>
+                        <p class='alert alert-danger text-center'><%=h flash[:notice] %></p>
+                    <% end %>
                         <% @restaurants.each do |restaurant| %>
                         <% if @users.find_by_id(restaurant.user_id) != nil %>
                         <div class="restaurant-list-wrapper">
@@ -55,7 +58,9 @@
                                                 </div>
                                             </a>
                                                 <div class="card-info">
-                                                    <%=restaurant.price%>
+                                                    <% for i in 1..restaurant.price.to_i do%>
+                                                        $
+                                                    <% end%>
                                                 </div>
                                                 <div class="card-rating">
                                                     <%=restaurant.rating%>
@@ -77,7 +82,7 @@
                                             <%end%>
 
                                         </div>
-                                        <a href="./favorites_dest?rest_id=<%= restaurant.user_id %>" class="btn btn-bytlyn"> Remove Favorite </a>
+                                        <a href="./favorites_dest?rest_id=<%= restaurant.user_id %>" class="btn btn-red"> Remove Favorite </a>
                                         </div>
                                     </div>
                                 </div>
@@ -87,8 +92,11 @@
                         <% end %>
                         <%end%>
                     <% else %>
-                        You have no favorite restaurants! <br>
-                        Check out our restaurant lists to add to favorites 
+                        <% if flash[:notice] -%>
+                            <p class='alert alert-danger text-center'><%=h flash[:notice] %></p>
+                        <% end %>
+                        <p class='alert alert-danger'>You have no favorite restaurants! <br>
+                        Check out our restaurant lists to add to favorites </p>
                     <% end %>
 				</div>
 			</div>

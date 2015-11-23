@@ -127,6 +127,9 @@
                     </div>
                 <% end %>
                 <% if !@restaurants.blank?%>
+                    <% if flash[:notice] -%>
+                        <p class='alert alert-success text-center'><%=h flash[:notice] %></p>
+                    <% end %>
                     <% @restaurants.each do |restaurant| %>
                         <% if @users.find_by_id(restaurant.user_id) != nil %>
                         <div class="restaurant-list-wrapper">
