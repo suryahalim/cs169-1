@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151122041325) do
+ActiveRecord::Schema.define(version: 20151123091009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,15 @@ ActiveRecord::Schema.define(version: 20151122041325) do
     t.datetime "avatar_updated_at"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer "rating",        null: false
+    t.integer "restaurant_id"
+    t.integer "customer_id"
+  end
+
+  add_index "ratings", ["customer_id"], name: "index_ratings_on_customer_id", using: :btree
+  add_index "ratings", ["restaurant_id"], name: "index_ratings_on_restaurant_id", using: :btree
+
   create_table "restaurants", force: :cascade do |t|
     t.integer  "user_id",     null: false
     t.string   "address"
@@ -144,4 +153,6 @@ ActiveRecord::Schema.define(version: 20151122041325) do
     t.integer  "status",     null: false
   end
 
+  add_foreign_key "ratings", "customers"
+  add_foreign_key "ratings", "restaurants"
 end
