@@ -35,6 +35,10 @@ class DynamicPagesController < ApplicationController
             redirect_to sign_in_path
         end
     end
+    def restaurant_delivery
+        render "restaurant-delivery.html.erb"
+    end
+
     def restaurant
         # if user_signed_in?
         @hour = Hour.where(rest_id: params[:rest_id])

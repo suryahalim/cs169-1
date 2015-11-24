@@ -61,14 +61,15 @@ class CartsController < ApplicationController
       @cart.qty = 1
       respond_to do |format|
         if @cart.save
-          format.html { redirect_to restaurant_page_path(:rest_id => @cart.rest_id)}
+          format.html { redirect_to(:back)}
         else
           format.html { render :new }
           format.json { render json: @cart.errors, status: :unprocessable_entity }
         end
       end
     else
-      redirect_to restaurant_page_path(:rest_id => @cart.rest_id)
+      redirect_to(:back) 
+      #restaurant_page_path(:rest_id => @cart.rest_id)
     end
   end
 

@@ -48,8 +48,8 @@ Rails.application.routes.draw do
   get 'restaurant_page' => 'dynamic_pages#restaurant'
   post 'restaurant_page' => 'carts#create'
   get 'team' => 'dynamic_pages#team'
-  get 'restaurant-delivery' => 'dynamic_pages#restaurant-delivery'
-
+  get 'restaurant_delivery' => 'dynamic_pages#restaurant_delivery'
+  post 'restaurant_delivery' => 'carts#create'
   #delivery URL
   get 'delivery_new' => 'deliveries#new'
   get 'delivery' => 'deliveries#index'
@@ -57,7 +57,7 @@ Rails.application.routes.draw do
   post '/deliveries/new' => 'deliveries#create'
   post 'update_status' => 'deliveries#update_status'
   get 'delivery_history' => 'deliveries#history'
-
+  
   #waitlist URL
   get 'waitlists_new' => 'waitlists#new'
   post 'waitlists_new' => 'waitlists#create'
