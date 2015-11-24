@@ -49,20 +49,41 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <div class="nearby-wrapper">
                                 <span class="info">Nearby</span>
-                                <input id="nearby" type="checkbox" name="zip" value="true">
+                                <input id="nearby" type="checkbox" name="nearby" value="true">
+                                <input id="zip" type="hidden" name="zip" value="">
                                 <script>
                                     jQuery(window).ready(function(){
-                                         jQuery("#nearby").click(initiate_geolocation);
-                                                         });
                                                          
-                                         function initiate_geolocation() {
+                                        console.log("docready");
+                                     jQuery("#nearby").click(initiate_geolocation);
+                                    });
+                                                         
+                                     function initiate_geolocation() {
+                                         console.log("initiate");
+                                         if ($("#nearby").is(":checked")) {
+                                             //set location
                                              navigator.geolocation.getCurrentPosition(handle_geolocation_query);
-                                                         }
+                                         } else {
+                                             //clear location
+                                             $("#zip").val("");
+                                         }
+                                     }
                                 
-                                function handle_geolocation_query(position){
-                                    alert('Lat: ' + position.coords.latitude + ' ' +
-                                          'Lon: ' + position.coords.longitude);
-                                }
+                                    function handle_geolocation_query(position){
+                                        console.log("handlegeo");
+                                        console.log(position.coords.latitude);
+                                        console.log(position.coords.longitude);
+                                        var url = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude+"&sensor=true";
+                                        console.log(url);
+                                        $.get(url, processData);
+                                    }
+                                    
+                                    function processData(data)
+                                    {
+                                        console.log("processdata");
+                                        $("#zip").val(data.results[0].address_components[7].long_name);
+                                        
+                                    }
                                 </script>
                             </div>
                         </div>
