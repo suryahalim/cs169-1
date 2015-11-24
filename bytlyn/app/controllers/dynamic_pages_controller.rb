@@ -106,6 +106,11 @@ class DynamicPagesController < ApplicationController
             @sunday_time = 'closed'
         end
 
+    end
+    def restaurant
+        # if user_signed_in?
+        @rate = Rating.average_rating(params[:rest_id])
+
         render "restaurant.html.erb"
 
         # else
