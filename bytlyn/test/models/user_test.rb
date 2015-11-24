@@ -92,4 +92,12 @@ class UserTest < ActiveSupport::TestCase
     status = duplicate_user.save
     assert_equal(false, status)
   end
+  test "payment info" do
+    ex = User.new(name: "Example User", email: "userexamplecom",
+                     password: "foobar123", password_confirmation: "foobar123", rest: false)
+    assert_equal(nil, ex.has_payment_info?)
+    ex = User.new(name: "Example User", email: "userexamlecom",
+                     password: "foobar123", password_confirmation: "foobar123", rest: false, braintree_customer_id: 2)
+    assert_equal("2", ex.has_payment_info?)
+  end
 end

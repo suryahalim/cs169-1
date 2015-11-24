@@ -14,7 +14,7 @@ class DynamicPagesController < ApplicationController
                 render "profile.html.erb"
             end
         else
-            redirect_to index_path
+            redirect_to sign_in_path
         end 
     end
 
@@ -32,42 +32,13 @@ class DynamicPagesController < ApplicationController
             redirect_to profile_path
             end 
         else
-            redirect_to index_path
+            redirect_to sign_in_path
         end
     end
-
-    def delivery
-        if !user_signed_in?
-            redirect_to index_path
-        elsif current_user.rest && Restaurant.find_by_user_id(current_user.id) == nil
-            redirect_to restaurant_new_path
-        end
-
+    def restaurant_delivery
+        render "restaurant-delivery.html.erb"
     end
 
-    def favorite
-        if !user_signed_in?
-            redirect_to index_path
-        elsif current_user.rest && Restaurant.find_by_user_id(current_user.id) == nil
-            redirect_to restaurant_new_path
-        end
-    end
-
-    def payment
-        if !user_signed_in?
-            redirect_to index_path
-        elsif current_user.rest && Restaurant.find_by_user_id(current_user.id) == nil
-            redirect_to restaurant_new_path
-        end
-    end
-    def settings
-        if !user_signed_in? 
-
-            redirect_to index_path
-        elsif current_user.rest && Restaurant.find_by_user_id(current_user.id) == nil
-            redirect_to restaurant_new_path
-        end
-    end
     def restaurant
         # if user_signed_in?
         @hour = Hour.where(rest_id: params[:rest_id])
@@ -135,10 +106,16 @@ class DynamicPagesController < ApplicationController
             @sunday_time = 'closed'
         end
 
-        render "restaurant.html.erb"
+        @rate = Rating.average_rating(params[:rest_id])
 
-        # else
-            # redirect_to login_path
-        # end
+        render "restaurant.html.erb"
     end
+    # def restaurant
+    #     # if user_signed_in?
+        
+
+    #     # else
+    #         # redirect_to login_path
+    #     # end
+    # end
 end

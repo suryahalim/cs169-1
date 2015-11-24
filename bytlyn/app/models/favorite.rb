@@ -15,7 +15,11 @@ class Favorite < ActiveRecord::Base
         if User.find_by(id: cust_id) == nil || User.find_by(id: rest_id) == nil || !User.find_by(id: rest_id).rest
             return false
         end
+<<<<<<< HEAD
         if (cust_id == rest_id)
+=======
+        if (cust_id == rest_id) #for restaurant to put on their own waitlist
+>>>>>>> master
             return false
         end
         if User.find_by(id: cust_id).rest && (cust_id != rest_id)

@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   get 'payment.html' => 'deliveries#payment'
   get 'delivery.html' => 'dynamic_pages#delivery'
   get 'team.html' => 'dynamic_pages#team'
+  get 'restaurant-delivery.html' => 'dynamic_pages#restaurant-delivery'
+
 
   #without .html
   get 'index' => 'dynamic_pages#index'
@@ -44,9 +46,11 @@ Rails.application.routes.draw do
   get 'payment' => 'deliveries#payment'
   get 'home' => 'dynamic_pages#home'
   get 'restaurant_page' => 'dynamic_pages#restaurant'
+
   post 'restaurant_page' => 'carts#create'
   get 'team' => 'dynamic_pages#team'
-
+  get 'restaurant_delivery' => 'dynamic_pages#restaurant_delivery'
+  post 'restaurant_delivery' => 'carts#create'
   #delivery URL
   get 'delivery_new' => 'deliveries#new'
   get 'delivery' => 'deliveries#index'
@@ -54,6 +58,8 @@ Rails.application.routes.draw do
   post '/deliveries/new' => 'deliveries#create'
   post 'update_status' => 'deliveries#update_status'
   get 'delivery_history' => 'deliveries#history'
+  
+  post 'rate' => 'rating#create'
 
   #waitlist URL
   get 'waitlists_new' => 'waitlists#new'

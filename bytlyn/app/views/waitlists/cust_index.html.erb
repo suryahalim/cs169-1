@@ -14,7 +14,7 @@
           <div class="side-pannel">
             <a href="profile" class="tab"><span class="fa fa-home"></span> Home</a>
             <%if !current_user.rest %>
-                <a href="favorite" class="tab"><span class="fa fa-star"></span> Favorite</a>
+                <a href="favorites" class="tab"><span class="fa fa-star"></span> Favorite</a>
             <%end%>
             <%if @history %>
               <a href="/waitlists"class="tab"><span class="fa fa-hourglass"></span> Waitlist</a>
@@ -34,6 +34,10 @@
     </div>
     <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
       <div class="wrapper-right">
+        <% if @history %>
+          <a href="/waitlist_history"class="tab chosen"> Waitlist History</a>
+          <a href="/delivery_history"class="tab"> Delivery History</a>
+        <%end%>
         <div class="header text-center">
           Waitlist
           <% if @history %>

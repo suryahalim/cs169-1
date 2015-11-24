@@ -54,27 +54,22 @@ class CartsController < ApplicationController
   def create
     @cart = Cart.new(cart_params)
     @cart.version = version_check(cart_params)
-    # cart_params[:version] = @cart.version
     topass = cart_params
     topass[:version] = @cart.version
-    # topass = {cust_id: cart_params[:cust_id], rest_id: cart_params[:rest_id], menu: cart_params[:menu_id], version: @cart.version}
     
-    # render json: @cart
     if !qty_check(topass)
       @cart.qty = 1
-      # render json: topass
       respond_to do |format|
         if @cart.save
-          # link = '/restaurant_page?rest_id=' + params[:rest_id].to_s
-          format.html { redirect_to restaurant_page_path(:rest_id => @cart.rest_id)}
-          # format.json { render :show, status: :created, location: @cart }
+          format.html { redirect_to(:back)}
         else
           format.html { render :new }
           format.json { render json: @cart.errors, status: :unprocessable_entity }
         end
       end
     else
-      redirect_to restaurant_page_path(:rest_id => @cart.rest_id)
+      redirect_to(:back) 
+      #restaurant_page_path(:rest_id => @cart.rest_id)
     end
   end
 

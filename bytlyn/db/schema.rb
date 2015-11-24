@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20151123091009) do
+=======
+ActiveRecord::Schema.define(version: 20151123201718) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,7 +80,7 @@ ActiveRecord::Schema.define(version: 20151123091009) do
     t.integer  "rest_id",             null: false
     t.string   "name",                null: false
     t.string   "description"
-    t.integer  "price",               null: false
+    t.float    "price",               null: false
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.string   "avatar_file_name"
@@ -86,6 +90,7 @@ ActiveRecord::Schema.define(version: 20151123091009) do
   end
 
   create_table "ratings", force: :cascade do |t|
+<<<<<<< HEAD
     t.integer "rating",        null: false
     t.integer "restaurant_id"
     t.integer "customer_id"
@@ -94,6 +99,15 @@ ActiveRecord::Schema.define(version: 20151123091009) do
   add_index "ratings", ["customer_id"], name: "index_ratings_on_customer_id", using: :btree
   add_index "ratings", ["restaurant_id"], name: "index_ratings_on_restaurant_id", using: :btree
 
+=======
+    t.integer  "rating"
+    t.integer  "customer_id"
+    t.integer  "restaurant_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+>>>>>>> master
   create_table "restaurants", force: :cascade do |t|
     t.integer  "user_id",     null: false
     t.string   "address"
