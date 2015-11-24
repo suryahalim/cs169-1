@@ -123,31 +123,26 @@ form {
 		text-align: left;
 		.card-header {
 			position: relative;
-			display: inline-block;
+			display: block;
 			font-size: 20px;
 			padding: 2px 5px;
-			margin: 5px 0;
-			background-size: 200% 100%;
-	    	background-image: linear-gradient(to right, @white 50%, @bytlyn-a 50%);
-	    	border-left: 2px solid @bytlyn-a;
-	    	transition: background-position 1s ease-in-out, color 0.5s;
-	    	-o-transition: background-position 1s ease-in-out, color 0.5s;
-	    	-moz-transition: background-position 1s ease-in-out, color 0.5s;
-	    	-webkit-transition: background-position 1s ease-in-out, color 0.5s;
-	    	
-	    	&:hover {
-			    background-position: -100% 0;
-			    color: @white;
-			}
+			color: @white;
+	    	background-color: @bytlyn-a;
 		}
 		.card-button {
 			position: absolute;
 			z-index: 1;
-			top: 50%;
-			right: 10px;
+			bottom: 0;
+			right: 0;
 			transform: translate3d(0, -50%, 0);
 			-webkit-transfrom: translate3d(0, -50%, 0);
-		}	
+		}
+
+		// for menu
+		.card-price {
+			font-size: 30px;
+			color: @green-fancy;
+		}
 	}
 	&:hover {
 		transition: box-shadow 0.5s;

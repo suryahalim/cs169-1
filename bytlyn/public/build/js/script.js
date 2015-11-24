@@ -32,6 +32,13 @@ $(document).ready(function() {
 		$('input[id="user_avatar"]').click();
 	});
 
+	// click to restaurant
+	// bug: when waitlist is clicked it also goes to the restaurant page
+	$('.card-view').click(function() {
+		// var ln = $('.card-header').attr("href")
+		// window.location.href = ln;
+	});
+
 	// shopping cart
 	var cartShown = false;
 	$('.shopping-cart-wrapper').hide();

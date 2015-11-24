@@ -673,29 +673,23 @@ form input:-webkit-autofill {
 }
 .card-view .card-content .card-header {
   position: relative;
-  display: inline-block;
+  display: block;
   font-size: 20px;
   padding: 2px 5px;
-  margin: 5px 0;
-  background-size: 200% 100%;
-  background-image: linear-gradient(to right, #ffffff 50%, rgba(204, 115, 13, 0.8) 50%);
-  border-left: 2px solid rgba(204, 115, 13, 0.8);
-  transition: background-position 1s ease-in-out, color 0.5s;
-  -o-transition: background-position 1s ease-in-out, color 0.5s;
-  -moz-transition: background-position 1s ease-in-out, color 0.5s;
-  -webkit-transition: background-position 1s ease-in-out, color 0.5s;
-}
-.card-view .card-content .card-header:hover {
-  background-position: -100% 0;
   color: #ffffff;
+  background-color: rgba(204, 115, 13, 0.8);
 }
 .card-view .card-content .card-button {
   position: absolute;
   z-index: 1;
-  top: 50%;
-  right: 10px;
+  bottom: 0;
+  right: 0;
   transform: translate3d(0, -50%, 0);
   -webkit-transfrom: translate3d(0, -50%, 0);
+}
+.card-view .card-content .card-price {
+  font-size: 30px;
+  color: #28d20d;
 }
 .card-view:hover {
   transition: box-shadow 0.5s;
@@ -1188,6 +1182,7 @@ body.restaurant main .content .wrapper-left a {
   margin: 10px auto;
 }
 body.restaurant main .content .wrapper-right {
+  display: inline-block;
   background-color: #ffffff;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   color: #333333;
@@ -1321,7 +1316,7 @@ body.profile main .wrapper-right .payment-detail .payment-content-wrapper:last-c
   border-bottom: none;
 }
 body.profile main .wrapper-right .payment-detail .payment-shipping {
-  color: #7d695d;
+  color: #28d20d;
 }
 body.profile main .wrapper-right .payment-method {
   margin-bottom: 50px;
