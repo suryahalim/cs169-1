@@ -37,6 +37,13 @@ class RestaurantsController < ApplicationController
       # search by location :http://www.scribd.com/doc/2569355/Geo-Distance-Search-with-MySQL
       # search by open hour
       
+      # relevance by same zip code
+      @relevant = @restaurants.where("zip = ?","#{search_params[:zip].downcase}") if search_params[:zip].present?
+      puts @relevant
+      @irelevant = @restaurants.where("zip != ?","#{search_params[:zip].downcase}") if search_params[:zip].present?
+      puts @irelevant
+      @restaurants = (@relevant + @irelevant) if search_params[:zip].present?
+      
       @users = User.all
   end
 
@@ -162,7 +169,7 @@ class RestaurantsController < ApplicationController
     end
     
     def search_params
-        params.permit(:key,:category,:rating,:price,:day,:time,:checkprice,:checkrating)
+        params.permit(:key,:category,:rating,:price,:day,:time,:checkprice,:checkrating,:zip)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

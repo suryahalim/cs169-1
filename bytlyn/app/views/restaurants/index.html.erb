@@ -47,6 +47,26 @@
             
                     <div class="advanced-search-wrapper text-center">
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="nearby-wrapper">
+                                <span class="info">Nearby</span>
+                                <input id="nearby" type="checkbox" name="zip" value="true">
+                                <script>
+                                    jQuery(window).ready(function(){
+                                         jQuery("#nearby").click(initiate_geolocation);
+                                                         });
+                                                         
+                                         function initiate_geolocation() {
+                                             navigator.geolocation.getCurrentPosition(handle_geolocation_query);
+                                                         }
+                                
+                                function handle_geolocation_query(position){
+                                    alert('Lat: ' + position.coords.latitude + ' ' +
+                                          'Lon: ' + position.coords.longitude);
+                                }
+                                </script>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <div class="price-wrapper">
                                 <span class="info">Price</span>
                                 <% if @checkprice == "true" %>
