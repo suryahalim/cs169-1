@@ -28,16 +28,60 @@
 					  </div>
 					<% end %>
 				</div>
-				<br>
 				<%= image_tag User.where(id: params[:rest_id]).first.avatar.url(:medium), :class => "r-logo center", width: '200', height: '200' %><br>
 				<!-- <img src="build/img/stock/logo-restaurant.jpg" class="r-logo"/> -->
 				<div class="rating-restaurant text-md">
-					<span class="fa fa-star"></span>
-					<span class="fa fa-star"></span>
-					<span class="fa fa-star"></span>
-					<span class="fa fa-star"></span>
-					<span class="fa fa-star-o"></span>
-				</div>
+                 <% if user_signed_in? && !current_user.rest && !Rating.rate_exist(params[:rest_id],Customer.where(:user_id => current_user.id).pluck(:id)) %>
+                    <%= (@rate+0.999).to_i %>
+                    <% cust_id=Customer.where(:user_id => current_user.id).pluck(:id)[0] %>
+                    <span class="fa fa-star">
+                    <%= form_tag("/rate", method: "post", :id => "myform", :class => "")do %>
+                    <input type="hidden" name="rating" value="1"></input>
+                    <input type="hidden" name="customer_id" value="<%= cust_id %>"></input>
+                    <input type="hidden" name="restaurant_id" value="<%= params[:rest_id] %>"></input>
+                    <input type="submit" class="fa fa-star" value="1"></input>
+                    <% end %></span>
+                    
+                    <span class="fa fa-star">
+                    <%= form_tag("/rate", method: "post", :id => "myform", :class => "")do %>
+                    <input type="hidden" name="rating" value="2"></input>
+                    <input type="hidden" name="customer_id" value="<%= cust_id %>"></input>
+                    <input type="hidden" name="restaurant_id" value="<%= params[:rest_id] %>"></input>
+                    <input type="submit" class="fa fa-star" value="2"></input>
+                    <% end %></span>
+                    
+                    <span class="fa fa-star">
+                    <%= form_tag("/rate", method: "post", :id => "myform", :class => "")do %>
+                    <input type="hidden" name="rating" value="3"></input>
+                    <input type="hidden" name="customer_id" value="<%= cust_id %>"></input>
+                    <input type="hidden" name="restaurant_id" value="<%= params[:rest_id] %>"></input>
+                    <input type="submit" class="fa fa-star" value="3"></input>
+                    <% end %></span>
+                    
+                    <span class="fa fa-star">
+                    <%= form_tag("/rate", method: "post", :id => "myform", :class => "")do %>
+                    <input type="hidden" name="rating" value="4"></input>
+                    <input type="hidden" name="customer_id" value="<%= cust_id %>"></input>
+                    <input type="hidden" name="restaurant_id" value="<%= params[:rest_id] %>"></input>
+                    <input type="submit" class="fa fa-star" value="4"></input>
+                    <% end %></span>
+                    
+                    <span class="fa fa-star">
+                    <%= form_tag("/rate", method: "post", :id => "myform", :class => "")do %>
+                    <input type="hidden" name="rating" value="5"></input>
+                    <input type="hidden" name="customer_id" value="<%= cust_id %>"></input>
+                    <input type="hidden" name="restaurant_id" value="<%= params[:rest_id] %>"></input>
+                    <input type="submit" class="fa fa-star" value="5"></input>
+                    <% end %></span>
+                 <% else %>
+                     <%= (@rate+0.999).to_i %>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star-o"></span>
+                <% end %>
+                    				</div>
 				<div class="r-info text-sm text-center">
 					<%= Restaurant.where(user_id: params[:rest_id]).first.description %>
 				</div>

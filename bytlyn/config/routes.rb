@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   get 'delivery' => 'dynamic_pages#delivery'
   get 'home' => 'dynamic_pages#home'
   get 'restaurant_page' => 'dynamic_pages#restaurant'
+  post 'rate' => 'rating#create'
 
   #waitlist URL
   get 'waitlists_new' => 'waitlists#new'
