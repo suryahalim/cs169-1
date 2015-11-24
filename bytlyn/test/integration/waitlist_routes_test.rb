@@ -134,4 +134,72 @@ class WaitlistRoutesTest < ActionDispatch::IntegrationTest
 		assert_nil Waitlist.where(cust_id: @user2.id).first
 	end
 
+	test "waitlist customer" do
+		post_via_redirect "/sign_in", 'user[email]' => @user1.email, 'user[password]' => @user1.password
+        # assert_response :success
+        get waitlists_path
+        assert_response :success
+        # assert response :success
+	end
+
+	test "waitlist restaurant" do
+		get logout_path
+		post_via_redirect "/sign_in", 'user[email]' => @user2.email, 'user[password]' => @user2.password
+        # assert_response :success
+        get waitlists_path
+        assert_response :success
+	end
+	test "history not signed in" do
+		get logout_path
+		get waitlist_history_path
+
+		assert_redirected_to login_path
+	end
+
+	test "history signed in" do
+		post_via_redirect "/sign_in", 'user[email]' => @user2.email, 'user[password]' => @user2.password
+		get waitlist_history_path
+		assert_response :success
+	end
+
+	test "history signed in cust" do
+		post_via_redirect "/sign_in", 'user[email]' => @user1.email, 'user[password]' => @user1.password
+		get waitlist_history_path
+		assert_response :success
+	end
+
+	test "history restaurant" do
+		get logout_path
+		post_via_redirect "/sign_in", 'user[email]' => @user2.email, 'user[password]' => @user2.password
+		get waitlist_history_path
+		
+		assert_response :success
+	end
+
+
+	test "waitlist invalid" do 
+		post '/waitlists_new', waitlist: {cust_id: @cust.user_id, rest_id: @rest.user_id}
+		path = "/waitlists_new?rest_id="
+		path << @rest.user_id.to_s
+		assert_redirected_to path
+	end
+
+	test "update status success" do
+		post_via_redirect "/sign_in", 'user[email]' => @user2.email, 'user[password]' => @user2.password
+		post '/waitlists', waitlist: {cust_id: @cust.user_id, people: 5, rest_id: @rest.user_id}
+		id = Waitlist.where(cust_id: @cust.user_id, rest_id: @rest.user_id).first.id
+		post '/update_status_success', waitlist: id
+
+		assert_equal(2, Waitlist.where(cust_id: @cust.user_id, rest_id: @rest.user_id).first.status)
+	end
+
+	test "update status no show" do
+		post_via_redirect "/sign_in", 'user[email]' => @user2.email, 'user[password]' => @user2.password
+		post '/waitlists', waitlist: {cust_id: @cust.user_id, people: 5, rest_id: @rest.user_id}
+		id = Waitlist.where(cust_id: @cust.user_id, rest_id: @rest.user_id).first.id
+		post '/update_status_no_show', waitlist: id
+
+		assert_equal(3, Waitlist.where(cust_id: @cust.user_id, rest_id: @rest.user_id).first.status)
+	end
+
 end

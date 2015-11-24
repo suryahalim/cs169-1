@@ -61,7 +61,7 @@ class RestaurantsController < ApplicationController
         redirect_to profile_path, notice: 'Restricted Path'
       end
     else
-      redirect_to signed_in_path, notice: 'Restricted Path'
+      redirect_to sign_in_path, notice: 'Restricted Path'
     end
   end
 

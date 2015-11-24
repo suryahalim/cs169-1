@@ -50,7 +50,7 @@ class FavoritesController < ApplicationController
       respond_to do |format|
         if @favorite.save
           flash.now[:notice] = 'Successfully added to favorite list.'
-          format.html { redirect_to favorites_new_path, notice: 'Favorite was successfully created.' }
+          format.html { redirect_to restaurants_path, notice: 'Favorite was successfully created.' }
           format.json { render :show, status: :created, location: @favorite }
         else
           format.html { redirect_to restaurants_list_path }
@@ -83,7 +83,7 @@ class FavoritesController < ApplicationController
   def destroy
     @favorite.destroy
     respond_to do |format|
-      format.html { redirect_to favorites_url, notice: 'Restaurant was successfully removed from favorite list.' }
+      format.html { redirect_to favorites_url, notice: 'Favorite was successfully removed' }
       format.json { head :no_content }
     end
   end
