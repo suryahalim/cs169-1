@@ -9,20 +9,18 @@
                 <% end %>
                 <%= form_for @waitlist do |f| %>
                 <p>
-                    Enter number of people:
-                    <%= f.number_field :people, min: 1 %>
+                    <span class="info">Enter number of people:</span>
+                    <%= f.number_field :people, min: 1, :class => "modern" %>
                 </p>
                 <p>   
                     <% if current_user.id.to_i != params[:rest_id].to_i %>
                         <%= f.hidden_field :name, :value => current_user.name %>
                     <% else %>
-                        <%= f.label :name %>
-                        <%= f.text_field :name, required: true %>
+                        <span class="info">Name</span>
+                        <%= f.text_field :name, required: true, :class => "modern"%>
                     <% end %>
                 </p>
                     <%= f.hidden_field :rest_id, :value => params[:rest_id] %>
-                
-                
                  <div class="actions">
                     <br><br>
                 <!-- <button class="btn btn-bytlyn btn-max">Sign Up</button> -->

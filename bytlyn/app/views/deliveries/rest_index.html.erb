@@ -39,16 +39,12 @@
                         
                         <p id="notice"><%= notice %></p>
                         <% if @history %>
-                          <a href="/waitlist_history"class="tab"> Waitlist History</a>
-                          <a href="/delivery_history"class="tab chosen"> Delivery History</a>
+                            <ul class="nav nav-tabs">
+                                <li><a href="/waitlist_history">Waitlist History</a></li>
+                                <li class="active"><a href="/delivery_history">Delivery History</a></li>
+                            </ul>
                         <%end%>
                         <div class="text-center">
-                            
-
-                            <h1><%=current_user.name %>'s Delivery 
-                            <% if @history %>
-                                History
-                                <%end%></h1>
                             <table class="table table-striped">
                                 <thead>
                                     <tr><th colspan="6"></th></tr>

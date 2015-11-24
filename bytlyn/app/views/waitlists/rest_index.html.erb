@@ -37,17 +37,13 @@
                     
                         <p id="notice"><%= notice %></p>
                         <% if @history %>
-                          <a href="/waitlist_history"class="tab chosen"> Waitlist History</a>
-                          <a href="/delivery_history"class="tab"> Delivery History</a>
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="/waitlist_history">Waitlist History</a></li>
+                                <li><a href="/delivery_history">Delivery History</a></li>
+                            </ul>
                         <%end%>
                         <div class="text-center">
-                            <h1><%=current_user.name %>'s Waitlist 
-                                <% if @history %> History <%end%></h1>
                             <table class="table table-striped">
-                                <thead>
-                                    <tr><th colspan="3"></th></tr>
-                                </thead>
-                                
                                 <tbody >
                                     <% if not @lists.empty? %>
                                     <tr>

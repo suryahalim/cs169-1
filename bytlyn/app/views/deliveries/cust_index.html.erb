@@ -8,8 +8,8 @@
       </div>
     </div>
   <div class="container">
-    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-      <div class="row">
+    <div class="row">
+      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
         <div class="wrapper-left">
           <div class="side-pannel">
             <a href="profile" class="tab"><span class="fa fa-home"></span> Home</a>
@@ -33,90 +33,86 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-      <div class="wrapper-right">
-        <% if @history %>
-          <a href="/waitlist_history"class="tab"> Waitlist History</a>
-          <a href="/delivery_history"class="tab chosen"> Delivery History</a>
-        <%end%>
-        <div class="header text-center">
-          Delivery 
+      <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+        <div class="wrapper-right">
           <% if @history %>
-            History
+          <ul class="nav nav-tabs">
+            <li><a href="/waitlist_history">Waitlist History</a></li>
+            <li class="active"><a href="/delivery_history">Delivery History</a></li>
+          </ul>
           <%end%>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <% if flash[:error] %>
-            <div class="alert alert-danger"><%= flash[:error] %></div>
-          <% end %>
-        </div>
-        <% if not @deliveries.empty? %>
-          <% @deliveries.each do |delivery| %>
-              <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-                <div class="payment-detail">
-                  <div class="payment-content-wrapper">
-                    <strong>Sliver</strong><br>
-                    Order placed on Dec 18 at 8.11 PM
-                  </div>
-                  <div class="payment-content-wrapper">
-                    <strong>Jessica Lie</strong><br>
-                    1988 Martin Luther King Junior Way<br>
-                    Berkeley, CA 94704<br>
-                    (123) 456-7890
-                  </div>
-                  <div class="payment-content-wrapper">
-                    <div class="text-left">
-                      <strong>Half Pie</strong><span class="payment-count"> x 1</span>
-                    </div>
-                    <div class="text-right">
-                      $10.00
-                    </div>
-                  </div>
-                  <div class="payment-content-wrapper">
-                    <div class="text-left">
-                      Subtotal<br>
-                      Tax<br>
-                      Service<br>
-                      Delivery Fee<br>
-                    </div>
-                    <div class="text-right">
-                      $10.00<br>
-                      $0.90<br>
-                      $1.80<br>
-                      <span class="payment-shipping">Free</span>
-                    </div>
-                  </div>
-                  <div class="payment-content-wrapper">
-                    <div class="text-left">
-                      <strong>TOTAL</strong>
-                    </div>
-                    <div class="text-right">
-                      <strong>$12.70</strong>
-                    </div>
-                  </div>
-                </div>
-                
-                <a href="#">
-                  <div class="box-option">
-                    <img src="build/img/stock/restaurant.jpg"/>
-                    <div class="text">
-                      <% name = User.where(id: delivery.rest_id).first.name %>
-                        
-                      Restaurant <%= name %><br>
-                      Total: $<%= delivery.total%><br>
-                      <%= Delivery.status_string(delivery.status) %><br>
-                    </div>
-                  </div>
-                </a>
-              </div>
-          <% end %>
-        <%else %>
-          <div class="alert alert-danger">
-            You have no pending delivery
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <% if flash[:error] %>
+              <div class="alert alert-danger"><%= flash[:error] %></div>
+            <% end %>
           </div>
-        <%end %>
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg">
+          <% if not @deliveries.empty? %>
+            <% @deliveries.each do |delivery| %>
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                  <div class="payment-detail">
+                    <div class="payment-content-wrapper">
+                      <strong>Sliver</strong><br>
+                      Order placed on Dec 18 at 8.11 PM
+                    </div>
+                    <div class="payment-content-wrapper">
+                      <strong>Jessica Lie</strong><br>
+                      1988 Martin Luther King Junior Way<br>
+                      Berkeley, CA 94704<br>
+                      (123) 456-7890
+                    </div>
+                    <div class="payment-content-wrapper">
+                      <div class="text-left">
+                        <strong>Half Pie</strong><span class="payment-count"> x 1</span>
+                      </div>
+                      <div class="text-right">
+                        $10.00
+                      </div>
+                    </div>
+                    <div class="payment-content-wrapper">
+                      <div class="text-left">
+                        Subtotal<br>
+                        Tax<br>
+                        Service<br>
+                        Delivery Fee<br>
+                      </div>
+                      <div class="text-right">
+                        $10.00<br>
+                        $0.90<br>
+                        $1.80<br>
+                        <span class="payment-shipping">Free</span>
+                      </div>
+                    </div>
+                    <div class="payment-content-wrapper">
+                      <div class="text-left">
+                        <strong>TOTAL</strong>
+                      </div>
+                      <div class="text-right">
+                        <strong>$12.70</strong>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <a href="#">
+                    <div class="box-option">
+                      <img src="build/img/stock/restaurant.jpg"/>
+                      <div class="text">
+                        <% name = User.where(id: delivery.rest_id).first.name %>
+                          
+                        Restaurant <%= name %><br>
+                        Total: $<%= delivery.total%><br>
+                        <%= Delivery.status_string(delivery.status) %><br>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+            <% end %>
+          <%else %>
+            <div class="alert alert-danger">
+              You have no pending delivery
+            </div>
+          <%end %>
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg">
+          </div>
         </div>
       </div>
     </div>

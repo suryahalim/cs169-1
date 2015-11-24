@@ -14,7 +14,22 @@ body.team {
 			padding: 100px 0;
 
 			.team-wrapper {
+				position:relative;
 				padding: 20px 0;
+				
+				img:nth-child(1) {
+					width: 100%;
+				}
+				img:nth-child(2) {
+					position: absolute;
+					top: 20px;
+					width: 100%;
+					.smooth();
+					&:hover {
+						opacity: 0;
+						.smooth();
+					}
+				}
 				
 				.team-description {
 					padding: 10px 0;

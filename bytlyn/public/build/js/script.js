@@ -39,6 +39,13 @@ $(document).ready(function() {
 		// window.location.href = ln;
 	});
 
+	// team
+	$('.team-wrapper .photo').hover(function() {
+		//$(this).css("visibility", "hidden");
+	}, function() {
+		//$(this).css("visibility", "visible");
+	});
+
 	// shopping cart
 	var cartShown = false;
 	$('.shopping-cart-wrapper').hide();
