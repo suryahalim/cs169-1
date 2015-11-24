@@ -49,7 +49,11 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <div class="nearby-wrapper">
                                 <span class="info">Nearby</span>
-                                <input id="nearby" type="checkbox" name="nearby" value="true">
+                                <% if params[:nearby] == "true" %>
+                                    <input id="nearby" type="checkbox" name="nearby" value="true" checked>
+                                <% else %>
+                                    <input id="nearby" type="checkbox" name="nearby" value="true">
+                                <% end %>
                                 <input id="zip" type="hidden" name="zip" value="">
                                 <script>
                                     jQuery(window).ready(function(){
@@ -85,6 +89,19 @@
                                         
                                     }
                                 </script>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="opennow-wrapper">
+                                <span class="info">Open Now</span>
+                                <% if params[:opennow] == "true" %>
+                                <input type="checkbox" name="opennow" value="true" checked>
+                                <% else %>
+                                    <input type="checkbox" name="opennow" value="true">
+                                <% end %>
+                                <% timeNow = Time.now.in_time_zone("Pacific Time (US & Canada)") %>
+                                <input id="time" type="hidden" name="time" value="<%= timeNow.strftime("%H:%M") %>">
+                                <input id="day" type="hidden" name="day" value="<%= (timeNow.wday - 1)%7 + 1%>">
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
