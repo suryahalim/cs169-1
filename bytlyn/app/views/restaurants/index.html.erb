@@ -146,10 +146,8 @@
                                                 <a class="btn btn-bytlyn" href="./login">Waitlist</a>
                                             <% end %>
                                         </div>
-                                        <a href = './restaurant_page?rest_id=<%= restaurant.user_id %>'>
-                                            <div class="card-header">
-                                                <%= @users.find_by_id(restaurant.user_id).name %>
-                                            </div>
+                                        <a href = './restaurant_page?rest_id=<%= restaurant.user_id %>' class="card-header">
+                                            <%= @users.find_by_id(restaurant.user_id).name %>
                                         </a>
                                         <div class="card-info">
                                             <% for i in 1..restaurant.price.to_i do%>
@@ -191,12 +189,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="clearfix"></div>
                             </div>
                         </div>
                         <%end%>
                     <% end %> <!--end of for loop-->
-                <% end %>
+                <% end %> 
             </div>
         </div>
     </div>
