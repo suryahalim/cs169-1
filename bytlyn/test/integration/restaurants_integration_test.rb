@@ -2,7 +2,9 @@ require 'test_helper'
  
 class RestaurantIntegrationTest < ActionDispatch::IntegrationTest
   setup do
+
     @restaurant = Restaurant.create("description"=>"123", "price"=>"123", "address"=>"123", "rest_type"=>"Italian", "zip" =>"94704", "city" =>"berkeley", "hours_attributes"=>{"0"=>{"open"=>"11:11", "close"=>"11:11", "rest_id"=>"90", "day_id"=>"1"}, "1"=>{"open"=>"14:22", "close"=>"14:22", "rest_id"=>"90", "day_id"=>"2"}, "2"=>{"open"=>"15:32", "close"=>"15:33", "rest_id"=>"90", "day_id"=>"3"}, "3"=>{"open"=>"03:22", "close"=>"15:32", "rest_id"=>"90", "day_id"=>"4"}, "4"=>{"open"=>"16:44", "close"=>"21:09", "rest_id"=>"90", "day_id"=>"5"}, "5"=>{"open"=>"18:06", "close"=>"19:07", "rest_id"=>"90", "day_id"=>"6"}, "6"=>{"open"=>"08:08", "close"=>"20:08", "rest_id"=>"90", "day_id"=>"7"}}, "user_id"=>"90")
+    @user = User.create(id: 90, name: 'restoran', email: "aku@gmail.com", rest:true, password:"123123123", password_confirmation: "123123123")
     # assert_response :success
     # assert @restaurant.save
     @user = User.create(id: 1, name: 'rest 1', email: 'FendyOnel@gmail.com', rest: true, password: '123123123', password_confirmation: '123123123')
@@ -92,4 +94,11 @@ class RestaurantIntegrationTest < ActionDispatch::IntegrationTest
     get "/menus"
       assert_redirected_to restaurant_new_path
   end
+
+  # test "restaurant_index" do
+  #   path = "/restaurant_page?rest_id="
+  #   path << @restaurant.user_id.to_s
+  #   get  path
+  #   assert_response :success
+  # end
 end

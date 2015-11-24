@@ -3,10 +3,10 @@ class CustomersController < ApplicationController
 
   # GET /customers
   # GET /customers.json
-  def index
-    @customers = Customer.all
-    @users = User.all
-  end
+  # def index
+  #   @customers = Customer.all
+  #   @users = User.all
+  # end
 
   # GET /customers/1
   # GET /customers/1.json
@@ -14,9 +14,9 @@ class CustomersController < ApplicationController
   end
 
   # GET /customers/new
-  def new
-    @customer = Customer.new
-  end
+  # def new
+  #   @customer = Customer.new
+  # end
 
   # GET /customers/1/edit
   def edit

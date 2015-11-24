@@ -18,6 +18,9 @@ class WaitlistRoutesTest < ActionDispatch::IntegrationTest
 		@user2.save
 		@rest.save
 
+		@user3 = User.create(name: "test4", email: "test4@gmail.com", password:"foobar12", password_confirmation: "foobar12",
+		  			rest: true)
+		@user3.save
 		# create sign in session
 		post_via_redirect "/sign_in", 'user[email]' => @user1.email, 'user[password]' => @user1.password
 	end
@@ -200,6 +203,17 @@ class WaitlistRoutesTest < ActionDispatch::IntegrationTest
 		post '/update_status_no_show', waitlist: id
 
 		assert_equal(3, Waitlist.where(cust_id: @cust.user_id, rest_id: @rest.user_id).first.status)
+	end
+
+	test "user stuck restaurant new path" do
+		get logout_path
+		post_via_redirect "/sign_in", 'user[email]' => @user3.email, 'user[password]' => @user3.password
+		
+		get "/waitlists"
+		assert_redirected_to restaurant_new_path
+		get "/waitlist_history"
+		assert_redirected_to restaurant_new_path
+
 	end
 
 end

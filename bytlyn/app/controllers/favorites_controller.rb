@@ -27,13 +27,13 @@ class FavoritesController < ApplicationController
   end
 
   # GET /favorites/new
-  def new
-    if user_signed_in?
-      @favorite = Favorite.new
-    else
-      redirect_to login_path
-    end
-  end
+  # def new
+  #   if user_signed_in?
+  #     @favorite = Favorite.new
+  #   else
+  #     redirect_to login_path
+  #   end
+  # end
 
   # GET /favorites/1/edit
   def edit
@@ -66,17 +66,17 @@ class FavoritesController < ApplicationController
 
   # PATCH/PUT /favorite/1
   # PATCH/PUT /favorite/1.json
-  def update
-    respond_to do |format|
-      if @favorite.update(favorite_params)
-        format.html { redirect_to favorite_path, notice: 'Favorite was successfully added.' }
-        format.json { render :show, status: :ok, location: @favorite }
-      else
-        format.html { render :edit }
-        format.json { render json: @favorite.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @favorite.update(favorite_params)
+  #       format.html { redirect_to favorite_path, notice: 'Favorite was successfully added.' }
+  #       format.json { render :show, status: :ok, location: @favorite }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @favorite.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /favorites/1
   # DELETE /favorites/1.json

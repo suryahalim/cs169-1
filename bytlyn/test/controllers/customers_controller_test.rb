@@ -44,4 +44,6 @@ class CustomersControllerTest < ActionController::TestCase
     assert_redirected_to customers_path
   end
 
+
+
 end

@@ -62,7 +62,13 @@ class FavoriteTest < ActiveSupport::TestCase
         @fav.save
     end
     assert_difference('Favorite.count', 1) do 
-        @fav = Favorite.new(cust_id: 1, rest_id: 1)
+        @fav = Favorite.new(cust_id: @user_rest.id, rest_id: @user_rest.id)
+        status = @fav.check_params
+        assert_equal(status, false)
+        @fav.save
+    end
+    assert_difference('Favorite.count', 1) do 
+        @fav = Favorite.new(cust_id: @user_rest.id, rest_id: @user_rest2.id)
         status = @fav.check_params
         assert_equal(status, false)
         @fav.save
