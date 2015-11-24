@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-11-23T03:05:26-08:00">2015-11-23T03:05:26-08:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-11-23T22:29:20-08:00">2015-11-23T22:29:20-08:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">68.76%</span></span>
+    (<span class="covered_percent"><span class="red">70.2%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.37
+         1.36
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>44</b> files in total.
-    <b>445</b> relevant lines. 
-    <span class="green"><b>306</b> lines covered</span> and
-    <span class="red"><b>139</b> lines missed </span>
+    <b>443</b> relevant lines. 
+    <span class="green"><b>311</b> lines covered</span> and
+    <span class="red"><b>132</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -72,12 +72,12 @@
       
       <tr>
         <td class="strong"><a href="#cc755f7d6dbcdf9a8f064848c8381dee0bc18d1b" class="src_link" title="app/controllers/favorites_controller.rb">app/controllers/favorites_controller.rb</a></td>
-        <td class="red strong">59.18 %</td>
+        <td class="red strong">71.43 %</td>
         <td>107</td>
         <td>49</td>
-        <td>29</td>
-        <td>20</td>
-        <td>1.4</td>
+        <td>35</td>
+        <td>14</td>
+        <td>1.5</td>
       </tr>
       
       <tr>
@@ -87,7 +87,7 @@
         <td>14</td>
         <td>10</td>
         <td>4</td>
-        <td>2.9</td>
+        <td>2.5</td>
       </tr>
       
       <tr>
@@ -207,7 +207,7 @@
         <td>20</td>
         <td>11</td>
         <td>9</td>
-        <td>2.7</td>
+        <td>2.4</td>
       </tr>
       
       <tr>
@@ -482,12 +482,12 @@
       
       <tr>
         <td class="strong"><a href="#e74b9c9353d6141c38186b08111845765d5ca325" class="src_link" title="test/integration/favorites_integration_test.rb">test/integration/favorites_integration_test.rb</a></td>
-        <td class="green strong">97.92 %</td>
-        <td>91</td>
-        <td>48</td>
-        <td>47</td>
-        <td>1</td>
-        <td>2.5</td>
+        <td class="green strong">100.0 %</td>
+        <td>88</td>
+        <td>46</td>
+        <td>46</td>
+        <td>0</td>
+        <td>2.6</td>
       </tr>
       
     </tbody>
@@ -634,14 +634,14 @@
           <code class="ruby">    def profile</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="5">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="6" data-linenumber="5">
+          <span class="hits">6</span>
           
           <code class="ruby">        if user_signed_in?</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="6">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="6" data-linenumber="6">
+          <span class="hits">6</span>
           
           <code class="ruby">            if current_user.rest </code>
         </li>
@@ -688,8 +688,8 @@
           <code class="ruby">            else</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="14">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="6" data-linenumber="14">
+          <span class="hits">6</span>
           
           <code class="ruby">                render &quot;profile.html.erb&quot;</code>
         </li>
@@ -1481,11 +1481,11 @@
         <div class="source_table" id="cc755f7d6dbcdf9a8f064848c8381dee0bc18d1b">
   <div class="header">
     <h3>app/controllers/favorites_controller.rb</h3>
-    <h4><span class="red">59.18 %</span> covered</h4>
+    <h4><span class="red">71.43 %</span> covered</h4>
     <div>
       <b>49</b> relevant lines. 
-      <span class="green"><b>29</b> lines covered</span> and
-      <span class="red"><b>20</b> lines missed.</span>
+      <span class="green"><b>35</b> lines covered</span> and
+      <span class="red"><b>14</b> lines missed.</span>
     </div>
   </div>
   
@@ -1996,26 +1996,26 @@
           <code class="ruby">    # @favorite.find(cust_id: current_user.id)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="85">
-          
+        <li class="covered" data-hits="1" data-linenumber="85">
+          <span class="hits">1</span>
           
           <code class="ruby">    @favorite.destroy</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="86">
-          
+        <li class="covered" data-hits="1" data-linenumber="86">
+          <span class="hits">1</span>
           
           <code class="ruby">    respond_to do |format|</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="87">
-          
+        <li class="covered" data-hits="2" data-linenumber="87">
+          <span class="hits">2</span>
           
           <code class="ruby">      format.html { redirect_to favorites_url, notice: &#39;Favorite was successfully removed&#39; }</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="88">
-          
+        <li class="covered" data-hits="1" data-linenumber="88">
+          <span class="hits">1</span>
           
           <code class="ruby">      format.json { head :no_content }</code>
         </li>
@@ -2056,8 +2056,8 @@
           <code class="ruby">    def set_favorite</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="95">
-          
+        <li class="covered" data-hits="1" data-linenumber="95">
+          <span class="hits">1</span>
           
           <code class="ruby">      if !user_signed_in?</code>
         </li>
@@ -2074,8 +2074,8 @@
           <code class="ruby">      else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="98">
-          
+        <li class="covered" data-hits="1" data-linenumber="98">
+          <span class="hits">1</span>
           
           <code class="ruby">        @favorite = Favorite.where(rest_id: params[:rest_id], cust_id: current_user.id).first</code>
         </li>
@@ -2212,14 +2212,14 @@
           <code class="ruby">  def create</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="11">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="6" data-linenumber="11">
+          <span class="hits">6</span>
           
           <code class="ruby">    self.resource = warden.authenticate!(auth_options)</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="12">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="6" data-linenumber="12">
+          <span class="hits">6</span>
           
           <code class="ruby">    set_flash_message(:notice, :signed_in) if is_flashing_format?</code>
         </li>
@@ -2230,20 +2230,20 @@
           <code class="ruby">    # render text: &quot;HAI&quot;</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="14">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="6" data-linenumber="14">
+          <span class="hits">6</span>
           
           <code class="ruby">    sign_in(resource_name, resource)</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="15">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="6" data-linenumber="15">
+          <span class="hits">6</span>
           
           <code class="ruby">    yield resource if block_given?</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="16">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="6" data-linenumber="16">
+          <span class="hits">6</span>
           
           <code class="ruby">    respond_with resource, location: profile_path</code>
         </li>
@@ -2752,32 +2752,32 @@
           <code class="ruby">	def self.current_cart(param)</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="6">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="7" data-linenumber="6">
+          <span class="hits">7</span>
           
           <code class="ruby">		@currentVersions = Version.where(cust_id: param)</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="7">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="7" data-linenumber="7">
+          <span class="hits">7</span>
           
           <code class="ruby">		cartArrayTotal = Hash.new</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="8">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="7" data-linenumber="8">
+          <span class="hits">7</span>
           
           <code class="ruby">		cartArrayId = Hash.new</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="9">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="7" data-linenumber="9">
+          <span class="hits">7</span>
           
           <code class="ruby">		cartId = []</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="10">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="7" data-linenumber="10">
+          <span class="hits">7</span>
           
           <code class="ruby">		@currentVersions.each do |v|</code>
         </li>
@@ -2872,8 +2872,8 @@
           <code class="ruby">		end</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="26">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="7" data-linenumber="26">
+          <span class="hits">7</span>
           
           <code class="ruby">		return {cart: cartArrayTotal, id: cartArrayId}</code>
         </li>
@@ -7949,11 +7949,11 @@
         <div class="source_table" id="e74b9c9353d6141c38186b08111845765d5ca325">
   <div class="header">
     <h3>test/integration/favorites_integration_test.rb</h3>
-    <h4><span class="green">97.92 %</span> covered</h4>
+    <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>48</b> relevant lines. 
-      <span class="green"><b>47</b> lines covered</span> and
-      <span class="red"><b>1</b> lines missed.</span>
+      <b>46</b> relevant lines. 
+      <span class="green"><b>46</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
   
@@ -8437,70 +8437,52 @@
         <li class="covered" data-hits="1" data-linenumber="80">
           <span class="hits">1</span>
           
-          <code class="ruby">		delete destroy_user_session_path</code>
+          <code class="ruby">		post &#39;/favorites&#39;, rest_id: @rest.user_id</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="81">
           <span class="hits">1</span>
           
-          <code class="ruby">		post_via_redirect &quot;/sign_in&quot;, &#39;user[email]&#39; =&gt; @user.email, &#39;user[password]&#39; =&gt; @user.password</code>
+          <code class="ruby">		@favorite = Favorite.where(cust_id: @user.id).first</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="82">
+        <li class="covered" data-hits="1" data-linenumber="82">
+          <span class="hits">1</span>
+          
+          <code class="ruby">		assert_not_nil @favorite.id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="83">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="83">
-          <span class="hits">1</span>
-          
-          <code class="ruby">		post &#39;/favorites&#39;, rest_id: @rest.user_id</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="84">
-          <span class="hits">1</span>
-          
-          <code class="ruby">		@favorite = Favorite.where(cust_id: @user.id)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="85">
-          <span class="hits">1</span>
-          
-          <code class="ruby">		assert_not_nil @favorite</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="86">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="87">
+        <li class="never" data-hits="" data-linenumber="84">
           
           
           <code class="ruby">		# delete that specific favorite and check in the database that it is deleted</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="88">
+        <li class="covered" data-hits="1" data-linenumber="85">
           <span class="hits">1</span>
           
-          <code class="ruby">		delete &#39;/favorites_dest/&#39; + @user.id.to_s</code>
+          <code class="ruby">		get &#39;/favorites_dest?rest_id=&#39; + @rest.user_id.to_s</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="89">
+        <li class="covered" data-hits="1" data-linenumber="86">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">		assert_nil Favorite.where(rest_id: @rest.user_id)</code>
+          <code class="ruby">		assert_nil Favorite.where(rest_id: @rest.user_id).first</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="90">
+        <li class="never" data-hits="" data-linenumber="87">
           
           
           <code class="ruby">	end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="91">
+        <li class="never" data-hits="" data-linenumber="88">
           
           
           <code class="ruby">end</code>

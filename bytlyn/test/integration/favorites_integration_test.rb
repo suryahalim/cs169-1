@@ -77,15 +77,12 @@ class FavoriteRoutesTest < ActionDispatch::IntegrationTest
 	# customer can delete their favorite
 	test "customer delete favorite success" do
 		# post a favorite
-		delete destroy_user_session_path
-		post_via_redirect "/sign_in", 'user[email]' => @user.email, 'user[password]' => @user.password
-
 		post '/favorites', rest_id: @rest.user_id
-		@favorite = Favorite.where(cust_id: @user.id)
-		assert_not_nil @favorite
+		@favorite = Favorite.where(cust_id: @user.id).first
+		assert_not_nil @favorite.id
 
 		# delete that specific favorite and check in the database that it is deleted
-		delete '/favorites/' + @user.id.to_s
-		assert_nil Favorite.where(rest_id: @rest.user_id)
+		get '/favorites_dest?rest_id=' + @rest.user_id.to_s
+		assert_nil Favorite.where(rest_id: @rest.user_id).first
 	end
 end
