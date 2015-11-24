@@ -1,5 +1,5 @@
 class DynamicPagesController < ApplicationController
-    before_action :authenticate_user!, except: [:restaurant,:index, :show, :login, :signup, :signup_rest, :signup_user, :home]
+    before_action :authenticate_user!, except: [:restaurant,:index, :show, :login, :signup, :signup_rest, :signup_user, :home, :team]
 
     def profile
         if user_signed_in?
@@ -32,7 +32,7 @@ class DynamicPagesController < ApplicationController
             redirect_to profile_path
             end 
         else
-            redirect_to sign_in_path
+            redirect_to index_path
         end
     end
     def restaurant_delivery
