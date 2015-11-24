@@ -81,6 +81,7 @@ class FavoritesController < ApplicationController
   # DELETE /favorites/1
   # DELETE /favorites/1.json
   def destroy
+    # @favorite.find(cust_id: current_user.id)
     @favorite.destroy
     respond_to do |format|
       format.html { redirect_to favorites_url, notice: 'Favorite was successfully removed' }
