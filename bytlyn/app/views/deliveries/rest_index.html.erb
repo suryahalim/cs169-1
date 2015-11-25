@@ -3,7 +3,7 @@
         <div class="parallax-container">
             <div class="parallax"><img src="build/img/stock/cover-user.jpg" class="width-full" ></div>
             <div class="text">
-                <h1> Restaurant List </h1>
+                <h1> <%=current_user.name %> </h1>
             </div>
         </div>
         <div class="container">
@@ -16,13 +16,11 @@
                                 <a href="favorites" class="tab"><span class="fa fa-star"></span> Favorite</a>
                             <%end%>
                             <a href="/waitlists"class="tab"><span class="fa fa-hourglass"></span> Waitlist</a>
-                    
                             <%if @history %>
                                 <a href="delivery"class="tab"><span class="fa fa-rocket"></span> Delivery</a>
                             <%else %>
                                 <a href="delivery"class="tab chosen"><span class="fa fa-rocket"></span> Delivery</a>
                             <%end%>
-
                             <%if @history %>
                               <a href="/waitlist_history"class="tab chosen"><span class="fa fa-history"></span>History</a>
                             <%else %>
@@ -36,7 +34,6 @@
             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                 <div class="wrapper-right">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        
                         <p id="notice"><%= notice %></p>
                         <% if @history %>
                             <ul class="nav nav-tabs">
@@ -45,13 +42,12 @@
                             </ul>
                         <%end%>
                         <div class="text-center">
+                            <% if not @deliveries.empty? %>
                             <table class="table table-striped">
                                 <thead>
                                     <tr><th colspan="6"></th></tr>
                                 </thead>
-                                
                                 <tbody >
-                                    <% if not @deliveries.empty? %>
                                     <tr>
                                         <td>Name</th>
                                         <td>Menu</th>
@@ -59,14 +55,11 @@
                                         <td>Address</th>
                                         <td>Phone</th>
                                     </tr>
-                                    
-                                    <% @deliveries.each do |delivery| %>
-                                    <% del = delivery[:delivery] %>
-                                    <% menus = delivery[:cart] %>
-
+                                        <% @deliveries.each do |delivery| %>
+                                        <% del = delivery[:delivery] %>
+                                        <% menus = delivery[:cart] %>
                                     <tr>
                                         <td>
-
                                             <% name = User.where(id: del.user_id).first.name %>
                                             <%= name %>
                                         </td>
@@ -74,13 +67,11 @@
                                             <%menus.each do |menu| %>
                                                 <%= menu[:name] %> <br>
                                             <%end%>
-                                            
                                         </td>
                                         <td>
                                             <%menus.each do |menu| %>
                                                 <%= menu[:qty] %> <br>
                                             <%end%>
-                                            
                                         </td>
                                         <td>
                                             <%= del.address %>
@@ -95,15 +86,14 @@
                                             <%else %>
                                                 <%= Delivery.status_string(del.status) %>
                                             <% end %>
-                                            
                                         </td>
                                     </tr>
                                     <% end %>
-                                    <%else %>
-                                    You have no current delivery.
-                                    <%end %>
                                 </tbody>
                             </table>
+                            <%else %>
+                                You have no current delivery.
+                            <%end %>
 
                             <!-- <br><a class="btn btn-bytlyn" href="./waitlists_new?rest_id=<%= current_user.id %>"> New Waitlist</a> -->
                         </div>

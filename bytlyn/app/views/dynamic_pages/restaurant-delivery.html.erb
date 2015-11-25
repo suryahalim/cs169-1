@@ -48,7 +48,7 @@
 							                    	<%= f.hidden_field :rest_id, :value => params[:rest_id] %>
 							                    	<%= f.hidden_field :cust_id, :value =>  current_user.id%>
 							                    	<%= f.hidden_field :menu_id, :value =>  menu.id%>
-								                <%= f.submit "Add to cart", data: { confirm: 'Are you sure?' }, :class => "card-button btn btn-bytlyn"%>
+								                <%= f.submit "Add to cart", :class => "card-button btn btn-bytlyn"%>
 								                <% end %>
 								            <%end%>
 							            <% end%>

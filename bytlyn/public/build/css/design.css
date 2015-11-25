@@ -1156,6 +1156,78 @@ body.team main .container .team-wrapper .team-description .socmed:focus {
   -webkit-filter: grayscale(0%);
   filter: grayscale(0%);
 }
+body.privacy main {
+  background-color: #eeeeee;
+}
+body.privacy main .parallax-container {
+  z-index: 0;
+  height: 500px;
+}
+body.privacy main .parallax-container .text {
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+}
+body.privacy main .parallax-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+}
+body.privacy main .container .wrapper {
+  display: inline-block;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  color: #333333;
+  padding: 50px 0 150px 0;
+}
+body.termscondition main {
+  background-color: #eeeeee;
+}
+body.termscondition main .parallax-container {
+  z-index: 0;
+  height: 500px;
+}
+body.termscondition main .parallax-container .text {
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+}
+body.termscondition main .parallax-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+}
+body.termscondition main .container .wrapper {
+  display: inline-block;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  color: #333333;
+  padding: 50px 0 150px 0;
+}
 body.restaurant main {
   background-color: #eeeeee;
 }
@@ -1225,13 +1297,11 @@ body.restaurant main .wrapper-right .panel {
   padding: 0px;
   color: #000000;
 }
-body.restaurant main .wrapper-right .r-logo {
-  max-width: 500px;
-}
 body.restaurant main .wrapper-right .r-info {
-  display: inline-block;
-  max-width: 500px;
   margin: 20px 0;
+}
+body.restaurant main .wrapper-right .r-info.r-logo {
+  max-width: 500px;
 }
 body.restaurant main .wrapper-right .menu-name {
   font-size: 20px;
@@ -1418,6 +1488,42 @@ body.profile main .wrapper-right .panel {
 body.profile main .wrapper-right .panel .panel-body .img-thumbnail {
   /*width:100px;*/
 }
+body.career main {
+  background-color: #eeeeee;
+}
+body.career main .parallax-container {
+  z-index: 0;
+  height: 500px;
+}
+body.career main .parallax-container .text {
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+}
+body.career main .parallax-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+}
+body.career main .container .wrapper {
+  display: inline-block;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  color: #333333;
+  padding: 50px 0 150px 0;
+}
 @media screen and (max-width: 767px) {
   .index .section-three {
     height: 1200px !important;
@@ -1433,7 +1539,10 @@ body.profile main .wrapper-right .panel .panel-body .img-thumbnail {
   .signup .wrapper-left {
     border-right: none !important;
   }
+  main {
+    padding-top: 50px;
+  }
   .parallax-container {
-    height: 300px !important;
+    height: 200px !important;
   }
 }

@@ -3,7 +3,7 @@
         <div class="parallax-container">
             <div class="parallax"><img src="build/img/stock/cover-user.jpg" class="width-full" ></div>
             <div class="text">
-                <h1> Restaurant List </h1>
+                <h1> <%=current_user.name %> </h1>
             </div>
         </div>
         <div class="container">
@@ -43,9 +43,9 @@
                             </ul>
                         <%end%>
                         <div class="text-center">
+                            <% if not @lists.empty? %>
                             <table class="table table-striped">
-                                <tbody >
-                                    <% if not @lists.empty? %>
+                                <tbody>
                                     <tr>
                                         <td>Name</th>
                                         <td># People</th>
@@ -56,11 +56,9 @@
                                         <td></th>
                                         <%end%>
                                     </tr>
-                                    
                                     <% @lists.each do |list| %>
-                                    <tr>
+                                        <tr>
                                         <td>
-
                                             <% name = User.where(id: list.cust_id).first.name %>
                                             <%= list.name %>
                                         </td>
@@ -76,15 +74,13 @@
                                             <% end %>
                                             <!-- <button class="btn btn-red">Delete</button>
                                             <%= link_to 'Delete', list, controller: 'waitlists', action: 'destroy',method: :delete%> -->
-                                            
-                                            
                                         </td>
-                                    </tr>
+                                        </tr>
                                     <% end %>
-                                    <%else %>
-                                    You have no current waitlist.
-                                    <%end %>
                                 </tbody>
+                            <% else %>
+                                You have no current waitlist.
+                            <% end %>
                             </table>
                             <%if !@history %>
                             <br><a class="btn btn-bytlyn" href="./waitlists_new?rest_id=<%= current_user.id %>"> New Waitlist</a>
