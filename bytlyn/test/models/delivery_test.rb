@@ -119,3 +119,4 @@ class DeliveryTest < ActiveSupport::TestCase
     assert_equal('Delivered', Delivery.status_string(4))
     assert_equal('Unknown', Delivery.status_string(5))
 end
+end

@@ -27,7 +27,7 @@ class DynamicPagesControllerTest < ActionController::TestCase
 
   test "home" do
     get :home
-    assert_redirected_to sign_in_path
+    assert_redirected_to index_path
   end
 
   test "home customer" do
