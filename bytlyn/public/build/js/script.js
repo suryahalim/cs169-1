@@ -40,19 +40,16 @@ $(document).ready(function() {
 	});
 
 	// shopping cart
-	var cartShown = false;
-
 	$('.shopping-cart-title').click(function() {
-		if (cartShown == false) {
-			$('.shopping-cart-wrapper').show();
-			$('.shopping-cart svg').show();
-			cartShown = true;
-		} else {
-			$('.shopping-cart-wrapper').hide();
-			$('.shopping-cart svg').hide();
-			cartShown = false;
-		}
-		
+		$('.shopping-cart-wrapper').toggle();
+		$('.shopping-cart svg').toggle();
+	});
+
+	// payment detail toggle
+	$('.payment-summary').click(function() {
+		console.log($(this).parent().parent().find('payment-detail'));
+		$(this).parent().parent().find('.payment-detail').toggle();
+		// $(this).parent().children('.payment-detail').toggle();
 	});
 
 	// typed.js for landing page

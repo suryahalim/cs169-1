@@ -668,7 +668,6 @@ form input:-webkit-autofill {
   margin-bottom: 10px;
 }
 .card-view .card-content {
-  height: 180px;
   position: relative;
   text-align: left;
 }
@@ -1402,6 +1401,12 @@ body.profile main .wrapper-right .email {
 body.profile main .wrapper-right .box-option {
   font-size: 14px;
   margin-bottom: 30px;
+}
+body.profile main .wrapper-right .payment-summary {
+  cursor: pointer;
+}
+body.profile main .wrapper-right .payment-detail {
+  display: none;
 }
 body.profile main .wrapper-right .payment-detail .payment-content-wrapper {
   border-bottom: 1px solid #cccccc;

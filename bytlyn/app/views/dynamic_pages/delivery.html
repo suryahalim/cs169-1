@@ -28,18 +28,6 @@
 							Delivery<br>
 						</div>
 					</div>
-					<!-- <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-						<a href="#">
-							<div class="box-option">
-								<img src="build/img/stock/restaurant.jpg"/>
-								<div class="text">
-									Order #1<br>
-									Total order: #<br>
-									Total price: $
-								</div>
-							</div>
-						</a>
-					</div> -->
 					<% if !current_user.rest %>
 						<% @delivery = Delivery.get_delivery_cust(current_user.id) %>
 						<% count = 0 %>
