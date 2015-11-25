@@ -32,7 +32,7 @@ class DynamicPagesController < ApplicationController
             redirect_to profile_path
             end 
         else
-            redirect_to sign_in_path
+            redirect_to index_path
         end
     end
     def restaurant_delivery
