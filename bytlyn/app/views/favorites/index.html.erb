@@ -47,27 +47,27 @@
                                                     <% elsif !user_signed_in? %>
                                                         <a class="btn btn-bytlyn" href="./login">Waitlist</a>
                                                     <% end %>
-                                                </div>
+                                                    </div>
                                                 <a href = './restaurant_page?rest_id=<%= restaurant.user_id %>'>
                                                     <div class="card-header">
                                                         <%= @users.find_by_id(restaurant.user_id).name %>
                                                     </div>
                                                 </a>
-                                                    <div class="card-info">
-                                                        <% for i in 1..restaurant.price.to_i do%>
-                                                            $
-                                                        <% end%>
+                                                <div class="card-rating">
+                                                    rating <%=(Rating.average_rating(restaurant.id)+0.99).to_i%>
+                                                    <div class="rating-restaurant text-md">
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
+                                                        <span class="fa fa-star-o"></span>
                                                     </div>
-                                                    <div class="card-rating">
-                                                        <%=restaurant.rating%>
-                                                        <div class="rating-restaurant text-md">
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                            <span class="fa fa-star-o"></span>
-                                                        </div>
-                                                    </div>
+                                                </a>
+                                                <div class="card-info">
+                                                    <% for i in 1..restaurant.price.to_i do%>
+                                                        $
+                                                    <% end%>
+                                                </div>
                                             <div class="card-time">
                                                 <% hourDay =  Hour.where(rest_id: restaurant.user_id).where(day_id: Time.now.wday)%>
                                                 <% if !hourDay.blank? && hourDay.first.open != nil && hourDay.first.close != nil && hourDay.first.close.strftime("%H:%M") > Time.now.strftime("%H:%M") && hourDay.first.open.strftime("%H:%M") < Time.now.strftime("%H:%M") %>

@@ -33,9 +33,16 @@ class RestaurantsController < ApplicationController
       # if price field is present
       @restaurants = @restaurants.where("price = ?","#{search_params[:price].downcase}") if search_params[:checkprice]
       # search by open now (day and time)
-      @restaurants = @restaurants.joins(:hours).where("day_id = ? AND open <= ? AND close > ?","#{search_params[:day].downcase}","#{search_params[:time].downcase}","#{search_params[:time].downcase}") if search_params[:day].present? and search_params[:time].present?
+      @restaurants = @restaurants.joins(:hours).where("day_id = ? AND open <= ? AND close > ?","#{search_params[:day].downcase}","#{search_params[:time].downcase}","#{search_params[:time].downcase}") if search_params[:day].present? and search_params[:time].present? and search_params[:opennow].present?
       # search by location :http://www.scribd.com/doc/2569355/Geo-Distance-Search-with-MySQL
       # search by open hour
+      
+      # relevance by same zip code
+      @relevant = @restaurants.where("zip = ?","#{search_params[:zip].downcase}") if search_params[:zip].present?
+      puts @relevant
+      @irelevant = @restaurants.where("zip != ?","#{search_params[:zip].downcase}") if search_params[:zip].present?
+      puts @irelevant
+      @restaurants = (@relevant + @irelevant) if search_params[:zip].present?
       
       @users = User.all
   end
@@ -162,7 +169,7 @@ class RestaurantsController < ApplicationController
     end
     
     def search_params
-        params.permit(:key,:category,:rating,:price,:day,:time,:checkprice,:checkrating)
+        params.permit(:key,:category,:rating,:price,:day,:time,:checkprice,:checkrating,:zip,:opennow)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

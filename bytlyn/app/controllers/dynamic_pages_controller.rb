@@ -1,5 +1,5 @@
 class DynamicPagesController < ApplicationController
-    before_action :authenticate_user!, except: [:restaurant,:index, :show, :login, :signup, :signup_rest, :signup_user, :home]
+    before_action :authenticate_user!, except: [:restaurant,:index, :show, :login, :signup, :signup_rest, :signup_user, :home, :team]
 
     def profile
         if user_signed_in?
@@ -32,9 +32,13 @@ class DynamicPagesController < ApplicationController
             redirect_to profile_path
             end 
         else
-            redirect_to sign_in_path
+            redirect_to index_path
         end
     end
+    def restaurant_delivery
+        render "restaurant-delivery.html.erb"
+    end
+
     def restaurant
         # if user_signed_in?
         @hour = Hour.where(rest_id: params[:rest_id])
@@ -102,10 +106,16 @@ class DynamicPagesController < ApplicationController
             @sunday_time = 'closed'
         end
 
-        render "restaurant.html.erb"
+        @rate = Rating.average_rating(params[:rest_id])
 
-        # else
-            # redirect_to login_path
-        # end
+        render "restaurant.html.erb"
     end
+    # def restaurant
+    #     # if user_signed_in?
+        
+
+    #     # else
+    #         # redirect_to login_path
+    #     # end
+    # end
 end
