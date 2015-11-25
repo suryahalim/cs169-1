@@ -18,9 +18,24 @@ class Delivery < ActiveRecord::Base
 		return menuArray
 	end
 
-	def self.get_customer_delivery(user_id)
-		return Delivery.where(user_id: user_id).where("status < ?", 4)
+	# def self.get_customer_delivery(user_id)
+	# 	return Delivery.where(user_id: user_id).where("status < ?", 4)
 
+	# end
+	def self.get_customer_delivery(user_id)
+		delivery_list = Delivery.where(user_id: user_id).where("status < ?", 4)
+		list_and_cart = []
+		delivery_list.each do |delivery|
+			this_cart = Cart.find_cart(delivery.user_id, delivery.rest_id, delivery.version)
+			this_menu = []
+			this_cart.each do |cart|
+				menu = Menu.find(cart.menu_id)
+				this_menu << {name: menu.name, qty: cart.qty, price: menu.price}
+			end
+
+			list_and_cart << {:delivery => delivery, :cart => this_menu}
+		end
+		return list_and_cart
 	end
 
 	def self.get_restaurant_delivery(user_id)
@@ -39,7 +54,18 @@ class Delivery < ActiveRecord::Base
 	end
 
 	def self.get_customer_delivery_history(user_id)
-		return Delivery.where(user_id: user_id, status: 4)
+		delivery_list = Delivery.where(user_id: user_id, status: 4)
+		list_and_cart = []
+		delivery_list.each do |delivery|
+			this_cart = Cart.find_cart(delivery.user_id, delivery.rest_id, delivery.version)
+			this_menu = []
+			this_cart.each do |cart|
+				this_menu << {name: Menu.find(cart.menu_id).name, qty: cart.qty}
+			end
+
+			list_and_cart << {:delivery => delivery, :cart => this_menu}
+		end
+		return list_and_cart
 
 	end
 

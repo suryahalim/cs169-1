@@ -96,7 +96,7 @@ class DeliveryTest < ActiveSupport::TestCase
     @delivery4 = Delivery.new(phone: "2020300", rest_id: 1, version: 3, user_id: 2, address: "jalan jeruk", total: 6, status: 4)
     @delivery4.save
     assert_equal(Delivery.get_customer_delivery_history([2]).size, 1)
-    assert_equal(Delivery.get_customer_delivery_history([2]).first, @delivery4)
+    assert_equal(Delivery.get_customer_delivery_history([2]).first, {delivery: @delivery4, cart:[]})
   end
 
   test "get history only status 4 restaurant" do
@@ -118,4 +118,7 @@ class DeliveryTest < ActiveSupport::TestCase
     assert_equal('On The Way', Delivery.status_string(3))
     assert_equal('Delivered', Delivery.status_string(4))
     assert_equal('Unknown', Delivery.status_string(5))
+
+    end
+
 end
