@@ -1,17 +1,11 @@
 class RatingController < ApplicationController
 
     def create
-        if user_signed_in?
-            if current_user.rest
-                # show notif, rest cannot rate
-            elsif Rating.where(:restaurant_id => rating_params[:restaurant_id], :customer_id => rating_params[:customer_id]).count > 0
-                # show notif, you have rated
-            else
-                @rating = Rating.new(rating_params)
-                @rating.save
-            end
+        if user_signed_in? && !current_user.rest && Rating.where(:restaurant_id => rating_params[:restaurant_id], :customer_id => rating_params[:customer_id]).count == 0
+            @rating = Rating.new(rating_params)
+            @rating.save
         end
-        redirect_to(:back)
+        redirect_to '/restaurant_page?rest_id=' + params[:restaurant_id].to_s
     end
 
 
