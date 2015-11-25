@@ -668,6 +668,7 @@ form input:-webkit-autofill {
   margin-bottom: 10px;
 }
 .card-view .card-content {
+  height: 180px;
   position: relative;
   text-align: left;
 }
@@ -842,18 +843,24 @@ form input:-webkit-autofill {
   position: absolute;
   top: 43px;
   right: 48%;
+  display: none;
 }
 .shopping-cart .shopping-cart-title {
   cursor: pointer;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
 }
 .shopping-cart .shopping-cart-wrapper {
   position: absolute;
   display: inline-block;
   top: 53px;
   right: 0;
+  display: none;
   width: 400px;
   background-color: #ffffff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px #000000;
 }
 .shopping-cart .shopping-cart-wrapper .single-cart {
   position: relative;

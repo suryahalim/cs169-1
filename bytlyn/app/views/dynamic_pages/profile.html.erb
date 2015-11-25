@@ -4,7 +4,7 @@
     <div class="parallax-container">
         <div class="parallax"><img src="build/img/stock/cover-user.jpg" class="width-full" ></div>
         <div class="text text-center">
-            <h1> <%= current_user.name%> </h1>
+            <h1> <%= current_user.name %> </h1>
         </div>
     </div>
     <div class="container">
@@ -27,12 +27,12 @@
                 <div class="wrapper-right">
                     <div class="row">
                         <% if flash[:notice] != nil %>
-                            <div class="alert alert-danger">
+                            <div class="alert alert-success text-center">
                                 <%= flash[:notice] %>
                             </div>
                         <% end %>
                         <% if flash[:alert] != nil %>
-                            <div class="alert alert-danger">
+                            <div class="alert alert-danger text-center">
                                 <%= flash[:alert] %>
                             </div>
                         <% end %>

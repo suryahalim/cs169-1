@@ -1,5 +1,5 @@
 class DynamicPagesController < ApplicationController
-    before_action :authenticate_user!, except: [:restaurant,:index, :show, :login, :signup, :signup_rest, :signup_user, :home, :team]
+    before_action :authenticate_user!, except: [:restaurant,:index, :show, :login, :signup, :signup_rest, :signup_user, :home, :team, :termscondition, :privacy, :career]
 
     def profile
         if user_signed_in?
@@ -22,6 +22,18 @@ class DynamicPagesController < ApplicationController
     end
 
     def signup
+    end
+
+    def termscondition
+        render "termscondition.html"
+    end
+
+    def privacy
+        render "privacy.html"
+    end
+
+    def career
+        render "career.html" 
     end
 
     def home
@@ -110,12 +122,5 @@ class DynamicPagesController < ApplicationController
 
         render "restaurant.html.erb"
     end
-    # def restaurant
-    #     # if user_signed_in?
-        
 
-    #     # else
-    #         # redirect_to login_path
-    #     # end
-    # end
 end
