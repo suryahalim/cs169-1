@@ -1,7 +1,6 @@
 <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
 <%= include_gon %>
 
-
 <body class="signup">
 <main>
     <div class="container">
@@ -14,21 +13,17 @@
                 <% if not params[:cart_id].empty? %>
                     <%= form_for :delivery do |f| %>
                     <p>
-                        Phone number:
-                        <%= f.text_field :phone, required: true %>
+                        <span class="info">Phone number</span>
+                        <%= f.text_field :phone, required: true, :class => "modern"%>
                     </p>
                     <p>   
-                        <%= f.label :address %>
-                        <%= f.text_field :address, required: true %>
+                        <span class="info">Address</span>
+                        <%= f.text_field :address, required: true, :class => "modern"%>
                     </p>
                         <%= f.hidden_field :rest_id, :value => params[:rest_id] %>
                         <%= f.hidden_field :total, :value => params[:total] %>
                         <%= f.hidden_field :user_id, :value => current_user.id %>
                         <table class="table table-striped">
-                            <thead>
-                                <tr><th colspan="3"></th></tr>
-                            </thead>
-                            
                             <tbody >
                                 <% if not params[:cart_id].empty? %>
                                     <tr>

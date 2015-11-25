@@ -51,14 +51,17 @@
                 <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
                   <div class="payment-detail">
                     <div class="payment-content-wrapper">
-                      <strong>Sliver</strong><br>
-                      Order placed on Dec 18 at 8.11 PM
+                      <strong><%= User.where(id: delivery.rest_id).first.name %></strong><br>
+                      <% timePlaced = delivery.created_at.in_time_zone("Pacific Time (US & Canada)") %>
+                      <% month = timePlaced.strftime("%B")%>
+                      <% date = timePlaced.strftime("%d")%>
+                      <% time = timePlaced.strftime("%I:%M %p") %>
+                      Order placed on <%=month[0..2]%> <%=date%>, <%=time%>
                     </div>
                     <div class="payment-content-wrapper">
-                      <strong>Jessica Lie</strong><br>
-                      1988 Martin Luther King Junior Way<br>
-                      Berkeley, CA 94704<br>
-                      (123) 456-7890
+                      <strong><%= User.find(delivery.user_id).name %></strong><br>
+                      <%= delivery.address %><br>
+                      <%= delivery.phone %>
                     </div>
                     <div class="payment-content-wrapper">
                       <div class="text-left">

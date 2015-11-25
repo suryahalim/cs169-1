@@ -34,6 +34,9 @@ Rails.application.routes.draw do
   get 'delivery.html' => 'dynamic_pages#delivery'
   get 'team.html' => 'dynamic_pages#team'
   get 'restaurant-delivery.html' => 'dynamic_pages#restaurant-delivery'
+  get 'termscondition.html' => 'dynamic_pages#termscondition'
+  get 'privacy.html' => 'dynamic_pages#privacy'
+  get 'career.html' => 'dynamic_pages#career'
 
 
   #without .html
@@ -46,6 +49,9 @@ Rails.application.routes.draw do
   get 'payment' => 'deliveries#payment'
   get 'home' => 'dynamic_pages#home'
   get 'restaurant_page' => 'dynamic_pages#restaurant'
+  get 'termscondition' => 'dynamic_pages#termscondition'
+  get 'privacy' => 'dynamic_pages#privacy'
+  get 'career' => 'dynamic_pages#career'
 
   post 'restaurant_page' => 'carts#create'
   get 'team' => 'dynamic_pages#team'

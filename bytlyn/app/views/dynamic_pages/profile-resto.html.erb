@@ -4,7 +4,7 @@
     <div class="parallax-container">
         <div class="parallax"><img src="build/img/stock/cover-user.jpg" class="width-full" ></div>
         <div class="text text-center">
-            <h1> <%= current_user.name%> Restaurant</h1>
+            <h1> <%= current_user.name%> </h1>
         </div>
     </div>
     <div class="container">
@@ -37,8 +37,6 @@
                                 </div>
                             <% end %>
                         <div class="col-xs-offset-3 col-xs-6 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
-                            
-                            
                             <%= image_tag current_user.avatar.url(:medium), :class => 'profile-photo' %>
                         </div>
                     </div>
