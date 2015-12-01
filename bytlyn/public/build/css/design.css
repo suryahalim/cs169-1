@@ -68,9 +68,6 @@ header .wrapper-title .title {
 header .wrapper-title:hover {
   background-color: rgba(255, 255, 255, 0.3);
 }
-header .wrapper-title img {
-  margin-right: 5px;
-}
 footer {
   background-color: #333333;
   padding-top: 30px;
@@ -986,7 +983,8 @@ body.index main .section-one form {
   width: 100%;
 }
 body.index main .section-one form .search-bar {
-  width: 80%;
+  text-align: center;
+  max-width: 500px;
   border: none;
 }
 body.index main .section-two {
@@ -1274,7 +1272,7 @@ body.restaurant main .wrapper-left {
 }
 body.restaurant main .wrapper-left button,
 body.restaurant main .wrapper-left a {
-  min-width: 150px;
+  min-width: 130px;
   margin: 10px auto;
 }
 body.restaurant main .wrapper-right {
@@ -1548,6 +1546,13 @@ body.career main .container .wrapper {
     padding-top: 30px;
     margin-top: 30px;
   }
+  .index .title {
+    font-size: 16px !important;
+    margin-top: -50px !important;
+  }
+  .index .search-bar {
+    max-width: 300px !important;
+  }
   .signup .wrapper-left {
     border-right: none !important;
   }
@@ -1556,5 +1561,8 @@ body.career main .container .wrapper {
   }
   .parallax-container {
     height: 200px !important;
+  }
+  .restaurant-list-wrapper .card-content {
+    margin: 0 -15px;
   }
 }
