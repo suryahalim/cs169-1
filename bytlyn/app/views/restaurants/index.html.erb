@@ -215,10 +215,10 @@
                                             <% end%>
                                         </div>
                                         <div class="card-rating">
-                                            <% for i in 1..(Rating.average_rating(restaurant.id)+0.99).to_i.to_i do %>
+                                            <% for i in 1..(Rating.average_rating(restaurant.user_id)+0.99).to_i do %>
                                                 <span class="fa fa-star"></span>
                                             <% end %>
-                                            <% for i in (Rating.average_rating(restaurant.id)+0.99).to_i.to_i+1..5 do %>
+                                            <% for i in (Rating.average_rating(restaurant.user_id)+0.99).to_i+1..5 do %>
                                                 <span class="fa fa-star-o"></span>
                                             <% end %>
                                         </div>
