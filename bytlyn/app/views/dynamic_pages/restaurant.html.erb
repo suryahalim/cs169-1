@@ -30,7 +30,7 @@
 					  </div>
 					<% end %>
 				</div>
-				<%= image_tag User.where(id: params[:rest_id]).first.avatar.url(:medium), :class => "r-logo center", width: '200', height: '200' %><br>
+				<%= image_tag User.where(id: params[:rest_id]).first.avatar.url(:medium), :class => "r-logo center" %><br>
 				<!-- <img src="build/img/stock/logo-restaurant.jpg" class="r-logo"/> -->
 				<div class="rating-restaurant text-md">
 					<% restaurant = Restaurant.where(user_id: params[:rest_id]).first %>

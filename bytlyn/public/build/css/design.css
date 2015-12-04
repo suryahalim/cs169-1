@@ -1323,9 +1323,13 @@ body.restaurant main .wrapper-right .r-info.r-logo {
 }
 body.restaurant main .wrapper-right .menu-name {
   font-size: 20px;
+  overflow-wrap: break-word;
+  padding: 0 15px;
 }
 body.restaurant main .wrapper-right .menu-description {
   color: #888888;
+  overflow-wrap: break-word;
+  padding: 0 15px;
 }
 body.restaurant main .wrapper-right .slick-slide {
   outline: none;
