@@ -73,7 +73,7 @@ class WaitlistsController < ApplicationController
     waitlist_params = {cust_id: current_user.id, rest_id: cur_rest, people: cur_people, name: cur_name, status: 1}
     @waitlist = Waitlist.new(waitlist_params)
     if !@waitlist.valid?
-      flash[:error] = "Number of people cannot be blank"
+      flash[:error] = "Number of people must be a number and cannot be blank"
       redirect_to waitlists_new_path(:rest_id => cur_rest)
       return
     end
