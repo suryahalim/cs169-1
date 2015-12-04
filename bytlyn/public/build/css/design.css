@@ -667,6 +667,7 @@ form input:-webkit-autofill {
 .card-view .card-content {
   position: relative;
   text-align: left;
+  overflow-wrap: break-word;
 }
 .card-view .card-content .card-header {
   position: relative;
@@ -679,7 +680,7 @@ form input:-webkit-autofill {
 .card-view .card-content .card-button {
   position: absolute;
   z-index: 1;
-  bottom: 0;
+  bottom: -17px;
   right: 0;
   transform: translate3d(0, -50%, 0);
   -webkit-transfrom: translate3d(0, -50%, 0);
