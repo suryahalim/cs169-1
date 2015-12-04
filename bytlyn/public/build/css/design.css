@@ -670,7 +670,7 @@ form input:-webkit-autofill {
   position: relative;
   text-align: left;
   overflow-wrap: break-word;
-  height: 220px;
+  height: 230px;
   overflow: hidden;
 }
 .card-view .card-content .card-header {
