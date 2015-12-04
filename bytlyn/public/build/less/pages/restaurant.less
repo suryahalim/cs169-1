@@ -16,7 +16,7 @@ body.restaurant {
 			box-shadow: 0 1px 2px @shadow;
 			padding: 50px 0;
 			button, a {
-				min-width: 150px;
+				min-width: 130px;
 				margin: 10px auto;
 			}
 		}
@@ -57,9 +57,16 @@ body.restaurant {
 			}
 			.menu-name {
 				font-size: 20px;
+				overflow-wrap: break-word;
+				padding: 0 15px;
 			}
 			.menu-description {
 				color: @gray;
+				overflow-wrap: break-word;
+				padding: 0 15px;
+			}
+			.slick-slide {
+				outline: none;
 			}
 		}
 	}

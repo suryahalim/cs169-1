@@ -44,9 +44,6 @@
                         <div class="text-center">
                             <% if not @deliveries.empty? %>
                             <table class="table table-striped">
-                                <thead>
-                                    <tr><th colspan="6"></th></tr>
-                                </thead>
                                 <tbody >
                                     <tr>
                                         <td>Name</th>
@@ -54,6 +51,7 @@
                                         <td>Qty</th>
                                         <td>Address</th>
                                         <td>Phone</th>
+                                        <td>Status</th>
                                     </tr>
                                         <% @deliveries.each do |delivery| %>
                                         <% del = delivery[:delivery] %>

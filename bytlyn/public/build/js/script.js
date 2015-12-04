@@ -64,6 +64,94 @@ $(document).ready(function() {
     	$('.advanced-search-wrapper').show();
     	$('.advanced-search-wrapper').addClass("animated slideInUp");
     });
+
+    // highcharts
+    var waitlist_curr = $('.waitlist_curr').html();
+    var waitlist_hist = $('.waitlist_hist').html();
+    var delivery_curr = $('.delivery_curr').html();
+    var delivery_hist = $('.delivery_hist').html();
+
+    $('.highcharts-waitlist').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: 'Waitlist'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Browser share',
+            data: [
+                ['Current Waitlist', parseInt(waitlist_curr)],
+                {
+                    name: 'History Waitlist',
+                    y: parseInt(waitlist_hist),
+                    sliced: true,
+                    selected: true
+                },
+            ]
+        }]
+    });
+
+	$('.highcharts-delivery').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: 'Delivery'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Browser share',
+            data: [
+                ['Current Delivery', parseInt(delivery_curr)],
+                {
+                    name: 'History Delivery',
+                    y: parseInt(delivery_hist),
+                    sliced: true,
+                    selected: true
+                },
+            ]
+        }]
+    });
 });
 
 

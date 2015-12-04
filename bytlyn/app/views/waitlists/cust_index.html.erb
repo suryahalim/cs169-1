@@ -4,7 +4,7 @@
   <div class="parallax-container">
       <div class="parallax"><img src="build/img/stock/cover-user.jpg" class="width-full" ></div>
       <div class="text text-center">
-        <h1> <%=current_user.name %> </h1>
+        <h1> <%= current_user.name %> </h1>
       </div>
     </div>
   <div class="container">
@@ -48,13 +48,13 @@
             <% @waitlists.each do |waitlist| %>
                 <% list = waitlist[:list] %>
                 <% pos = waitlist[:position] %>
-                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                   <a href="#">
                     <div class="box-option">
                       <img src="build/img/stock/restaurant.jpg"/>
                       <div class="text">
                         <% name = User.where(id: list.rest_id).first.name %>
-                        Restaurant <%= name %><br>
+                        <%= name %><br>
                         <%= list.people %> people<br>
                         <%if !@history %>
                           Position: <%= pos %> <br>
@@ -64,7 +64,6 @@
                         <% else %>
                           Status: <%= Waitlist.status_string(list.status) %>
                         <%end%>
-
                       </div>
                     </div>
                   </a>

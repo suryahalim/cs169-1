@@ -201,7 +201,7 @@
                                         <div class="card-content">
                                             <div class="card-button">
                                             <% if (user_signed_in? && !current_user.rest) %>
-                                            <a class="btn btn-bytlyn" href="./waitlists_new?rest_id=<%= restaurant.user_id %>">Waitlist</a>
+                                            <a class="btn btn-bytlyn" href="./waitlists_new?rest_id=<%= restaurant.user_id %>">Add to Waitlist</a>
                                             <% elsif !user_signed_in? %>
                                                 <a class="btn btn-bytlyn" href="./login">Waitlist</a>
                                             <% end %>
@@ -236,7 +236,7 @@
                                         <% if (user_signed_in? && !current_user.rest) %>
                                             <% if Favorite.where(cust_id: current_user.id, rest_id: restaurant.user_id).empty? %>
                                                 <form action="./favorites_new?rest_id=<%= restaurant.user_id %>" method="POST">
-                                                <input type="submit" class="btn btn-bytlyn" value ="Add Favorite"></input>
+                                                <input type="submit" class="btn btn-bytlyn" value ="Add to Favorite"></input>
                                                 </form>
                                                 <!-- <a class="btn btn-bytlyn" data-method="post" href="./favorite?user_id=<%= restaurant.user_id %>">Add Favorite</a> -->
                                                
