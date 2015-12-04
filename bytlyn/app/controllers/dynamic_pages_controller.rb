@@ -5,7 +5,12 @@ class DynamicPagesController < ApplicationController
         if user_signed_in?
             if current_user.rest 
                 if Restaurant.find_by_user_id(current_user.id) != nil
+                    @deliveries_hist = Delivery.get_restaurant_delivery_history(current_user.id)
+                    @deliveries_curr = Delivery.get_customer_delivery(current_user.id)
+                    @waitlist_curr = Waitlist.get_customer_waitlist(current_user.id)
+                    @waitlist_hist = Waitlist.get_customer_waitlist_history(current_user.id)
                     render "profile-resto.html.erb"
+
                 else
                     redirect_to restaurant_new_path
                 end
