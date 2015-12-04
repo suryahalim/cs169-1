@@ -16,11 +16,11 @@
               </p>
               <p>
                 <span class="info">Description</span>
-                <%= f.text_field :description, :class => "modern" %>
+                <%= f.text_field :description, required: true, :class => "modern" %>
               </p>
               <p>
                 <span class="info">Price</span>
-                <%= f.text_field :price, required: true, :class => "modern" %>
+                <%= f.text_field :price, required: true, :type => 'number', :step => '0.01', :value => '0.00', :class => "modern" %>
               </p>
               <p>
                 <span class="info">Picture</span>
@@ -29,7 +29,6 @@
 	              <%= f.hidden_field :rest_id, :value => current_user.id %>
                 <%= f.submit "Create menu", :class => "btn btn-bytlyn btn-max"%>
               <% end %>
-
 
               </div>
         </div>

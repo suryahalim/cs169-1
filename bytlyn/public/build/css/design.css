@@ -898,7 +898,7 @@ form input:-webkit-autofill {
 }
 .shopping-cart .shopping-cart-wrapper .single-cart .cart-restaurant {
   position: absolute;
-  top: 20px;
+  top: 27px;
   left: 20px;
   font-size: 30px;
 }
@@ -911,10 +911,23 @@ form input:-webkit-autofill {
 }
 .shopping-cart .shopping-cart-wrapper .single-cart .cart-amount {
   position: absolute;
-  top: 30px;
+  top: 5px;
   right: 20px;
   font-size: 30px;
   color: #28d20d;
+  width: 150px;
+  overflow: hidden;
+  text-align: right;
+}
+.shopping-cart .shopping-cart-wrapper .single-cart button {
+  position: absolute;
+  top: 50px;
+}
+.shopping-cart .shopping-cart-wrapper .single-cart .checkout-button {
+  right: 20px;
+}
+.shopping-cart .shopping-cart-wrapper .single-cart .clear-button {
+  right: 120px;
 }
 .typed-cursor {
   opacity: 1;
