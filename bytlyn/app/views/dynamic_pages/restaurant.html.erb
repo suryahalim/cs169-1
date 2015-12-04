@@ -23,7 +23,7 @@
 				<div class="carousel">
 					<% Menu.where(rest_id: params[:rest_id]).each do |menu| %>
 					  <div>
-					  	<%= image_tag menu.avatar.url(:medium), :class => "thumbnail", width: '285', height: '200' %>
+					  	<%= image_tag menu.avatar.url(:medium), :class => "thumbnail", width: '200', height: '200' %>
 					  	<div class="menu-name"><%= menu.name %></div>
 						<div class="menu-description"><%= menu.description %></div>
 					  </div>
