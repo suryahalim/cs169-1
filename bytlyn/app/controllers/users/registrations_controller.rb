@@ -4,16 +4,24 @@ before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   def new_user
-    build_resource({})
-    set_minimum_password_length
-    yield resource if block_given?
-    respond_with self.resource
+    if user_signed_in?
+      redirect_to profile_path
+    else
+      build_resource({})
+      set_minimum_password_length
+      yield resource if block_given?
+      respond_with self.resource
+    end
   end
   def new_rest
-    build_resource({})
-    set_minimum_password_length
-    yield resource if block_given?
-    respond_with self.resource
+    if user_signed_in?
+      redirect_to profile_path
+    else
+      build_resource({})
+      set_minimum_password_length
+      yield resource if block_given?
+      respond_with self.resource
+    end
   end
 
 

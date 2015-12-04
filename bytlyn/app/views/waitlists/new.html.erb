@@ -10,7 +10,7 @@
                 <%= form_for @waitlist do |f| %>
                 <p>
                     <span class="info">Enter number of people:</span>
-                    <%= f.number_field :people, min: 1, :class => "modern" %>
+                    <%= f.number_field :people, min: 1, max: 30, :class => "modern" %>
                 </p>
                 <p>   
                     <% if current_user.id.to_i != params[:rest_id].to_i %>

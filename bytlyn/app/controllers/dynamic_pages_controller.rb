@@ -19,9 +19,13 @@ class DynamicPagesController < ApplicationController
     end
 
     def index
+
     end
 
     def signup
+        if user_signed_in?
+            redirect_to profile_path
+        end
     end
 
     def termscondition
