@@ -1514,6 +1514,9 @@ body.profile main .wrapper-right .panel {
 body.profile main .wrapper-right .panel .panel-body .img-thumbnail {
   /*width:100px;*/
 }
+body.profile main .wrapper-right .nav {
+  margin-bottom: 20px;
+}
 body.career main {
   background-color: #eeeeee;
 }
