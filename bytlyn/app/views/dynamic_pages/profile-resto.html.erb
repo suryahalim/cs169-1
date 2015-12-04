@@ -27,15 +27,15 @@
                 <div class="wrapper-right">
                     <div class="row">
                         <% if flash[:notice] != nil %>
-                            <div class="alert alert-success">
+                            <div class="alert alert-success text-center">
                                 <%= flash[:notice] %>
                             </div>
                         <% end %>
                         <% if flash[:alert] != nil %>
-                                <div class="alert alert-danger">
-                                    <%= flash[:alert] %>
-                                </div>
-                            <% end %>
+                            <div class="alert alert-danger text-center">
+                                <%= flash[:alert] %>
+                            </div>
+                        <% end %>
                         <div class="col-xs-offset-3 col-xs-6 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
                             <%= image_tag current_user.avatar.url(:medium), :class => 'profile-photo' %>
                         </div>
@@ -46,6 +46,18 @@
                                 <div class="sub-header">Full Name.</div>
                                 <div id="name" class="content"><%= current_user.name %></div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="waitlist_curr"><%= 7 %></div>
+                    <div class="waitlist_hist"><%= 9 %></div>
+                    <div class="delivery_curr"><%= 3 %></div>
+                    <div class="delivery_hist"><%= 4 %></div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                            <div class="highcharts-waitlist"></div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                            <div class="highcharts-delivery"></div>
                         </div>
                     </div>
                 </div>

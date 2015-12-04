@@ -1313,6 +1313,9 @@ body.restaurant main .wrapper-right .menu-name {
 body.restaurant main .wrapper-right .menu-description {
   color: #888888;
 }
+body.restaurant main .wrapper-right .slick-slide {
+  outline: none;
+}
 body.profile main {
   background-color: #eeeeee;
 }
