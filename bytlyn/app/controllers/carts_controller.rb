@@ -104,7 +104,7 @@ class CartsController < ApplicationController
       carts.each do |cart|
         cart.destroy
       end
-      redirect_to(:back) 
+      redirect_to(:back)
       # redirect_to restaurant_page_path(:rest_id => params[:rest_id])
     else
       redirect_to login_path

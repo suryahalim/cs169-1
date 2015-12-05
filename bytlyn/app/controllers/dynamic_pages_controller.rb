@@ -54,6 +54,7 @@ class DynamicPagesController < ApplicationController
     end
     def restaurant_delivery
         render "restaurant-delivery.html.erb"
+        sleep 1
     end
 
     def restaurant
