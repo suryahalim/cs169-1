@@ -42,6 +42,7 @@
                                             <div class="card-content">
                                                 <div class="card-button">
                                                 <% if (user_signed_in? && !current_user.rest) %>
+                                                <a class="btn btn-bytlyn" href="./restaurant_delivery?rest_id=<%= restaurant.user_id %>">Delivery</a>
                                                 <a class="btn btn-bytlyn" href="./waitlists_new?rest_id=<%= restaurant.user_id %>">Waitlist</a>
                                                 <% elsif !user_signed_in? %>
                                                     <a class="btn btn-bytlyn" href="./login">Waitlist</a>

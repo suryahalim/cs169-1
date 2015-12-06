@@ -200,8 +200,9 @@
                                     <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                                         <div class="card-content">
                                             <div class="card-button">
-                                                <a class="btn btn-bytlyn" href="./restaurant_delivery?rest_id=<%= restaurant.user_id %>">Delivery</a>
+                                                
                                                 <% if (user_signed_in? && !current_user.rest) %>
+                                                <a class="btn btn-bytlyn" href="./restaurant_delivery?rest_id=<%= restaurant.user_id %>">Delivery</a>
                                                 <a class="btn btn-bytlyn" href="./waitlists_new?rest_id=<%= restaurant.user_id %>">Add to Waitlist</a>
                                                 <% elsif !user_signed_in? %>
                                                     <a class="btn btn-bytlyn" href="./login">Waitlist</a>

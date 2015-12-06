@@ -29,9 +29,9 @@ class RestaurantsController < ApplicationController
       # if categories field is present
       @restaurants = @restaurants.where("lower(rest_type) LIKE ?","%#{search_params[:category].downcase}%") if search_params[:category].present?
       # if rating field is present
-      @restaurants = @restaurants.where("rating = ?","#{search_params[:rating].downcase}") if search_params[:checkrating]
+      @restaurants = @restaurants.where("rating >= ?","#{search_params[:rating].downcase}") if search_params[:checkrating]
       # if price field is present
-      @restaurants = @restaurants.where("price = ?","#{search_params[:price].downcase}") if search_params[:checkprice]
+      @restaurants = @restaurants.where("price <= ?","#{search_params[:price].downcase}") if search_params[:checkprice]
       # search by open now (day and time)
       @restaurants = @restaurants.joins(:hours).where("day_id = ? AND open <= ? AND close > ?","#{search_params[:day].downcase}","#{search_params[:time].downcase}","#{search_params[:time].downcase}") if search_params[:day].present? and search_params[:time].present? and search_params[:opennow].present?
       # search by location :http://www.scribd.com/doc/2569355/Geo-Distance-Search-with-MySQL

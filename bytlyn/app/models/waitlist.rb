@@ -54,6 +54,15 @@ class Waitlist < ActiveRecord::Base
         return true
     end
 
+    def self.get_history_overtime(user_id)
+        waitlist_list = Waitlist.where(rest_id: user_id).where("status > ?", 1).group('date(updated_at)').count
+        arr = []
+        waitlist_list.each do |date, cnt|
+            arr << [date, cnt]
+        end
+        return arr
+    end
+
     def self.status_string(status)
         case status
             when 1

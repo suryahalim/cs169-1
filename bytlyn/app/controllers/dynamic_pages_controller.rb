@@ -10,6 +10,7 @@ class DynamicPagesController < ApplicationController
                     @waitlist_curr = Waitlist.get_customer_waitlist(current_user.id)
                     @waitlist_hist = Waitlist.get_customer_waitlist_history(current_user.id)
                     gon.delivery_hist_list = Delivery.get_history_overtime(current_user.id)
+                    gon.waitlist_hist_list = Waitlist.get_history_overtime(current_user.id)
                     render "profile-resto.html.erb"
 
                 else

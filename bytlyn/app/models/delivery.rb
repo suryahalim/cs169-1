@@ -39,7 +39,7 @@ class Delivery < ActiveRecord::Base
 	end
 
 	def self.get_restaurant_delivery(user_id)
-		delivery_list = Delivery.where(rest_id: user_id).where("status < ?", 4)
+		delivery_list = Delivery.where(rest_id: user_id).where("status < ?", 4).order(created_at: :asc)
 		list_and_cart = []
 		delivery_list.each do |delivery|
 			this_cart = Cart.find_cart(delivery.user_id, delivery.rest_id, delivery.version)
@@ -70,7 +70,7 @@ class Delivery < ActiveRecord::Base
 	end
 
 	def self.get_restaurant_delivery_history(user_id)
-		delivery_list = Delivery.where(rest_id: user_id, status: 4)
+		delivery_list = Delivery.where(rest_id: user_id, status: 4).order(updated_at: :desc)
 		list_and_cart = []
 		delivery_list.each do |delivery|
 			this_cart = Cart.find_cart(delivery.user_id, delivery.rest_id, delivery.version)
@@ -85,7 +85,7 @@ class Delivery < ActiveRecord::Base
 	end
 
 	def self.get_history_overtime(user_id)
-		delivery_list = Delivery.where(rest_id: 3, status:4).group('date(updated_at)').count
+		delivery_list = Delivery.where(rest_id: user_id, status:4).group('date(updated_at)').count
 		arr = []
 		delivery_list.each do |date, cnt|
 			arr << [date, cnt]
