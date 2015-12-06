@@ -200,12 +200,13 @@
                                     <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                                         <div class="card-content">
                                             <div class="card-button">
-                                            <% if (user_signed_in? && !current_user.rest) %>
-                                            <a class="btn btn-bytlyn" href="./waitlists_new?rest_id=<%= restaurant.user_id %>">Add to Waitlist</a>
-                                            <% elsif !user_signed_in? %>
-                                                <a class="btn btn-bytlyn" href="./login">Waitlist</a>
-                                            <% end %>
-                                        </div>
+                                                <a class="btn btn-bytlyn" href="./restaurant_delivery?rest_id=<%= restaurant.user_id %>">Delivery</a>
+                                                <% if (user_signed_in? && !current_user.rest) %>
+                                                <a class="btn btn-bytlyn" href="./waitlists_new?rest_id=<%= restaurant.user_id %>">Add to Waitlist</a>
+                                                <% elsif !user_signed_in? %>
+                                                    <a class="btn btn-bytlyn" href="./login">Waitlist</a>
+                                                <% end %>   
+                                            </div>
                                         <a href = './restaurant_page?rest_id=<%= restaurant.user_id %>' class="card-header">
                                             <%= @users.find_by_id(restaurant.user_id).name %>
                                         </a>
@@ -238,8 +239,6 @@
                                                 <form action="./favorites_new?rest_id=<%= restaurant.user_id %>" method="POST">
                                                 <input type="submit" class="btn btn-bytlyn" value ="Add to Favorite"></input>
                                                 </form>
-                                                <!-- <a class="btn btn-bytlyn" data-method="post" href="./favorite?user_id=<%= restaurant.user_id %>">Add Favorite</a> -->
-                                               
                                             <%else%>
                                                 <i>Your Favorite</i>
                                             <%end%>
