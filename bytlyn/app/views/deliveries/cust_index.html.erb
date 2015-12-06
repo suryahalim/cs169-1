@@ -41,14 +41,15 @@
             <li class="active"><a href="/delivery_history">Delivery History</a></li>
           </ul>
           <%end%>
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <% if flash[:error] %>
               <div class="alert alert-danger"><%= flash[:error] %></div>
             <% end %>
-          </div>
+          </div> -->
+          <div class="alert alert-info">Click each transaction to see the details information</div>
           <% if not @deliveries.empty? %>
             <% @deliveries.each do |delivery_and_cart| %>
-                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                   <div class="payment-wrapper">
                     <% delivery = delivery_and_cart[:delivery] %>
                     <% menus = delivery_and_cart[:cart] %>
@@ -92,7 +93,7 @@
                           Delivery Fee<br>
                         </div>
                         <div class="text-right">
-                          $<%=delivery.total%><br>
+                          $ <%=delivery.total%><br>
                           <span class="payment-shipping">Free</span>
                         </div>
                       </div>
@@ -101,7 +102,7 @@
                           <strong>TOTAL</strong>
                         </div>
                         <div class="text-right">
-                          <strong>$<%=delivery.total%></strong>
+                          <strong>$ <%=delivery.total%></strong>
                         </div>
                       </div>
                     </div>
