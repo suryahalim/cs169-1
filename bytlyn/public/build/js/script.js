@@ -73,11 +73,71 @@ $(document).ready(function() {
     var delivery_curr = $('.delivery_curr').html();
     var delivery_hist = $('.delivery_hist').html();
     var del_hist_list = gon.delivery_hist_list;
+    var wai_hist_list = gon.waitlist_hist_list;
     for (var i = 0; i < del_hist_list.length; i++) {
        var ol = del_hist_list[i][0];
        del_hist_list[i][0] =  Date.parse(ol);
    }
+   for (var i = 0; i < wai_hist_list.length; i++) {
+       var ol = wai_hist_list[i][0];
+       wai_hist_list[i][0] =  Date.parse(ol);
+   }
     // $('.display_data').innerHTML(del_hist_list);
+    $('.highcharts-waitlist-history').highcharts({
+        chart: {
+            zoomType: 'x'
+        },
+        title: {
+            text: 'Waitlist History'
+        },
+        subtitle: {
+            text: document.ontouchstart === undefined ?
+                    'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+        },
+        xAxis: {
+            type: 'datetime'
+        },
+        yAxis: {
+            title: {
+                text: '# Waitlists'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            area: {
+                fillColor: {
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, Highcharts.getOptions().colors[2]],
+                        [1, Highcharts.Color(Highcharts.getOptions().colors[2]).setOpacity(0).get('rgba')]
+                    ]
+                },
+                marker: {
+                    radius: 2
+                },
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                threshold: null
+            }
+        },
+
+        series: [{
+            type: 'area',
+            name: '# Waitlist',
+            data: wai_hist_list
+        }]
+    });
 
      $('.highcharts-delivery-history').highcharts({
         chart: {
