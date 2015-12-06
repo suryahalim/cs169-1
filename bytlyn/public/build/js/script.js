@@ -70,6 +70,68 @@ $(document).ready(function() {
     var waitlist_hist = $('.waitlist_hist').html();
     var delivery_curr = $('.delivery_curr').html();
     var delivery_hist = $('.delivery_hist').html();
+    var del_hist_list = gon.delivery_hist_list;
+    for (var i = 0; i < del_hist_list.length; i++) {
+       var ol = del_hist_list[i][0];
+       del_hist_list[i][0] =  Date.parse(ol);
+   }
+    // $('.display_data').innerHTML(del_hist_list);
+
+     $('.highcharts-delivery-history').highcharts({
+        chart: {
+            zoomType: 'x'
+        },
+        title: {
+            text: 'Delivery History'
+        },
+        subtitle: {
+            text: document.ontouchstart === undefined ?
+                    'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+        },
+        xAxis: {
+            type: 'datetime'
+        },
+        yAxis: {
+            title: {
+                text: '# Deliveries'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            area: {
+                fillColor: {
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, Highcharts.getOptions().colors[0]],
+                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                    ]
+                },
+                marker: {
+                    radius: 2
+                },
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                threshold: null
+            }
+        },
+
+        series: [{
+            type: 'area',
+            name: '# Deliveries',
+            data: del_hist_list
+        }]
+    });
 
     $('.highcharts-waitlist').highcharts({
         chart: {

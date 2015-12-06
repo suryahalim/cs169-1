@@ -84,6 +84,15 @@ class Delivery < ActiveRecord::Base
 		return list_and_cart
 	end
 
+	def self.get_history_overtime(user_id)
+		delivery_list = Delivery.where(rest_id: 3, status:4).group('date(updated_at)').count
+		arr = []
+		delivery_list.each do |date, cnt|
+			arr << [date, cnt]
+		end
+		return arr
+	end
+
 	def self.status_string(status)
 		case status
 			when 1
