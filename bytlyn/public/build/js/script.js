@@ -65,6 +65,8 @@ $(document).ready(function() {
     	$('.advanced-search-wrapper').addClass("animated slideInUp");
     });
 
+    $('.alert-success').delay(2000).fadeOut(1000);
+
     // highcharts
     var waitlist_curr = $('.waitlist_curr').html();
     var waitlist_hist = $('.waitlist_hist').html();

@@ -60,6 +60,14 @@ body.profile {
 				font-size: 14px;
 				margin-bottom: 30px;
 			}
+			.box-option-waitlist {
+				cursor: default;
+				&:hover, &:focus {
+					&::before {
+						background-color: @black-a;
+					}
+				}
+			}
 			.payment-summary {
 				cursor: pointer;
 			}

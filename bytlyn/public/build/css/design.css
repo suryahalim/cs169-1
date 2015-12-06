@@ -692,6 +692,7 @@ form input:-webkit-autofill {
 .card-view .card-content form {
   position: absolute;
   bottom: 0;
+  width: 100%;
 }
 .card-view .card-content .card-price {
   font-size: 30px;
@@ -1342,6 +1343,12 @@ body.restaurant main .wrapper-right .menu-description {
 body.restaurant main .wrapper-right .slick-slide {
   outline: none;
 }
+body.restaurant main .wrapper-right .card-view {
+  height: 160px;
+}
+body.restaurant main .wrapper-right .card-view .card-content {
+  height: 140px;
+}
 body.profile main {
   background-color: #eeeeee;
 }
@@ -1428,6 +1435,13 @@ body.profile main .wrapper-right .email {
 body.profile main .wrapper-right .box-option {
   font-size: 14px;
   margin-bottom: 30px;
+}
+body.profile main .wrapper-right .box-option-waitlist {
+  cursor: default;
+}
+body.profile main .wrapper-right .box-option-waitlist:hover::before,
+body.profile main .wrapper-right .box-option-waitlist:focus::before {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 body.profile main .wrapper-right .payment-summary {
   cursor: pointer;
