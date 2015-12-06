@@ -61,7 +61,7 @@ class CartsController < ApplicationController
       @cart.qty = 1
       respond_to do |format|
         if @cart.save
-          format.html { redirect_to(:back)}
+          format.html { redirect_to :back, notice: "Item successfully added to cart"}
         else
           format.html { render :new }
           format.json { render json: @cart.errors, status: :unprocessable_entity }
