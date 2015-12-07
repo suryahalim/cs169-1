@@ -59,7 +59,7 @@ header .wrapper-title {
   width: 100%;
 }
 header .wrapper-title .logo {
-  width: 30px;
+  width: 40px;
 }
 header .wrapper-title .title {
   display: inline-block;
@@ -67,6 +67,9 @@ header .wrapper-title .title {
 }
 header .wrapper-title:hover {
   background-color: rgba(255, 255, 255, 0.3);
+}
+header .wrapper-logo {
+  padding: 5px 0;
 }
 footer {
   background-color: #333333;
@@ -1342,10 +1345,10 @@ body.restaurant main .wrapper-right .slick-slide {
   outline: none;
 }
 body.restaurant main .wrapper-right .card-view {
-  height: 160px;
+  min-height: 160px;
 }
 body.restaurant main .wrapper-right .card-view .card-content {
-  height: 140px;
+  min-height: 140px;
 }
 body.profile main {
   background-color: #eeeeee;
@@ -1543,10 +1546,10 @@ body.profile main .wrapper-right .nav {
   margin-bottom: 20px;
 }
 body.profile main .wrapper-right .card-view {
-  height: 203px;
+  min-height: 203px;
 }
 body.profile main .wrapper-right .card-view .card-content {
-  height: 180px;
+  min-height: 180px;
 }
 body.career main {
   background-color: #eeeeee;
