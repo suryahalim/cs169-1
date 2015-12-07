@@ -3,10 +3,17 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
-              <% if flash[:error] %>
-                <div class="error"><%= flash[:error] %></div><br>
-              <% end %>
+              
+                <div class="error"><%= params[:erros] %></div><br>
+                <% @menu.errors.each do |error| %>
+                  <div class="alert alert-danger">
+                    <%= error %>
+                  </div>
+                <%end%>
               <h1>Add New Menu</h1>
+              <% @menu.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
 
               <%= form_for @menu do |f| %>
               <p>

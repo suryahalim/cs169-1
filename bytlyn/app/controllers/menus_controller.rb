@@ -67,7 +67,8 @@ class MenusController < ApplicationController
         format.html { redirect_to menus_path, notice: 'Menu was successfully updated.' }
         format.json { render :show, status: :ok, location: @menu }
       else
-        format.html { render :edit }
+        str = "/menus_edit?id=" + params[:id]
+        format.html { redirect_to str, errors: @menu.errors}
         format.json { render json: @menu.errors, status: :unprocessable_entity }
       end
     end

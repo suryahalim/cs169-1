@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 				}
   validates_attachment :avatar,
   content_type: { content_type: ["image/jpeg", "image/jpg", "image/png"] },
-  size: { less_than: 5.megabytes }
+  size: { less_than: 5.megabytes}
   # Users.errors.delete(:avatar)
 
   def has_payment_info?
